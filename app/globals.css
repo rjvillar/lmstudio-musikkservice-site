@@ -1,26 +1,131 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* 
+ * LM Studio & Musikkservice - Global Styles
+ * Design System: Scandinavian Minimalism meets Music Studio Aesthetic
+ * 
+ * Color Palette:
+ * - Primary Dark: #1a1a1a (Rich charcoal for backgrounds)
+ * - Secondary Dark: #2d2d2d (Slate gray for cards/sections)
+ * - Accent Warm: #c9a66b (Warm wood/brass inspired - accordion bellows)
+ * - Accent Muted: #8b7355 (Darker wood tone)
+ * - Off-white: #f8f7f5 (Warm white for light sections)
+ * - Text Light: #e8e6e3 (Soft white for dark backgrounds)
+ * - Text Muted: #9ca3af (Gray for secondary text)
+ */
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Custom color tokens */
+  --color-primary-dark: #1a1a1a;
+  --color-secondary-dark: #2d2d2d;
+  --color-accent: #c9a66b;
+  --color-accent-hover: #d4b67a;
+  --color-accent-muted: #8b7355;
+  --color-off-white: #f8f7f5;
+  --color-text-light: #e8e6e3;
+  --color-text-muted: #9ca3af;
+  --color-border-subtle: #3d3d3d;
+
+  /* Typography */
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-manrope);
+}
+
+:root {
+  --background: #f8f7f5;
+  --foreground: #1a1a1a;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #1a1a1a;
+    --foreground: #e8e6e3;
   }
+}
+
+/* Base styles */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+/* Custom scrollbar for dark theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3d3d3d;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4d4d4d;
+}
+
+/* Focus styles for accessibility */
+*:focus-visible {
+  outline: 2px solid #c9a66b;
+  outline-offset: 2px;
+}
+
+/* Selection colors */
+::selection {
+  background: #c9a66b;
+  color: #1a1a1a;
+}
+
+/* Smooth transitions for interactive elements */
+a,
+button {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Typography refinements */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading), var(--font-sans), system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* Form focus states */
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #c9a66b;
+  box-shadow: 0 0 0 3px rgba(201, 166, 107, 0.15);
+}
+
+/* Image handling */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Subtle texture overlay for dark sections */
+.texture-overlay {
+  position: relative;
+}
+
+.texture-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
 }
