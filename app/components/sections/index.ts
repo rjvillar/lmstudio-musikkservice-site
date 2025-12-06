@@ -10,3 +10,4 @@ export { default as About } from "./About";
 export { default as Music } from "./Music";
 export { default as Gallery } from "./Gallery";
 export { default as Contact } from "./Contact";
+export { default as Map } from "./Map";

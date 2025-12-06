@@ -48,21 +48,13 @@ function shuffleArray<T>(array: T[]): T[] {
  */
 function Slideshow({ delay = 0 }: { delay?: number }) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [images, setImages] = useState(storyImages);
   const [isClient, setIsClient] = useState(false);
 
-  // Use lazy initializer to compute shuffled images only once on client
-  const [images] = useState(() => {
-    // On server, return original array; will be replaced on client
-    if (typeof window === "undefined") {
-      return storyImages;
-    }
-    return shuffleArray(storyImages);
-  });
-
-  // Mark as client-side rendered (deferred to avoid linter warning)
+  // Shuffle images only on client-side after hydration
   useEffect(() => {
-    const timer = setTimeout(() => setIsClient(true), 0);
-    return () => clearTimeout(timer);
+    setImages(shuffleArray(storyImages));
+    setIsClient(true);
   }, []);
 
   // Auto-advance slideshow

@@ -6,6 +6,7 @@ import {
   Music,
   Gallery,
   Contact,
+  Map,
 } from "@/app/components/sections";
 
 /**
@@ -67,6 +68,9 @@ export default function Home() {
 
         {/* Contact - Get in touch */}
         <Contact />
+
+        {/* Map - Location */}
+        <Map />
       </main>
 
       {/* Footer */}

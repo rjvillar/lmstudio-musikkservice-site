@@ -507,25 +507,31 @@ export const galleryImages: GalleryImage[] = [
   // Salg (Sale) - 3 images
   {
     id: "sale-1",
-    src: "/images/gallery/sale-1.png",
-    alt: "Trekkspill til salgs",
+    src: "/images/gallery/sale-1.webp",
+    alt: "Trekkspill",
     category: "Salg",
   },
   {
     id: "sale-2",
-    src: "/images/gallery/sale-2.jpg",
-    alt: "Instrumenter i utstilling",
+    src: "/images/gallery/sale-2.png",
+    alt: "Trekkspill til salgs",
     category: "Salg",
   },
   {
     id: "sale-3",
     src: "/images/gallery/sale-3.jpg",
-    alt: "Kvalitetstrekkspill",
+    alt: "Instrumenter i utstilling",
     category: "Salg",
   },
   {
     id: "sale-4",
     src: "/images/gallery/sale-4.jpg",
+    alt: "Kvalitetstrekkspill",
+    category: "Salg",
+  },
+  {
+    id: "sale-5",
+    src: "/images/gallery/sale-5.jpg",
     alt: "Rødt trekkspill",
     category: "Salg",
   },
