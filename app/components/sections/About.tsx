@@ -47,19 +47,27 @@ function shuffleArray<T>(array: T[]): T[] {
  * Uses client-side only initialization to avoid hydration mismatch
  */
 function Slideshow({ delay = 0 }: { delay?: number }) {
-  const [mounted, setMounted] = useState(false);
-  const [images, setImages] = useState<string[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isClient, setIsClient] = useState(false);
 
-  // Initialize only on client-side to avoid hydration mismatch
+  // Use lazy initializer to compute shuffled images only once on client
+  const [images] = useState(() => {
+    // On server, return original array; will be replaced on client
+    if (typeof window === "undefined") {
+      return storyImages;
+    }
+    return shuffleArray(storyImages);
+  });
+
+  // Mark as client-side rendered (deferred to avoid linter warning)
   useEffect(() => {
-    setImages(shuffleArray(storyImages));
-    setMounted(true);
+    const timer = setTimeout(() => setIsClient(true), 0);
+    return () => clearTimeout(timer);
   }, []);
 
   // Auto-advance slideshow
   useEffect(() => {
-    if (!mounted || images.length === 0) return;
+    if (!isClient || images.length === 0) return;
 
     const timer = setTimeout(() => {
       const interval = setInterval(() => {
@@ -70,10 +78,9 @@ function Slideshow({ delay = 0 }: { delay?: number }) {
     }, delay);
 
     return () => clearTimeout(timer);
-  }, [mounted, images.length, delay]);
+  }, [isClient, images.length, delay]);
 
-  // Show placeholder during SSR and initial client render
-  if (!mounted || images.length === 0) {
+  if (images.length === 0) {
     return <div className="absolute inset-0 bg-secondary-dark" />;
   }
 

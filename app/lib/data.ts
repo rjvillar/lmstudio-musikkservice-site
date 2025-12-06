@@ -36,6 +36,11 @@ export interface GalleryImage {
   category: string;
 }
 
+export interface GalleryCategory {
+  name: string;
+  images: GalleryImage[];
+}
+
 export interface ContactInfo {
   address: string;
   postalCode: string;
@@ -277,40 +282,255 @@ export const employees: Employee[] = [
 // ============================================================================
 
 export const galleryImages: GalleryImage[] = [
+  // Verksted (Workshop) - 4 images
   {
-    id: "gallery-1",
-    src: "/images/gallery/placeholder-1.jpg",
-    alt: "Trekkspill på verksted",
+    id: "workshop-1",
+    src: "/images/gallery/workshop-1.jpg",
+    alt: "Trekkspill reparasjon på verkstedet",
     category: "Verksted",
   },
   {
-    id: "gallery-2",
-    src: "/images/gallery/placeholder-2.jpg",
-    alt: "Studioinnspilling",
+    id: "workshop-2",
+    src: "/images/gallery/workshop-2.jpg",
+    alt: "Detaljert arbeid med trekkspillmekanikk",
+    category: "Verksted",
+  },
+  {
+    id: "workshop-3",
+    src: "/images/gallery/workshop-3.jpg",
+    alt: "Verktøy og utstyr på verkstedet",
+    category: "Verksted",
+  },
+  {
+    id: "workshop-4",
+    src: "/images/gallery/workshop-4.jpg",
+    alt: "Profesjonell trekkspillservice",
+    category: "Verksted",
+  },
+
+  // Studio - 4 images
+  {
+    id: "studio-1",
+    src: "/images/gallery/studio-1.jpg",
+    alt: "Studioinnspilling i LM Studio",
     category: "Studio",
   },
   {
-    id: "gallery-3",
-    src: "/images/gallery/placeholder-3.jpg",
-    alt: "Konsert med PA-system",
+    id: "studio-2",
+    src: "/images/gallery/studio-2.jpg",
+    alt: "Mikrofoner og opptak",
+    category: "Studio",
+  },
+  {
+    id: "studio-3",
+    src: "/images/gallery/studio-3.jpg",
+    alt: "Lydteknisk utstyr",
+    category: "Studio",
+  },
+  {
+    id: "studio-4",
+    src: "/images/gallery/studio-4.jpg",
+    alt: "Profesjonelt lydopptak",
+    category: "Studio",
+  },
+
+  // Arrangementer (Events) - 3 images
+  {
+    id: "events-1",
+    src: "/images/gallery/events-1.jpg",
+    alt: "Jubileumskonsert i Lillestrøm Kultursenter 12. februar 2005 med Tangoensemble Dal Segno og Strømmen Trekkspillklubb",
     category: "Arrangementer",
   },
   {
-    id: "gallery-4",
-    src: "/images/gallery/placeholder-4.jpg",
-    alt: "Trekkspill i utstilling",
+    id: "events-2",
+    src: "/images/gallery/events-2.jpg",
+    alt: "T.v.: Nåværende formann Erik Ringerike",
+    category: "Arrangementer",
+  },
+  {
+    id: "events-3",
+    src: "/images/gallery/events-3.jpg",
+    alt: "",
+    category: "Arrangementer",
+  },
+  {
+    id: "events-4",
+    src: "/images/gallery/events-4.jpg",
+    alt: "Fra v.: Frank Andresen, tidligere musikalsk leder i nærmere 20 år, Bjørn Tuv Dahl og Bente Midtsveen  med fellesnevnere som komponister og arrangører.",
+    category: "Arrangementer",
+  },
+  {
+    id: "events-5",
+    src: "/images/gallery/events-5.jpg",
+    alt: "Dal Segno utvidet fra salongbesetning til stor besetning med hovedvekt på Astor Piazzollas musikk for noen år siden.",
+    category: "Arrangementer",
+  },
+  {
+    id: "events-6",
+    src: "/images/gallery/events-6.jpg",
+    alt: "Strømmen Trekkspillklubb stilte med 11 trekkspillere til kveldens konsert i tillegg til deres faste bassist og gitarist samt gjestetrommeslager.",
+    category: "Arrangementer",
+  },
+  {
+    id: "events-7",
+    src: "/images/gallery/events-7.jpg",
+    alt: "Rolfsnes hadde hjelp av Tron Tangeraas, også fiolin.",
+    category: "Arrangementer",
+  },
+  {
+    id: "events-8",
+    src: "/images/gallery/events-8.jpg",
+    alt: "Foran t.h.: Jan Olav Rolfsnes - primus motor, stifter, musiker og arrangør",
+    category: "Arrangementer",
+  },
+  {
+    id: "events-9",
+    src: "/images/gallery/events-9.jpg",
+    alt: 'T.h.: Svetislav Mitic, som er "skyld" i samarbeidet med Dal Segno, har vært en god læremester for Strømmen TK i Balkan-musikk.',
+    category: "Arrangementer",
+  },
+  {
+    id: "events-10",
+    src: "/images/gallery/events-10.jpg",
+    alt: '.... og akkompagnert av Per Bredesen på bass i "All The Things you are".',
+    category: "Arrangementer",
+  },
+  {
+    id: "events-11",
+    src: "/images/gallery/events-11.jpg",
+    alt: 'Mer solospill ble det på Strømmen TKs nåværende musikalske leder, Kjell Harald. Her med imponerende fingerferdigheter i "Spansk Mosaikk"....',
+    category: "Arrangementer",
+  },
+  {
+    id: "events-12",
+    src: "/images/gallery/events-12.jpg",
+    alt: 'Kjell Harald Langhaug som solist i Charmichaels kjente "Star Dust".',
+    category: "Arrangementer",
+  },
+  {
+    id: "events-13",
+    src: "/images/gallery/events-13.jpg",
+    alt: "Aage Thuen - konferansier.",
+    category: "Arrangementer",
+  },
+  {
+    id: "events-14",
+    src: "/images/gallery/events-14.jpg",
+    alt: "Dal Segno stilte med også med Kjersti Birketvedt på cello og en uannonsert utøver på bratsj.",
+    category: "Arrangementer",
+  },
+  {
+    id: "events-15",
+    src: "/images/gallery/events-15.jpg",
+    alt: 'Beate her med Josefines sang "Å æ kjinne ein kar" fra Bør Børson - her akkompagnert av Bente Midtsveen på trekkspill og selvsagt Dal Segno.',
+    category: "Arrangementer",
+  },
+  {
+    id: "events-16",
+    src: "/images/gallery/events-16.jpg",
+    alt: 'Gjestesolist, Beate Kronen, sang "I love Paris".',
+    category: "Arrangementer",
+  },
+  {
+    id: "events-17",
+    src: "/images/gallery/events-17.jpg",
+    alt: "Musikalsk utfoldelse med innlevelse.",
+    category: "Arrangementer",
+  },
+  {
+    id: "events-18",
+    src: "/images/gallery/events-18.jpg",
+    alt: "Frank Andresen overrekker blomster til klubbens tidligere formann, Kjell Ringerike, for hans uvurderlige innsats.",
+    category: "Arrangementer",
+  },
+  {
+    id: "events-19",
+    src: "/images/gallery/events-19.jpg",
+    alt: "Aage Thuen var også en av mange som fortjente blomster, ikke minst pga. hans konferansieroppgave denne kvelden.",
+    category: "Arrangementer",
+  },
+  {
+    id: "events-20",
+    src: "/images/gallery/events-20.jpg",
+    alt: 'Bente Midtsveen og Frank Andresen framførte paso doblen "Hälsning från Södern" av A. Walther arrangert av K. H. Langhaug.',
+    category: "Arrangementer",
+  },
+  {
+    id: "events-21",
+    src: "/images/gallery/events-21.jpg",
+    alt: 'Gjestesolist på gitar - Roy Henning Snyen i Piazzollas "Concierto para Quinteto" i et arr. av Rolfsnes.',
+    category: "Arrangementer",
+  },
+  {
+    id: "events-22",
+    src: "/images/gallery/events-22.jpg",
+    alt: "LM Studio og Musikkservice med Geir Harry Haugland var ansvarlig for lyden, denne kvelden med god hjelp av sønnen.",
+    category: "Arrangementer",
+  },
+  {
+    id: "events-23",
+    src: "/images/gallery/events-23.jpg",
+    alt: "Rundt 300 publikummere må jubilantene si seg godt fornøyd med.",
+    category: "Arrangementer",
+  },
+
+  // Salg (Sale) - 3 images
+  {
+    id: "sale-1",
+    src: "/images/gallery/sale-1.jpg",
+    alt: "Trekkspill til salgs",
     category: "Salg",
   },
   {
-    id: "gallery-5",
-    src: "/images/gallery/placeholder-5.jpg",
-    alt: "Kursundervisning",
+    id: "sale-2",
+    src: "/images/gallery/sale-2.jpg",
+    alt: "Instrumenter i utstilling",
+    category: "Salg",
+  },
+  {
+    id: "sale-3",
+    src: "/images/gallery/sale-3.jpg",
+    alt: "Kvalitetstrekkspill",
+    category: "Salg",
+  },
+
+  // Kurs (Course) - 3 images
+  {
+    id: "course-1",
+    src: "/images/gallery/course-1.jpg",
+    alt: "Trekkspillkurs undervisning",
     category: "Kurs",
   },
   {
-    id: "gallery-6",
-    src: "/images/gallery/placeholder-6.jpg",
-    alt: "Vintage instrumenter",
+    id: "course-2",
+    src: "/images/gallery/course-2.jpg",
+    alt: "Gruppeundervisning",
+    category: "Kurs",
+  },
+  {
+    id: "course-3",
+    src: "/images/gallery/course-3.jpg",
+    alt: "Privat trekkspilltime",
+    category: "Kurs",
+  },
+
+  // Samling (Collection) - 3 images
+  {
+    id: "collection-1",
+    src: "/images/gallery/collection-1.jpg",
+    alt: "Vintage trekkspill samling",
+    category: "Samling",
+  },
+  {
+    id: "collection-2",
+    src: "/images/gallery/collection-2.jpg",
+    alt: "Historiske instrumenter",
+    category: "Samling",
+  },
+  {
+    id: "collection-3",
+    src: "/images/gallery/collection-3.jpg",
+    alt: "Sjeldne trekkspill",
     category: "Samling",
   },
 ];
