@@ -21,7 +21,7 @@ export default function Card({
   };
 
   const hoverClasses = hover
-    ? "hover:border-accent/30 hover:shadow-xl hover:shadow-accent/5 hover:-translate-y-1"
+    ? "hover:border-accent/30 hover:shadow-xl hover:shadow-accent/5 hover:-translate-y-1 hover:scale-[1.02]"
     : "";
 
   return (
@@ -29,7 +29,7 @@ export default function Card({
       className={`
         bg-secondary-dark rounded-2xl
         border border-border-subtle
-        transition-all duration-300
+        transition-all duration-500 ease-out
         ${paddingClasses[padding]}
         ${hoverClasses}
         ${className}

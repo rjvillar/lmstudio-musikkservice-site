@@ -29,7 +29,7 @@ export default function Home() {
       <TopBar />
       <Header />
 
-      <main id="main-content">
+      <main id="main-content" className="overflow-x-hidden w-full">
         <Hero />
         <Services />
         <About />

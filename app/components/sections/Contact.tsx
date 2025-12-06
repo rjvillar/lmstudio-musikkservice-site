@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { motion } from "framer-motion";
 import { Container, SectionHeading, Button, Card } from "@/app/components/ui";
 import { contactInfo, additionalContacts, openingHours } from "@/app/lib/data";
 
@@ -95,7 +96,7 @@ export default function Contact() {
   return (
     <section
       id="kontakt"
-      className="py-24 md:py-32 bg-primary-dark"
+      className="py-24 md:py-32 bg-primary-dark overflow-x-hidden"
       aria-labelledby="contact-heading"
     >
       <Container>
@@ -107,8 +108,27 @@ export default function Contact() {
           />
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
-          <div className="order-2 lg:order-1">
+        <motion.div
+          className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-stretch"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={{
+            visible: {
+              transition: {
+                staggerChildren: 0.15,
+              },
+            },
+          }}
+        >
+          <motion.div
+            className="order-2 lg:order-1"
+            variants={{
+              hidden: { opacity: 0, x: -30 },
+              visible: { opacity: 1, x: 0 },
+            }}
+            transition={{ duration: 0.6 }}
+          >
             <Card padding="lg" className="h-full flex flex-col">
               <h3 className="text-xl font-semibold text-text-light mb-2">
                 Send oss en melding
@@ -279,9 +299,16 @@ export default function Contact() {
                 </div>
               </form>
             </Card>
-          </div>
+          </motion.div>
 
-          <div className="order-1 lg:order-2 flex flex-col justify-between">
+          <motion.div
+            className="order-1 lg:order-2 flex flex-col justify-between"
+            variants={{
+              hidden: { opacity: 0, x: 30 },
+              visible: { opacity: 1, x: 0 },
+            }}
+            transition={{ duration: 0.6 }}
+          >
             <div>
               <h3 className="text-lg font-semibold text-text-light mb-4">
                 Direkte kontakt
@@ -463,8 +490,8 @@ export default function Contact() {
                 </div>
               </div>
             </Card>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </Container>
 
       {submitStatus === "success" && (

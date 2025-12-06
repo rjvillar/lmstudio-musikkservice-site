@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { Container } from "@/app/components/ui";
 import {
   businessInfo,
@@ -17,7 +20,13 @@ export default function Footer() {
       role="contentinfo"
     >
       <Container>
-        <div className="py-12 md:py-16">
+        <motion.div
+          className="py-12 md:py-16"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
             <div>
               <Link href="/" className="flex items-center gap-4 group mb-0">
@@ -199,10 +208,9 @@ export default function Footer() {
               </address>
             </div>
           </div>
-        </div>
+        </motion.div>
       </Container>
 
-      {/* Bottom Bar */}
       <div className="border-t border-border-subtle bg-primary-dark/50">
         <Container>
           <div className="py-4 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-text-muted">

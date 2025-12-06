@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { Container, SectionHeading } from "@/app/components/ui";
 import { businessInfo } from "@/app/lib/data";
 
@@ -32,8 +33,12 @@ function Slideshow({ delay = 0 }: { delay?: number }) {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    setImages(shuffleArray(storyImages));
-    setIsClient(true);
+    const timer1 = setTimeout(() => setImages(shuffleArray(storyImages)), 0);
+    const timer2 = setTimeout(() => setIsClient(true), 0);
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+    };
   }, []);
 
   useEffect(() => {
@@ -82,7 +87,7 @@ export default function About() {
   return (
     <section
       id="om-oss"
-      className="py-24 md:py-32 bg-off-white"
+      className="py-24 md:py-32 bg-off-white overflow-x-hidden"
       aria-labelledby="about-heading"
     >
       <Container>
@@ -107,12 +112,29 @@ export default function About() {
           </p>
         </div>
 
-        <div className="mt-12 max-w-5xl mx-auto">
+        <motion.div
+          className="mt-12 max-w-5xl mx-auto"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={{
+            visible: {
+              transition: {
+                staggerChildren: 0.15,
+              },
+            },
+          }}
+        >
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {businessInfo.valueProps.map((prop, index) => (
-              <div
+              <motion.div
                 key={index}
-                className="bg-white rounded-xl p-6 text-center space-y-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+                variants={{
+                  hidden: { opacity: 0, y: 30 },
+                  visible: { opacity: 1, y: 0 },
+                }}
+                transition={{ duration: 0.5 }}
+                className="bg-white rounded-xl p-6 text-center space-y-3 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 hover:-translate-y-1"
               >
                 <div className="w-14 h-14 mx-auto rounded-xl bg-accent/10 flex items-center justify-center">
                   <ValuePropIcon index={index} />
@@ -124,12 +146,18 @@ export default function About() {
                 <p className="text-sm text-primary-dark/70 leading-relaxed">
                   {prop.description}
                 </p>
-              </div>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
 
-        <div className="mt-20 mb-16">
+        <motion.div
+          className="mt-20 mb-16"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6 }}
+        >
           <div className="max-w-4xl mx-auto">
             <div className="bg-white rounded-2xl p-8 md:p-10 shadow-lg border-2 border-accent/20 relative overflow-hidden">
               <div className="absolute top-0 left-0 w-full h-1.5 bg-linear-to-r from-accent via-accent/70 to-accent" />
@@ -219,9 +247,21 @@ export default function About() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="mt-24 max-w-5xl mx-auto">
+        <motion.div
+          className="mt-24 max-w-5xl mx-auto"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={{
+            visible: {
+              transition: {
+                staggerChildren: 0.2,
+              },
+            },
+          }}
+        >
           <div className="text-center mb-10">
             <h2 className="text-2xl md:text-3xl font-bold text-primary-dark mb-3">
               Historien bak studioet
@@ -233,7 +273,14 @@ export default function About() {
           </div>
 
           <div className="space-y-12">
-            <div className="grid md:grid-cols-2 gap-8 items-center">
+            <motion.div
+              className="grid md:grid-cols-2 gap-8 items-center"
+              variants={{
+                hidden: { opacity: 0, x: -40 },
+                visible: { opacity: 1, x: 0 },
+              }}
+              transition={{ duration: 0.6 }}
+            >
               <div className="space-y-3">
                 <h3 className="text-xl font-bold text-primary-dark">
                   Fra lidenskap til virksomhet
@@ -247,9 +294,16 @@ export default function About() {
               <div className="relative h-56 md:h-72 rounded-2xl overflow-hidden shadow-lg order-first md:order-last">
                 <Slideshow delay={0} />
               </div>
-            </div>
+            </motion.div>
 
-            <div className="grid md:grid-cols-2 gap-8 items-center">
+            <motion.div
+              className="grid md:grid-cols-2 gap-8 items-center"
+              variants={{
+                hidden: { opacity: 0, x: 40 },
+                visible: { opacity: 1, x: 0 },
+              }}
+              transition={{ duration: 0.6 }}
+            >
               <div className="relative h-56 md:h-72 rounded-2xl overflow-hidden shadow-lg">
                 <Slideshow delay={2000} />
               </div>
@@ -264,9 +318,16 @@ export default function About() {
                   trekkspill.
                 </p>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
+            <motion.div
+              className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100"
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              transition={{ duration: 0.6 }}
+            >
               <div className="max-w-2xl mx-auto text-center space-y-4">
                 <h3 className="text-xl font-bold text-primary-dark">
                   Vår forpliktelse til musikere
@@ -277,12 +338,30 @@ export default function About() {
                   gir samme personlige oppfølging til alle.
                 </p>
               </div>
-            </div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="mt-32 max-w-5xl mx-auto">
-          <div className="text-center mb-12">
+        <motion.div
+          className="mt-32 max-w-5xl mx-auto"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={{
+            visible: {
+              transition: {
+                staggerChildren: 0.2,
+              },
+            },
+          }}
+        >
+          <motion.div
+            className="text-center mb-12"
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0 },
+            }}
+          >
             <h2 className="text-3xl md:text-4xl font-bold text-primary-dark mb-4">
               Møt teamet
             </h2>
@@ -290,9 +369,16 @@ export default function About() {
               className="w-16 h-1 bg-accent rounded-full mx-auto"
               aria-hidden="true"
             />
-          </div>
+          </motion.div>
 
-          <div className="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
+          <motion.div
+            className="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100"
+            variants={{
+              hidden: { opacity: 0, y: 40 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            transition={{ duration: 0.6 }}
+          >
             <div className="grid md:grid-cols-2 gap-0">
               <div className="relative h-96 md:h-auto">
                 <Image
@@ -385,8 +471,8 @@ export default function About() {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </Container>
     </section>
   );

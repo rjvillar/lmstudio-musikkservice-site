@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { Container, SectionHeading, Button } from "@/app/components/ui";
 import { albums, musicSectionInfo, type Album } from "@/app/lib/data";
 
@@ -103,7 +104,7 @@ export default function Music() {
   return (
     <section
       id="musikk"
-      className="py-24 md:py-32 bg-primary-dark"
+      className="py-24 md:py-32 bg-primary-dark overflow-x-hidden"
       aria-labelledby="music-heading"
     >
       <Container>
@@ -119,11 +120,32 @@ export default function Music() {
         </div>
 
         {/* Albums Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={{
+            visible: {
+              transition: {
+                staggerChildren: 0.1,
+              },
+            },
+          }}
+        >
           {albums.map((album) => (
-            <AlbumCard key={album.id} album={album} />
+            <motion.div
+              key={album.id}
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              transition={{ duration: 0.5 }}
+            >
+              <AlbumCard album={album} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* YouTube Embed */}
         <div className="mt-20 max-w-4xl mx-auto">

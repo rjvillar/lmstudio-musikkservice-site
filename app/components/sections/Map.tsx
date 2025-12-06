@@ -4,7 +4,7 @@ import { contactInfo } from "@/app/lib/data";
 
 export default function Map() {
   return (
-    <section className="w-full h-[300px] md:h-[340px] bg-secondary-dark relative">
+    <section className="w-full h-[300px] md:h-[340px] bg-secondary-dark relative overflow-x-hidden">
       <iframe
         src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=${encodeURIComponent(
           `${contactInfo.address}, ${contactInfo.postalCode} ${contactInfo.city}`

@@ -13,13 +13,16 @@ export default function Header() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
+    const timer = setTimeout(() => setMounted(true), 0);
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   const handleLinkClick = () => {
@@ -41,10 +44,10 @@ export default function Header() {
     <header
       className={`
         fixed top-0 md:top-10 left-0 right-0 z-40
-        transition-all duration-300
+        transition-all duration-500 ease-out
         ${
           isScrolled
-            ? "bg-primary-dark/95 backdrop-blur-md shadow-lg border-b border-border-subtle"
+            ? "bg-primary-dark/95 backdrop-blur-md shadow-lg shadow-primary-dark/20 border-b border-border-subtle"
             : "bg-transparent"
         }
       `}
@@ -66,7 +69,7 @@ export default function Header() {
               alt="LM Studio & Musikkservice"
               width={91}
               height={50}
-              className="h-10 w-auto object-contain"
+              className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               priority
             />
           </Link>

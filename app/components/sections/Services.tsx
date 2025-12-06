@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { Container, SectionHeading } from "@/app/components/ui";
 import { services, type Service } from "@/app/lib/data";
 
@@ -202,7 +205,7 @@ export default function Services() {
   return (
     <section
       id="tjenester"
-      className="py-24 md:py-32 bg-primary-dark"
+      className="py-24 md:py-32 bg-primary-dark overflow-x-hidden"
       aria-labelledby="services-heading"
     >
       <Container>
@@ -216,18 +219,35 @@ export default function Services() {
           light
         />
 
-        <div className="space-y-20 md:space-y-32 mt-16">
+        <motion.div
+          className="space-y-20 md:space-y-32 mt-16"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={{
+            visible: {
+              transition: {
+                staggerChildren: 0.2,
+              },
+            },
+          }}
+        >
           {services.map((service, index) => {
             const imageOnLeft = index % 2 === 0;
             return (
-              <ServiceRow
+              <motion.div
                 key={service.id}
-                service={service}
-                imageOnLeft={imageOnLeft}
-              />
+                variants={{
+                  hidden: { opacity: 0, y: 40 },
+                  visible: { opacity: 1, y: 0 },
+                }}
+                transition={{ duration: 0.6 }}
+              >
+                <ServiceRow service={service} imageOnLeft={imageOnLeft} />
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </Container>
     </section>
   );

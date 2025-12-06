@@ -1,15 +1,32 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/app/components/ui";
 import { businessInfo } from "@/app/lib/data";
 
 export default function Hero() {
+  const [mounted, setMounted] = useState(false);
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, [0, 500], [0, 150]);
+  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setMounted(true), 0);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <section
       className="relative min-h-screen flex flex-col overflow-hidden"
       aria-labelledby="hero-heading"
     >
-      <div className="absolute inset-0 z-0">
+      <motion.div
+        className="absolute inset-0 z-0"
+        style={{ y: mounted ? y : 0 }}
+      >
         <Image
           src="/images/hero-background.webp"
           alt=""
@@ -34,11 +51,19 @@ export default function Hero() {
           }}
           aria-hidden="true"
         />
-      </div>
+      </motion.div>
 
-      <div className="relative z-10 flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 sm:pb-6 lg:pb-8 pt-24 md:pt-32">
+      <motion.div
+        className="relative z-10 flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 sm:pb-6 lg:pb-8 pt-24 md:pt-32"
+        style={{ opacity: mounted ? opacity : 1 }}
+      >
         <div className="text-center max-w-4xl mx-auto">
-          <div className="mb-6">
+          <motion.div
+            className="mb-6"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
             <Image
               src="/images/logos/lm-studio-logo.png"
               alt="LM Studio & Musikkservice"
@@ -47,28 +72,36 @@ export default function Hero() {
               className="h-24 sm:h-28 md:h-32 lg:h-40 w-auto mx-auto object-contain"
               priority
             />
-          </div>
+          </motion.div>
 
-          <h1
+          <motion.h1
             id="hero-heading"
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-text-light tracking-tight"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           >
             <span className="block">
               {businessInfo.name.split("&")[0].trim()}
             </span>
             <span className="block text-accent">&amp; Musikkservice</span>
-          </h1>
+          </motion.h1>
 
-          {/* Tagline */}
-          <p className="mt-6 md:mt-8 text-lg sm:text-xl md:text-2xl text-text-light/90 max-w-1xl mx-auto leading-relaxed">
+          <motion.p
+            className="mt-6 md:mt-8 text-lg sm:text-xl md:text-2xl text-text-light/90 max-w-1xl mx-auto leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+          >
             {businessInfo.tagline}
-          </p>
+          </motion.p>
 
-          <p className="mt-1 text-base md:text-lg text-text-muted max-w-xl mx-auto">
-            {businessInfo.shortDescription}
-          </p>
-
-          <div className="mt-10 md:mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <motion.div
+            className="mt-8 md:mt-12 flex flex-col sm:flex-row gap-4 justify-center items-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+          >
             <Link href="#tjenester">
               <Button size="lg" className="w-full sm:w-auto min-w-[200px]">
                 <span>Utforsk tjenester</span>
@@ -97,9 +130,9 @@ export default function Hero() {
                 Ta kontakt
               </Button>
             </Link>
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
 
       <div
         className="relative z-10 pb-8 flex justify-center sm:hidden"
