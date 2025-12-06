@@ -161,12 +161,11 @@ export default function Header() {
         </nav>
       </Container>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu Drawer */}
       <div
         id="mobile-menu"
         className={`
-          md:hidden fixed inset-0 top-20 z-40
-          bg-primary-dark/98 backdrop-blur-lg
+          md:hidden fixed inset-0 z-40
           transition-all duration-300
           ${
             isMenuOpen
@@ -176,45 +175,97 @@ export default function Header() {
         `}
         aria-hidden={!isMenuOpen}
       >
-        <Container>
-          <nav className="py-8">
-            <ul className="flex flex-col gap-4">
-              {navigationLinks.map((link, index) => (
-                <li
-                  key={link.href}
-                  style={{
-                    transitionDelay: isMenuOpen ? `${index * 50}ms` : "0ms",
-                  }}
-                  className={`
-                    transform transition-all duration-300
-                    ${
-                      isMenuOpen
-                        ? "translate-x-0 opacity-100"
-                        : "-translate-x-4 opacity-0"
-                    }
-                  `}
-                >
-                  <Link
-                    href={link.href}
-                    onClick={handleLinkClick}
-                    className="
-                      block py-4 px-4 rounded-xl
-                      text-xl font-medium text-text-light
-                      hover:bg-secondary-dark hover:text-accent
-                      transition-colors duration-200
-                      border-b border-border-subtle/50
-                    "
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+        <button
+          type="button"
+          aria-label="Lukk meny"
+          onClick={() => setIsMenuOpen(false)}
+          className="absolute inset-0 bg-black/40 backdrop-blur-md"
+        />
 
-            {/* Mobile CTA */}
+        <aside
+          className={`
+            absolute top-0 bottom-0 right-0
+            w-[calc(100%-80px)] max-w-xs bg-primary-dark
+            border-l border-border-subtle shadow-2xl
+            transform transition-transform duration-300 ease-out
+            ${isMenuOpen ? "translate-x-0" : "translate-x-full"}
+          `}
+          role="dialog"
+          aria-modal="true"
+        >
+          <div className="flex h-full flex-col px-6 py-8">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <Image
+                  src="/images/logos/lm-studio-logo.png"
+                  alt="LM Studio & Musikkservice"
+                  width={64}
+                  height={35}
+                  className="h-8 w-auto object-contain"
+                />
+                <span className="text-sm font-semibold tracking-wide text-text-light/80">
+                  {businessInfo.name}
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsMenuOpen(false)}
+                aria-label="Lukk meny"
+                className="rounded-full p-2 text-text-light/70 hover:text-accent transition-colors"
+              >
+                <svg
+                  className="h-5 w-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M18 6L6 18" />
+                  <path d="M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            <nav className="mt-10 flex-1">
+              <ul className="flex flex-col gap-3">
+                {navigationLinks.map((link, index) => (
+                  <li
+                    key={link.href}
+                    style={{
+                      transitionDelay: isMenuOpen ? `${index * 40}ms` : "0ms",
+                    }}
+                    className={`
+                      transform transition-all duration-300
+                      ${
+                        isMenuOpen
+                          ? "translate-x-0 opacity-100"
+                          : "translate-x-4 opacity-0"
+                      }
+                    `}
+                  >
+                    <Link
+                      href={link.href}
+                      onClick={handleLinkClick}
+                      className="
+                        block rounded-xl px-4 py-4
+                        text-lg font-medium text-text-light
+                        hover:bg-secondary-dark/60 hover:text-accent
+                        transition-colors duration-200
+                        border border-border-subtle/40
+                      "
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
             <div
               className={`
-                mt-8 transform transition-all duration-300 delay-300
+                mt-8 transform transition-all duration-300 delay-200
                 ${
                   isMenuOpen
                     ? "translate-y-0 opacity-100"
@@ -226,18 +277,16 @@ export default function Header() {
                 href="#kontakt"
                 onClick={handleLinkClick}
                 className="
-                  block w-full py-4 rounded-xl
-                  bg-accent text-primary-dark
-                  font-bold text-center text-lg
-                  hover:bg-accent-hover
-                  transition-colors duration-200
+                  block w-full rounded-xl py-4
+                  bg-accent text-center text-lg font-semibold text-primary-dark
+                  hover:bg-accent-hover transition-colors duration-200
                 "
               >
                 Kontakt oss
               </Link>
             </div>
-          </nav>
-        </Container>
+          </div>
+        </aside>
       </div>
     </header>
   );
