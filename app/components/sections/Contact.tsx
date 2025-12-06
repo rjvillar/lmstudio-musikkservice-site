@@ -350,7 +350,7 @@ export default function Contact() {
                     group
                   "
                 >
-                  <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center shrink-0">
                     <svg
                       className="w-6 h-6 text-accent"
                       fill="none"
@@ -384,7 +384,7 @@ export default function Contact() {
                     group
                   "
                 >
-                  <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center shrink-0">
                     <svg
                       className="w-6 h-6 text-accent"
                       fill="none"
@@ -409,7 +409,7 @@ export default function Contact() {
 
                 {/* Address */}
                 <div className="flex items-start gap-4 p-4 rounded-xl bg-primary-dark border border-border-subtle">
-                  <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center shrink-0">
                     <svg
                       className="w-6 h-6 text-accent"
                       fill="none"
@@ -522,7 +522,7 @@ export default function Contact() {
                 Åpningstider
               </h3>
               <div className="flex items-start gap-4 p-4 rounded-xl bg-primary-dark border border-border-subtle">
-                <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+                <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center shrink-0">
                   <svg
                     className="w-6 h-6 text-accent"
                     fill="none"

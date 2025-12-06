@@ -324,7 +324,6 @@ export const navigationLinks = [
   { href: "#om-oss", label: "Om oss" },
   { href: "#musikk", label: "Musikk" },
   { href: "#galleri", label: "Galleri" },
-  { href: "#ansatte", label: "Vårt team" },
   { href: "#kontakt", label: "Kontakt" },
 ];
 
@@ -345,30 +344,32 @@ export interface Album {
 export const albums: Album[] = [
   {
     id: "album-1",
-    title: "Trekkspillminner",
-    artist: "LM Studio Artister",
-    year: "2020",
+    title: "Vorspiel",
+    artist: "Anette",
+    year: "2004",
     coverImage: "/images/music/album-1.jpg",
-    discogsUrl: "https://www.discogs.com/label/1637943-LM-Studio-Musikkservice",
-    description: "Klassiske trekkspillmelodier fremført av lokale artister.",
+    discogsUrl: "https://www.discogs.com/release/13614433-Anette-Vorspiel",
+    description: "Folkemusikk, verdensmusikk og country.",
   },
   {
     id: "album-2",
-    title: "Nordiske Toner",
-    artist: "Geir-Harry Haugland",
-    year: "2018",
-    coverImage: "/images/music/album-2.jpg",
-    discogsUrl: "https://www.discogs.com/label/1637943-LM-Studio-Musikkservice",
-    description: "Et musikalsk møte mellom tradisjon og modernitet.",
+    title: "Finnskogen Fusel Og Svartkopp",
+    artist: "Finnskogen Fusel Og Svartkopp",
+    year: "2004",
+    coverImage: "/images/albums/album-2.jpg",
+    discogsUrl:
+      "https://www.discogs.com/release/26464289-Finnskogen-Fusel-Og-Svartkopp-Finnskogen-Fusel-Og-Svartkopp",
+    description: "Folkemusikk, verdensmusikk og country.",
   },
   {
     id: "album-3",
-    title: "Toraderspill",
-    artist: "LM Studio Ensemble",
-    year: "2015",
-    coverImage: "/images/music/album-3.jpg",
-    discogsUrl: "https://www.discogs.com/label/1637943-LM-Studio-Musikkservice",
-    description: "Stemningsfulle toraderlåter fra det norske musikklandskapet.",
+    title: "Hauglands Med Ove Normann Bakke",
+    artist: "Hauglands Med Ove Normann Bakke",
+    year: "2012",
+    coverImage: "/images/albums/album-3.jpg",
+    discogsUrl:
+      "https://www.discogs.com/release/35508496-Hauglands-Med-Ove-Normann-Bakke-Hauglands-Med-Ove-Normann-Bakke",
+    description: "Folkemusikk, verdensmusikk og country.",
   },
 ];
 

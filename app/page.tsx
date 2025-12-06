@@ -5,7 +5,6 @@ import {
   About,
   Music,
   Gallery,
-  Employees,
   Contact,
 } from "@/app/components/sections";
 
@@ -18,7 +17,6 @@ import {
  * - About section with founder story
  * - Music & Recordings showcase
  * - Image gallery
- * - Team/employee profiles
  * - Contact form and information
  *
  * Design Philosophy:
@@ -66,9 +64,6 @@ export default function Home() {
 
         {/* Gallery - Visual showcase */}
         <Gallery />
-
-        {/* Employees - Our team */}
-        <Employees />
 
         {/* Contact - Get in touch */}
         <Contact />
