@@ -1,24 +1,12 @@
-/**
- * Data Layer for LM Studio & Musikkservice
- *
- * This file contains all placeholder data structured for easy replacement
- * with real content or CMS integration in the future.
- */
-
-// ============================================================================
-// TYPES
-// ============================================================================
-
 export interface Service {
   id: string;
   title: string;
-  shortDescription: string; // 1-2 sentences for homepage preview
-  fullDescription: string; // Detailed description for /services page
-  bulletPoints?: string[]; // Optional structured details
+  shortDescription: string;
+  fullDescription: string;
+  bulletPoints?: string[];
   icon: string;
-  image: string; // Placeholder image path
+  image: string;
 }
-
 export interface Employee {
   id: string;
   name: string;
@@ -50,10 +38,6 @@ export interface ContactInfo {
   email: string;
   orgNumber: string;
 }
-
-// ============================================================================
-// BUSINESS INFORMATION (Based on official website: hauglands.no)
-// ============================================================================
 
 export const businessInfo = {
   name: "LM Studio & Musikkservice",
@@ -90,12 +74,10 @@ export const contactInfo: ContactInfo = {
   orgNumber: "885 274 242",
 };
 
-// Additional phone for Eva
 export const additionalContacts = {
   evaPhone: "472 93 768",
 };
 
-// Opening hours - by appointment
 export const openingHours = {
   note: "Etter avtale",
   description:
@@ -103,10 +85,7 @@ export const openingHours = {
   availability: "Hele året",
 };
 
-// ============================================================================
-// SERVICES DATA
-// ============================================================================
-
+// ============================================================================ SERVICES DATA
 export const services: Service[] = [
   {
     id: "salg",
@@ -252,10 +231,7 @@ export const services: Service[] = [
   },
 ];
 
-// ============================================================================
-// EMPLOYEES DATA
-// ============================================================================
-
+// ============================================================================ EMPLOYEES DATA
 export const employees: Employee[] = [
   {
     id: "geir-harry",
@@ -277,12 +253,9 @@ export const employees: Employee[] = [
   },
 ];
 
-// ============================================================================
-// GALLERY DATA
-// ============================================================================
-
+// =========================================================================== GALLERY IMAGES DATA
 export const galleryImages: GalleryImage[] = [
-  // Verksted (Workshop) - 4 images
+  // Verksted (Workshop)
   {
     id: "workshop-1",
     src: "/images/gallery/workshop-1.jpg",
@@ -308,7 +281,7 @@ export const galleryImages: GalleryImage[] = [
     category: "Verksted",
   },
 
-  // Studio - 4 images
+  // Studio
   {
     id: "studio-1",
     src: "/images/gallery/studio-1.png",
@@ -364,7 +337,7 @@ export const galleryImages: GalleryImage[] = [
     category: "Studio",
   },
 
-  // Arrangementer (Events) - 23 images
+  // Arrangementer (Events)
   {
     id: "events-1",
     src: "/images/gallery/events-1.jpg",
@@ -504,7 +477,7 @@ export const galleryImages: GalleryImage[] = [
     category: "Arrangementer",
   },
 
-  // Salg (Sale) - 3 images
+  // Salg (Sale)
   {
     id: "sale-1",
     src: "/images/gallery/sale-1.webp",
@@ -536,7 +509,7 @@ export const galleryImages: GalleryImage[] = [
     category: "Salg",
   },
 
-  // Samling (Collection) - 3 images
+  // Samling (Collection)
   {
     id: "collection-1",
     src: "/images/gallery/collection-1.jpg",
@@ -557,10 +530,7 @@ export const galleryImages: GalleryImage[] = [
   },
 ];
 
-// ============================================================================
-// NAVIGATION DATA
-// ============================================================================
-
+// ============================================================================ NAVIGATION LINKS
 export const navigationLinks = [
   { href: "#tjenester", label: "Tjenester" },
   { href: "#om-oss", label: "Om oss" },
@@ -569,10 +539,7 @@ export const navigationLinks = [
   { href: "#kontakt", label: "Kontakt" },
 ];
 
-// ============================================================================
-// MUSIC & RECORDINGS DATA (Based on Discogs: LM Studio & Musikkservice)
-// ============================================================================
-
+// ============================================================================ ALBUMS DATA
 export interface Album {
   id: string;
   title: string;
