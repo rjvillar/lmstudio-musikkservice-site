@@ -58,10 +58,6 @@ export default function Contact() {
       newErrors.name = "Vennligst fyll inn navn";
     }
 
-    if (!formData.phone.trim()) {
-      newErrors.phone = "Vennligst fyll inn telefonnummer";
-    }
-
     if (!formData.email.trim()) {
       newErrors.email = "Vennligst fyll inn e-postadresse";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
@@ -136,18 +132,22 @@ export default function Contact() {
           />
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
           {/* Left Column: Contact Form */}
           <div className="order-2 lg:order-1">
-            <Card padding="lg" className="h-full">
+            <Card padding="lg" className="h-full flex flex-col">
               <h3 className="text-xl font-semibold text-text-light mb-2">
                 Send oss en melding
               </h3>
-              <p className="text-text-muted text-sm mb-8">
+              <p className="text-text-muted text-sm mb-6">
                 Fyll ut skjemaet nedenfor, så tar vi kontakt så snart som mulig
               </p>
 
-              <form onSubmit={handleSubmit} noValidate className="space-y-6">
+              <form
+                onSubmit={handleSubmit}
+                noValidate
+                className="space-y-5 flex-1 flex flex-col"
+              >
                 {/* Name and Phone Row */}
                 <div className="grid sm:grid-cols-2 gap-6">
                   {/* Name Field */}
@@ -188,7 +188,7 @@ export default function Contact() {
                       htmlFor="phone"
                       className="block text-sm font-medium text-text-light mb-2"
                     >
-                      Telefon <span className="text-accent">*</span>
+                      Telefon
                     </label>
                     <input
                       type="tel"
@@ -248,7 +248,7 @@ export default function Contact() {
                 </div>
 
                 {/* Message Field */}
-                <div>
+                <div className="flex-1 flex flex-col">
                   <label
                     htmlFor="message"
                     className="block text-sm font-medium text-text-light mb-2"
@@ -260,9 +260,8 @@ export default function Contact() {
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
-                    rows={5}
                     className={`
-                      w-full px-4 py-3 rounded-lg
+                      w-full h-full min-h-[100px] px-4 py-3 rounded-lg
                       bg-primary-dark border
                       text-text-light placeholder-text-muted/50
                       transition-all duration-200
@@ -280,8 +279,27 @@ export default function Contact() {
                   />
                 </div>
 
+                {/* Privacy Agreement Checkbox */}
+                <div className="flex items-start gap-3">
+                  <input
+                    type="checkbox"
+                    id="privacy"
+                    name="privacy"
+                    required
+                    className="mt-1 w-4 h-4 rounded border-border-subtle bg-primary-dark text-accent focus:ring-2 focus:ring-accent/50 focus:ring-offset-0 cursor-pointer"
+                  />
+                  <label
+                    htmlFor="privacy"
+                    className="text-sm text-text-muted leading-relaxed cursor-pointer"
+                  >
+                    Jeg godtar at LM Studio & Musikkservice kan lagre og
+                    behandle mine opplysninger for å svare på denne
+                    henvendelsen.
+                  </label>
+                </div>
+
                 {/* Submit Button & Status */}
-                <div className="pt-2">
+                <div>
                   <Button
                     type="submit"
                     size="lg"
@@ -297,15 +315,15 @@ export default function Contact() {
           </div>
 
           {/* Right Column: Contact Info, Map, Hours */}
-          <div className="order-1 lg:order-2 space-y-6">
+          <div className="order-1 lg:order-2 flex flex-col justify-between">
             {/* Direct Contact Cards */}
-            <div className="space-y-4">
+            <div>
               <h3 className="text-lg font-semibold text-text-light mb-4">
                 Direkte kontakt
               </h3>
 
               {/* Phone Cards - Side by Side */}
-              <div className="grid sm:grid-cols-2 gap-4">
+              <div className="grid sm:grid-cols-2 gap-3 mb-3">
                 {/* Geir-Harry Phone */}
                 <a
                   href={`tel:${contactInfo.phone.replace(/\s/g, "")}`}
@@ -379,7 +397,7 @@ export default function Contact() {
               <a
                 href={`mailto:${contactInfo.email}`}
                 className="
-                  flex items-center gap-4 p-4 rounded-xl
+                  flex items-center gap-4 p-4 rounded-xl mb-3
                   bg-secondary-dark border border-border-subtle
                   hover:border-accent/50 hover:shadow-lg hover:shadow-accent/5
                   transition-all duration-200
@@ -410,7 +428,7 @@ export default function Contact() {
               </a>
 
               {/* Address Card */}
-              <div className="flex items-start gap-4 p-4 rounded-xl bg-secondary-dark border border-border-subtle">
+              <div className="flex items-start gap-4 p-4 rounded-xl mb-4 bg-secondary-dark border border-border-subtle">
                 <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center shrink-0">
                   <svg
                     className="w-6 h-6 text-accent"
@@ -440,6 +458,21 @@ export default function Contact() {
                     {contactInfo.postalCode} {contactInfo.city}
                   </address>
                 </div>
+              </div>
+            </div>
+
+            {/* Decorative Divider with Message */}
+            <div className="relative">
+              <div
+                className="absolute inset-0 flex items-center"
+                aria-hidden="true"
+              >
+                <div className="w-full border-t border-border-subtle"></div>
+              </div>
+              <div className="relative flex justify-center">
+                <span className="bg-primary-dark px-4 text-sm text-text-muted">
+                  Vi er alltid klare til å hjelpe
+                </span>
               </div>
             </div>
 
@@ -473,16 +506,6 @@ export default function Contact() {
                 </div>
               </div>
             </Card>
-
-            {/* Organization Number */}
-            <div className="text-center pt-2">
-              <p className="text-text-muted text-sm">
-                Org.nr:{" "}
-                <span className="font-medium text-text-light">
-                  {contactInfo.orgNumber}
-                </span>
-              </p>
-            </div>
           </div>
         </div>
       </Container>
