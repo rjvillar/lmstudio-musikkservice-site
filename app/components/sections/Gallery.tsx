@@ -259,18 +259,6 @@ export default function Gallery() {
             })}
           </AnimatePresence>
         </motion.div>
-
-        {/* Helper text for "All" mode */}
-        {isAllMode && (
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-center text-text-muted/60 text-sm mt-10"
-          >
-            Bildene bytter automatisk. Klikk på et kort for å se hele
-            kategorien.
-          </motion.p>
-        )}
       </Container>
 
       {/* Enhanced Lightbox Modal */}

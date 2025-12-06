@@ -311,30 +311,60 @@ export const galleryImages: GalleryImage[] = [
   // Studio - 4 images
   {
     id: "studio-1",
-    src: "/images/gallery/studio-1.jpg",
-    alt: "Studioinnspilling i LM Studio",
+    src: "/images/gallery/studio-1.png",
+    alt: "Lydmannen, Geir Harry Haugland.",
     category: "Studio",
   },
   {
     id: "studio-2",
-    src: "/images/gallery/studio-2.jpg",
-    alt: "Mikrofoner og opptak",
+    src: "/images/gallery/studio-2.png",
+    alt: "Tore-Arnfinn Ødegård (mus. leder) og Kjell Sponnich sitter klar til opptak.",
     category: "Studio",
   },
   {
     id: "studio-3",
-    src: "/images/gallery/studio-3.jpg",
-    alt: "Lydteknisk utstyr",
+    src: "/images/gallery/studio-3.png",
+    alt: "Bjørn Brennhaugen i bua, trofast bassist gjennom over 10 år, populært kalt Bjørn Bass.",
     category: "Studio",
   },
   {
     id: "studio-4",
-    src: "/images/gallery/studio-4.jpg",
-    alt: "Profesjonelt lydopptak",
+    src: "/images/gallery/studio-4.png",
+    alt: "Vår nye gitarist, Odd Kvarmestøl, ble bokstavlig talt kastet inn i prosjektet, men løste oppgaven med glans.",
+    category: "Studio",
+  },
+  {
+    id: "studio-5",
+    src: "/images/gallery/studio-5.png",
+    alt: "Toril Kjenslie og Tone C. Hundére, her i 3. stemme-båsen.",
+    category: "Studio",
+  },
+  {
+    id: "studio-6",
+    src: "/images/gallery/studio-6.png",
+    alt: "Lillian Hansson og Else Marit Vesteng i 2. stemmebåsen.",
+    category: "Studio",
+  },
+  {
+    id: "studio-7",
+    src: "/images/gallery/studio-7.png",
+    alt: "Roar Hensvold, ett av våre nyeste medlemmer, har funnet seg vel til rette blant resten.",
+    category: "Studio",
+  },
+  {
+    id: "studio-8",
+    src: "/images/gallery/studio-8.png",
+    alt: 'Tore-Arnfinn Ødegård under "take".',
+    category: "Studio",
+  },
+  {
+    id: "studio-9",
+    src: "/images/gallery/studio-9.png",
+    alt: "Her lages det en rå-mix CD, for vi var jo svært spente på resultatet!",
     category: "Studio",
   },
 
-  // Arrangementer (Events) - 3 images
+  // Arrangementer (Events) - 23 images
   {
     id: "events-1",
     src: "/images/gallery/events-1.jpg",
@@ -477,7 +507,7 @@ export const galleryImages: GalleryImage[] = [
   // Salg (Sale) - 3 images
   {
     id: "sale-1",
-    src: "/images/gallery/sale-1.jpg",
+    src: "/images/gallery/sale-1.png",
     alt: "Trekkspill til salgs",
     category: "Salg",
   },
@@ -493,25 +523,11 @@ export const galleryImages: GalleryImage[] = [
     alt: "Kvalitetstrekkspill",
     category: "Salg",
   },
-
-  // Kurs (Course) - 3 images
   {
-    id: "course-1",
-    src: "/images/gallery/course-1.jpg",
-    alt: "Trekkspillkurs undervisning",
-    category: "Kurs",
-  },
-  {
-    id: "course-2",
-    src: "/images/gallery/course-2.jpg",
-    alt: "Gruppeundervisning",
-    category: "Kurs",
-  },
-  {
-    id: "course-3",
-    src: "/images/gallery/course-3.jpg",
-    alt: "Privat trekkspilltime",
-    category: "Kurs",
+    id: "sale-4",
+    src: "/images/gallery/sale-4.jpg",
+    alt: "Rødt trekkspill",
+    category: "Salg",
   },
 
   // Samling (Collection) - 3 images
@@ -524,13 +540,13 @@ export const galleryImages: GalleryImage[] = [
   {
     id: "collection-2",
     src: "/images/gallery/collection-2.jpg",
-    alt: "Historiske instrumenter",
+    alt: "Sjeldne trekkspill",
     category: "Samling",
   },
   {
     id: "collection-3",
     src: "/images/gallery/collection-3.jpg",
-    alt: "Sjeldne trekkspill",
+    alt: "Vinylplater",
     category: "Samling",
   },
 ];
