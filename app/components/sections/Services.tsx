@@ -1,24 +1,29 @@
-import { Container, SectionHeading, Card } from "@/app/components/ui";
+import Image from "next/image";
+import { Container, SectionHeading } from "@/app/components/ui";
 import { services, type Service } from "@/app/lib/data";
 
 /**
  * Services Section Component
  *
- * Grid-based display of all services with:
- * - Responsive card layout (1-3 columns)
- * - Custom icons for each service
- * - Hover effects with accent color highlighting
- * - Alternating dark/light section for visual rhythm
+ * Alternating image/content layout matching reference design:
+ * - Clean alternating pattern (image left → image right → image left...)
+ * - Generous spacing between services
+ * - Icon badges on images
+ * - Short descriptions for scannability
  */
 
 // Service Icons Component - Returns appropriate SVG based on icon name
-function ServiceIcon({ icon }: { icon: string }) {
-  const iconClasses = "w-8 h-8 text-accent";
-
+function ServiceIcon({
+  icon,
+  className = "w-8 h-8 text-accent",
+}: {
+  icon: string;
+  className?: string;
+}) {
   const icons: Record<string, React.ReactNode> = {
     accordion: (
       <svg
-        className={iconClasses}
+        className={className}
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
@@ -32,7 +37,7 @@ function ServiceIcon({ icon }: { icon: string }) {
     ),
     wrench: (
       <svg
-        className={iconClasses}
+        className={className}
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
@@ -48,7 +53,7 @@ function ServiceIcon({ icon }: { icon: string }) {
     ),
     "music-note": (
       <svg
-        className={iconClasses}
+        className={className}
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
@@ -64,7 +69,7 @@ function ServiceIcon({ icon }: { icon: string }) {
     ),
     microphone: (
       <svg
-        className={iconClasses}
+        className={className}
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
@@ -80,7 +85,7 @@ function ServiceIcon({ icon }: { icon: string }) {
     ),
     speaker: (
       <svg
-        className={iconClasses}
+        className={className}
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
@@ -96,7 +101,7 @@ function ServiceIcon({ icon }: { icon: string }) {
     ),
     digital: (
       <svg
-        className={iconClasses}
+        className={className}
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
@@ -112,7 +117,7 @@ function ServiceIcon({ icon }: { icon: string }) {
     ),
     notes: (
       <svg
-        className={iconClasses}
+        className={className}
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
@@ -128,7 +133,7 @@ function ServiceIcon({ icon }: { icon: string }) {
     ),
     midi: (
       <svg
-        className={iconClasses}
+        className={className}
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
@@ -147,49 +152,67 @@ function ServiceIcon({ icon }: { icon: string }) {
   return icons[icon] || icons["music-note"];
 }
 
-// Individual Service Card
-function ServiceCard({ service }: { service: Service }) {
+/**
+ * Service Row Component - Alternating image/content layout
+ * Matches reference design with left/right alternating pattern
+ */
+function ServiceRow({
+  service,
+  imageOnLeft,
+}: {
+  service: Service;
+  imageOnLeft: boolean;
+}) {
   return (
-    <Card className="group h-full">
-      {/* Icon container */}
+    <article className="group">
       <div
-        className="
-          w-14 h-14 rounded-xl
-          bg-accent/10 
-          flex items-center justify-center
-          mb-6
-          group-hover:bg-accent/20
-          transition-colors duration-300
-        "
+        className={`
+        grid md:grid-cols-2 gap-8 md:gap-12 items-center
+        ${imageOnLeft ? "" : "md:grid-flow-dense"}
+      `}
       >
-        <ServiceIcon icon={service.icon} />
-      </div>
-
-      {/* Content */}
-      <h3 className="text-xl font-semibold text-text-light mb-3">
-        {service.title}
-      </h3>
-      <p className="text-text-muted leading-relaxed">{service.description}</p>
-
-      {/* Learn more link */}
-      <div className="mt-6 flex items-center gap-2 text-accent font-medium group/link">
-        <span className="text-sm">Les mer</span>
-        <svg
-          className="w-4 h-4 transform group-hover/link:translate-x-1 transition-transform"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          aria-hidden="true"
+        {/* Image Column */}
+        <div
+          className={`
+          relative h-72 md:h-96 rounded-3xl overflow-hidden 
+          bg-secondary-dark shadow-lg
+          ${imageOnLeft ? "" : "md:col-start-2"}
+        `}
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M9 5l7 7-7 7"
+          <Image
+            src={service.image}
+            alt={`${service.title} - LM Studio & Musikkservice`}
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, 50vw"
           />
-        </svg>
+
+          {/* Icon Badge - Top left corner */}
+          <div className="absolute top-6 left-6 w-16 h-16 bg-accent rounded-2xl flex items-center justify-center shadow-xl">
+            <ServiceIcon
+              icon={service.icon}
+              className="w-8 h-8 text-primary-dark"
+            />
+          </div>
+        </div>
+
+        {/* Content Column */}
+        <div
+          className={`
+          space-y-4
+          ${imageOnLeft ? "" : "md:col-start-1 md:row-start-1"}
+        `}
+        >
+          <h3 className="text-2xl md:text-3xl font-bold text-text-light group-hover:text-accent transition-colors">
+            {service.title}
+          </h3>
+
+          <p className="text-text-muted text-base md:text-lg leading-relaxed">
+            {service.shortDescription}
+          </p>
+        </div>
       </div>
-    </Card>
+    </article>
   );
 }
 
@@ -212,20 +235,23 @@ export default function Services() {
           light
         />
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {services.map((service) => (
-            <ServiceCard key={service.id} service={service} />
-          ))}
-        </div>
-
-        {/* Decorative element */}
-        <div className="mt-16 flex justify-center" aria-hidden="true">
-          <div className="flex items-center gap-4 text-text-muted/50 text-sm">
-            <span className="w-12 h-px bg-border-subtle" />
-            <span>Siden 2001</span>
-            <span className="w-12 h-px bg-border-subtle" />
-          </div>
+        {/* 
+          Alternating Layout Pattern
+          Matches reference design with left/right image alternation
+          - Even indices: Image left, content right
+          - Odd indices: Content left, image right
+        */}
+        <div className="space-y-20 md:space-y-32 mt-16">
+          {services.map((service, index) => {
+            const imageOnLeft = index % 2 === 0;
+            return (
+              <ServiceRow
+                key={service.id}
+                service={service}
+                imageOnLeft={imageOnLeft}
+              />
+            );
+          })}
         </div>
       </Container>
     </section>

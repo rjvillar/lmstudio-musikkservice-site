@@ -12,8 +12,11 @@
 export interface Service {
   id: string;
   title: string;
-  description: string;
+  shortDescription: string; // 1-2 sentences for homepage preview
+  fullDescription: string; // Detailed description for /services page
+  bulletPoints?: string[]; // Optional structured details
   icon: string;
+  image: string; // Placeholder image path
 }
 
 export interface Employee {
@@ -103,58 +106,144 @@ export const services: Service[] = [
   {
     id: "salg",
     title: "Salg av trekkspill og toradere",
-    description:
-      "Nye og brukte trekkspill og toradere – med veiledning, tilpasning og 3 måneders garanti på brukte modeller. Vi hjelper deg å finne instrumentet som passer dine behov.",
+    shortDescription:
+      "Nye og brukte instrumenter med 3 måneders garanti. Direkte import gir riktig pris – riktig kvalitet.",
+    fullDescription:
+      "LM Studio & Musikkservice leverer alt innen trekkspill og toradere – både nye og brukte instrumenter. Gjennom direkte import og lave kostnader kan vi tilby konkurransedyktige priser uten å gå på kompromiss med kvalitet. Alle brukte instrumenter er nøye kontrollert og kommer med 3 måneders garanti.",
+    bulletPoints: [
+      "Nye trekkspill og toradere fra anerkjente produsenter",
+      "Kontrollerte brukte instrumenter med 3 måneders garanti",
+      "Direkte import gir deg riktig pris – riktig kvalitet",
+      "Personlig veiledning og tilpasning til dine behov",
+      "Prøv før du kjøper – book time for instrumenttesting",
+    ],
     icon: "accordion",
+    image: "/images/services/sale-of-accordions.png",
   },
   {
     id: "verksted",
     title: "Verksted og service",
-    description:
-      "Fullt utstyrt verksted for reparasjon, stemming og vedlikehold av alle typer trekkspill og toradere. Utfører også MIDI- og digital montering på forespørsel.",
+    shortDescription:
+      "Reparasjon, stemming og vedlikehold av alle typer trekkspill. Over 20 års erfaring.",
+    fullDescription:
+      "Vårt velutstyrte verksted håndterer alle typer reparasjoner, stemming og vedlikehold av trekkspill og toradere. Med over 20 års erfaring sikrer vi at instrumentet ditt kommer tilbake i topp stand. Små justeringer gjøres ofte mens du venter – større jobber planlegges etter pågangen.",
+    bulletPoints: [
+      "Reparasjon og stemming av alle typer trekkspill og toradere",
+      "MIDI og digital montering på forespørsel",
+      "Vedlikehold og generell service",
+      "Små justeringer tas ofte fortløpende mens du venter",
+      "Leveringstid varierer med størrelsen på reparasjonen",
+    ],
     icon: "wrench",
+    // Image: Nærbilde av verktøy som reparerer et trekkspill, stemmeutstyr
+    image: "/images/services/reparerer-et-trekkspill.jpg",
   },
   {
     id: "kurs",
     title: "Kurs og undervisning",
-    description:
-      "Trekkspill- og toraderundervisning, for både nybegynnere og viderekomne. Undervisningen tilpasses nivå og mål, og støttetimer kan bestilles ved behov.",
+    shortDescription:
+      "Skreddersydd undervisning i trekkspill og toradere for alle nivåer.",
+    fullDescription:
+      "Vi tilbyr skreddersydd undervisning i trekkspill og toradere – uansett om du er nybegynner eller ønsker å utvikle ferdighetene dine videre. Kursene tilpasses ditt nivå og dine musikalske mål, og støttetimer kan bestilles ved behov.",
+    bulletPoints: [
+      "Individuell undervisning tilpasset nivå og mål",
+      "Kurser for både nybegynnere og viderekomne",
+      "Støttetimer kan bestilles ved behov",
+      "Fleksible tidspunkter etter avtale",
+      "Fokus på både teknikk og musikalsk utvikling",
+    ],
     icon: "music-note",
+    // Image: Undervisningssetting, trekkspillinstruktør med elev
+    image: "/images/services/trekkspillkurs.png",
   },
   {
     id: "studio",
     title: "Musikkstudio",
-    description:
-      "Innspilling, miksing og mastering i eget studio. Vi hjelper deg fra idé til ferdig innspilt demo eller album, og tilbyr også kopiering og CD-produksjon.",
+    shortDescription:
+      "Profesjonell innspilling, miksing og mastering. Fra demo til ferdig album siden 2001.",
+    fullDescription:
+      "LM Studio har produsert og spilt inn musikk for artister fra hele landet siden 2001. Vi følger deg gjennom hele prosessen – fra idé til ferdig innspilt demo eller album. Med erfaring innen både tradisjonell og moderne musikk sikrer vi at ditt prosjekt får det lydbilde det fortjener.",
+    bulletPoints: [
+      "Innspilling, miksing og mastering",
+      "Oppfølging fra idé til ferdig produkt",
+      "Kopiering og CD-produksjon",
+      "Erfaring med både tradisjonell og moderne musikk",
+      "Se våre utgivelser på Discogs",
+    ],
     icon: "microphone",
+    // Image: Miksebord, mikrofon-oppsett, lite studio-interiør
+    image: "/images/services/music-studio.png",
   },
   {
     id: "pa",
     title: "Lyd og PA-tjenester",
-    description:
-      "Leveranse av lydutstyr og lydteknisk assistanse til konserter, arrangementer og festivaler. Vi tilpasser løsningen til ditt arrangement og budsjett.",
+    shortDescription:
+      "Profesjonell lydløsning til konserter og arrangementer – tilpasset ditt budsjett.",
+    fullDescription:
+      "Vi leverer profesjonell lyd-tjenester til konserter, arrangementer og festivaler. Uansett størrelse eller budsjett, tilpasser vi løsningen slik at lyden blir optimal. Med erfaring fra utallige arrangementer har vi utstyret og kompetansen som trengs.",
+    bulletPoints: [
+      "Leveranse av PA-utstyr til events og konserter",
+      "Lydteknisk assistanse og rigging",
+      "Tilpasset løsning etter arrangement og budsjett",
+      "Erfaring fra festivaler, konserter og private arrangementer",
+      "Høykvalitets utstyr og profesjonell oppfølging",
+    ],
     icon: "speaker",
+    // Image: Høyttalere, live-event lydoppsett, scenemiksebord
+    image: "/images/services/pa.png",
   },
   {
     id: "digitalisering",
     title: "Digitalisering og overføring",
-    description:
-      "Vi bevarer dine musikkminner – digitaliserer kassetter, spolebånd og LP-er til moderne filformater.",
+    shortDescription:
+      "Bevar dine musikkminner. Vi overfører kassetter, spolebånd og LP til digitalt.",
+    fullDescription:
+      "Bevar dine musikkminner for ettertiden. Vi digitaliserer kassetter, spolebånd og LP-plater til moderne filformater som MP3, WAV eller FLAC – slik at du kan nyte musikken på alle dagens enheter.",
+    bulletPoints: [
+      "Digitalisering av kassetter og spolebånd",
+      "Overføring av LP-plater til digitale formater",
+      "Ulike filformater tilgjengelig (MP3, WAV, FLAC)",
+      "Bevaring av musikkminner for fremtiden",
+      "Profesjonell behandling av verdifulle opptak",
+    ],
     icon: "digital",
-  },
-  {
-    id: "noter",
-    title: "Noter og tilbehør",
-    description:
-      "Noter og annet tilbehør er tilgjengelig på forespørsel – ta kontakt dersom det er noe du savner.",
-    icon: "notes",
+    // Image: Kassetter, spolebånd-opptaker, vinyl-digitalisering
+    image: "/images/services/spoleband-opptaker.jpg",
   },
   {
     id: "midi",
     title: "Fabrikk montert MIDI",
-    description:
-      "Vi tilbyr fabrikkferdig MIDI, ferdig installert og testet direkte fra produsenten. Dette sikrer høy kvalitet, rask installasjon og en pålitelig løsning tilpasset dine behov.",
+    shortDescription:
+      "MIDI-system installert direkte fra produsent. Garantert kvalitet og pålitelighet.",
+    fullDescription:
+      "Vi tilbyr fabrikkferdig MIDI-montering, installert og testet direkte fra produsenten. Dette sikrer høy kvalitet, rask installasjon og en pålitelig løsning som er perfekt tilpasset ditt instrument. Vi kan også sjekke og vedlikeholde eksisterende MIDI-systemer.",
+    bulletPoints: [
+      "Fabrikk-montert MIDI fra anerkjente produsenter",
+      "Ferdig installert og testet før levering",
+      "Høy kvalitet og pålitelighet garantert",
+      "Vedlikehold og service av eksisterende MIDI-systemer",
+      "Tilpasset dine behov og spillestil",
+    ],
     icon: "midi",
+    // Image: Trekkspill med MIDI-grensesnitt, elektroniske komponenter
+    image: "/images/services/trekkspill-med-midi-grensesnitt.jpg",
+  },
+  {
+    id: "noter",
+    title: "Noter og tilbehør",
+    shortDescription:
+      "Noter og tilbehør på bestilling – vi hjelper deg med å finne det du trenger.",
+    fullDescription:
+      "Vi skaffer noter og annet tilbehør på bestilling. Ta kontakt dersom det er noe du savner, så hjelper vi deg med å finne det du trenger.",
+    bulletPoints: [
+      "Noter skaffes på bestilling",
+      "Tilbehør til trekkspill og toradere",
+      "Personlig hjelp til å finne det du trenger",
+      "Ta kontakt for forespørsel",
+    ],
+    icon: "notes",
+    // Image: Notehefter, trekkspilltilbehør
+    image: "/images/services/notehefter.jpg",
   },
 ];
 

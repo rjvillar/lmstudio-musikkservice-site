@@ -53,7 +53,7 @@ export default function Hero() {
       </div>
 
       {/* Main Hero Content - Centered */}
-      <div className="relative z-10 flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-24 md:pt-32">
+      <div className="relative z-10 flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 sm:pb-6 lg:pb-8 pt-24 md:pt-32">
         <div className="text-center max-w-4xl mx-auto">
           {/* Logo Image */}
           <div className="mb-6">
@@ -79,12 +79,12 @@ export default function Hero() {
           </h1>
 
           {/* Tagline */}
-          <p className="mt-6 md:mt-8 text-lg sm:text-xl md:text-2xl text-text-light/90 max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-6 md:mt-8 text-lg sm:text-xl md:text-2xl text-text-light/90 max-w-1xl mx-auto leading-relaxed">
             {businessInfo.tagline}
           </p>
 
           {/* Short Description */}
-          <p className="mt-4 text-base md:text-lg text-text-muted max-w-xl mx-auto">
+          <p className="mt-1 text-base md:text-lg text-text-muted max-w-xl mx-auto">
             {businessInfo.shortDescription}
           </p>
 
@@ -124,7 +124,7 @@ export default function Hero() {
 
       {/* Bottom Scroll Indicator */}
       <div
-        className="relative z-10 pb-8 flex justify-center"
+        className="relative z-10 pb-8 flex justify-center sm:hidden"
         aria-hidden="true"
       >
         <Link
