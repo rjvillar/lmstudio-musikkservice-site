@@ -1,10 +1,3 @@
-/**
- * SectionHeading Component
- *
- * Consistent heading style for all page sections.
- * Features a subtle accent line and optional subtitle.
- */
-
 interface SectionHeadingProps {
   title: string;
   subtitle?: string;
@@ -25,13 +18,11 @@ export default function SectionHeading({
 
   return (
     <div className={`mb-12 md:mb-16 ${alignmentClasses}`}>
-      {/* Accent line */}
       <div
         className={`w-12 h-1 bg-accent rounded-full mb-6 ${linePosition}`}
         aria-hidden="true"
       />
 
-      {/* Main title */}
       <h2
         className={`
           text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight
@@ -41,7 +32,6 @@ export default function SectionHeading({
         {title}
       </h2>
 
-      {/* Optional subtitle */}
       {subtitle && (
         <p
           className={`

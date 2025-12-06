@@ -8,17 +8,6 @@ import {
   additionalContacts,
 } from "@/app/lib/data";
 
-/**
- * Footer Component - Redesigned
- *
- * Modern footer inspired by professional service websites with:
- * - Clean 3-column layout (Brand + Navigation + Contact)
- * - Organized business information
- * - Direct contact details with icons
- * - Simplified bottom bar with copyright and legal info
- * - Minimal, professional aesthetic
- */
-
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
@@ -27,13 +16,10 @@ export default function Footer() {
       className="bg-secondary-dark border-t border-border-subtle"
       role="contentinfo"
     >
-      {/* Main Footer Content */}
       <Container>
         <div className="py-12 md:py-16">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
-            {/* Brand & Info Column */}
             <div>
-              {/* Logo */}
               <Link href="/" className="flex items-center gap-4 group mb-0">
                 <div className="relative w-21 h-21 shrink-0">
                   <Image

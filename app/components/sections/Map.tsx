@@ -2,14 +2,6 @@
 
 import { contactInfo } from "@/app/lib/data";
 
-/**
- * Map Section Component
- *
- * Full-width Google Maps embed showing LM Studio location.
- * Edge-to-edge design with no padding or margins.
- * Positioned directly above footer for seamless integration.
- */
-
 export default function Map() {
   return (
     <section className="w-full h-[300px] md:h-[340px] bg-secondary-dark relative">

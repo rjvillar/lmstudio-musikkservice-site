@@ -2,17 +2,6 @@ import Image from "next/image";
 import { Container, SectionHeading } from "@/app/components/ui";
 import { services, type Service } from "@/app/lib/data";
 
-/**
- * Services Section Component
- *
- * Alternating image/content layout matching reference design:
- * - Clean alternating pattern (image left → image right → image left...)
- * - Generous spacing between services
- * - Icon badges on images
- * - Short descriptions for scannability
- */
-
-// Service Icons Component - Returns appropriate SVG based on icon name
 function ServiceIcon({
   icon,
   className = "w-8 h-8 text-accent",
@@ -152,10 +141,6 @@ function ServiceIcon({
   return icons[icon] || icons["music-note"];
 }
 
-/**
- * Service Row Component - Alternating image/content layout
- * Matches reference design with left/right alternating pattern
- */
 function ServiceRow({
   service,
   imageOnLeft,
@@ -171,7 +156,6 @@ function ServiceRow({
         ${imageOnLeft ? "" : "md:grid-flow-dense"}
       `}
       >
-        {/* Image Column */}
         <div
           className={`
           relative h-72 md:h-96 rounded-3xl overflow-hidden 
@@ -187,7 +171,6 @@ function ServiceRow({
             sizes="(max-width: 768px) 100vw, 50vw"
           />
 
-          {/* Icon Badge - Top left corner */}
           <div className="absolute top-6 left-6 w-16 h-16 bg-accent rounded-2xl flex items-center justify-center shadow-xl">
             <ServiceIcon
               icon={service.icon}
@@ -196,7 +179,6 @@ function ServiceRow({
           </div>
         </div>
 
-        {/* Content Column */}
         <div
           className={`
           space-y-4
@@ -224,7 +206,6 @@ export default function Services() {
       aria-labelledby="services-heading"
     >
       <Container>
-        {/* Visual Divider */}
         <div className="flex justify-center mb-12" aria-hidden="true">
           <div className="w-16 h-1 bg-accent rounded-full" />
         </div>
@@ -235,12 +216,6 @@ export default function Services() {
           light
         />
 
-        {/* 
-          Alternating Layout Pattern
-          Matches reference design with left/right image alternation
-          - Even indices: Image left, content right
-          - Odd indices: Content left, image right
-        */}
         <div className="space-y-20 md:space-y-32 mt-16">
           {services.map((service, index) => {
             const imageOnLeft = index % 2 === 0;

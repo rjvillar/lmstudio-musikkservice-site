@@ -6,15 +6,6 @@ import Link from "next/link";
 import { Container, SectionHeading, Button } from "@/app/components/ui";
 import { albums, musicSectionInfo, type Album } from "@/app/lib/data";
 
-/**
- * Music & Recordings Section Component
- *
- * Showcases albums and music produced by LM Studio with:
- * - Grid of album covers with hover effects
- * - Clickable album cards linking to Discogs
- * - Scandinavian-modern visual design
- */
-
 function AlbumCard({ album }: { album: Album }) {
   const [imageError, setImageError] = useState(false);
 
@@ -26,7 +17,6 @@ function AlbumCard({ album }: { album: Album }) {
       className="group relative block"
     >
       <article>
-        {/* Album Cover */}
         <div className="relative aspect-square rounded-xl overflow-hidden bg-secondary-dark shadow-lg">
           {!imageError ? (
             <Image
@@ -38,7 +28,6 @@ function AlbumCard({ album }: { album: Album }) {
               onError={() => setImageError(true)}
             />
           ) : (
-            // Fallback for missing images
             <div className="absolute inset-0 flex flex-col items-center justify-center bg-linear-to-br from-accent/20 via-secondary-dark to-primary-dark p-6">
               <svg
                 className="w-16 h-16 text-accent/40 mb-4"
@@ -63,7 +52,6 @@ function AlbumCard({ album }: { album: Album }) {
             </div>
           )}
 
-          {/* Hover overlay with play icon */}
           <div
             className="
             absolute inset-0 bg-primary-dark/60
@@ -90,13 +78,11 @@ function AlbumCard({ album }: { album: Album }) {
             </div>
           </div>
 
-          {/* Year badge */}
           <div className="absolute top-3 right-3 bg-primary-dark/80 backdrop-blur-sm text-text-light text-xs font-medium px-2 py-1 rounded">
             {album.year}
           </div>
         </div>
 
-        {/* Album Info */}
         <div className="mt-4">
           <h3 className="font-semibold text-text-light text-lg group-hover:text-accent transition-colors">
             {album.title}
@@ -121,7 +107,6 @@ export default function Music() {
       aria-labelledby="music-heading"
     >
       <Container>
-        {/* Section Header */}
         <div className="text-center mb-16">
           <SectionHeading
             title={musicSectionInfo.title}
@@ -140,7 +125,7 @@ export default function Music() {
           ))}
         </div>
 
-        {/* Studio Production Example - YouTube Embed */}
+        {/* YouTube Embed */}
         <div className="mt-20 max-w-4xl mx-auto">
           <div className="text-center mb-8">
             <div className="inline-flex items-center gap-2 mb-3">
@@ -165,12 +150,9 @@ export default function Music() {
             </p>
           </div>
 
-          {/* Responsive YouTube Embed with Enhanced Styling */}
           <div className="relative group">
-            {/* Decorative border glow */}
             <div className="absolute -inset-0.5 bg-linear-to-r from-accent/20 via-accent/5 to-accent/20 rounded-2xl blur opacity-50 group-hover:opacity-75 transition duration-500" />
 
-            {/* Video container */}
             <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-secondary-dark ring-1 ring-accent/10">
               <div
                 className="relative w-full"
@@ -189,7 +171,6 @@ export default function Music() {
           </div>
         </div>
 
-        {/* Discogs CTA */}
         <div className="mt-16 text-center">
           <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 rounded-2xl bg-secondary-dark/50 border border-border-subtle">
             <div className="flex items-center gap-3">
@@ -242,7 +223,6 @@ export default function Music() {
           </div>
         </div>
 
-        {/* Decorative Sound Waves */}
         <div
           className="mt-16 flex justify-center items-end gap-1 h-12 opacity-20"
           aria-hidden="true"

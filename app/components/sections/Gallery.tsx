@@ -6,18 +6,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Container, SectionHeading } from "@/app/components/ui";
 import { galleryImages, type GalleryImage } from "@/app/lib/data";
 
-/**
- * Gallery Section Component - Redesigned
- *
- * Features:
- * - Refined balanced grid layout with proper spacing
- * - Category filtering with smooth transitions
- * - Auto-cycling images in "All" mode
- * - Enhanced lightbox modal with navigation
- * - Responsive design with Scandinavian minimalism
- * - Framer Motion animations for polish
- */
-
 interface CategoryGroup {
   category: string;
   images: GalleryImage[];
@@ -33,13 +21,11 @@ export default function Gallery() {
     [key: string]: number;
   }>({});
 
-  // Get unique categories (memoized)
   const categories = useMemo(
     () => ["Alle", ...new Set(galleryImages.map((img) => img.category))],
     []
   );
 
-  // Group images by category (computed)
   const categoryGroups: CategoryGroup[] = (() => {
     const groups: { [key: string]: GalleryImage[] } = {};
 
@@ -57,7 +43,6 @@ export default function Gallery() {
     }));
   })();
 
-  // Auto-cycle images in "All" mode only
   useEffect(() => {
     if (selectedCategory !== "Alle") return;
 
@@ -74,36 +59,30 @@ export default function Gallery() {
         });
         return newIndices;
       });
-    }, 3500); // Cycle every 3.5 seconds
+    }, 3500);
 
     return () => clearInterval(interval);
   }, [selectedCategory, categories]);
 
-  // Get filtered images based on selected category
   const getDisplayImages = (): GalleryImage[] => {
     if (selectedCategory === "Alle") {
-      // Return first image of each category for "All" view
       return categoryGroups.map((group) => group.images[group.currentIndex]);
     }
-    // Return all images for selected category
     return galleryImages.filter((img) => img.category === selectedCategory);
   };
 
-  // Open lightbox
   const openLightbox = (category: string, index: number = 0) => {
     setLightboxCategory(category);
     setLightboxIndex(index);
     setLightboxOpen(true);
   };
 
-  // Close lightbox
   const closeLightbox = useCallback(() => {
     setLightboxOpen(false);
     setLightboxCategory("");
     setLightboxIndex(0);
   }, []);
 
-  // Handle body overflow when lightbox opens/closes
   useEffect(() => {
     if (lightboxOpen) {
       document.body.style.overflow = "hidden";
@@ -115,20 +94,17 @@ export default function Gallery() {
     };
   }, [lightboxOpen]);
 
-  // Navigate lightbox
   const navigateLightbox = useCallback(
     (direction: "prev" | "next" | number) => {
       const categoryImages = galleryImages.filter(
         (img) => img.category === lightboxCategory
       );
 
-      // If direction is a number, jump directly to that index
       if (typeof direction === "number") {
         setLightboxIndex(direction);
         return;
       }
 
-      // Otherwise navigate prev/next
       if (direction === "next") {
         setLightboxIndex((prev) => (prev + 1) % categoryImages.length);
       } else {
@@ -140,7 +116,6 @@ export default function Gallery() {
     [lightboxCategory]
   );
 
-  // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!lightboxOpen) return;
@@ -172,7 +147,6 @@ export default function Gallery() {
           />
         </div>
 
-        {/* Category Filter - Refined */}
         <div className="flex flex-wrap justify-center gap-3 mb-14">
           {categories.map((category) => (
             <motion.button
@@ -202,7 +176,6 @@ export default function Gallery() {
           ))}
         </div>
 
-        {/* Gallery Grid - Refined Balanced Layout */}
         <motion.div
           layout
           className={`
@@ -228,7 +201,6 @@ export default function Gallery() {
                 (img) => img.category === image.category
               );
               const isLargeCard = isAllMode && index === 0;
-              // Find the actual index of this image in its category
               const imageIndexInCategory = categoryImages.findIndex(
                 (img) => img.id === image.id
               );
@@ -261,7 +233,6 @@ export default function Gallery() {
         </motion.div>
       </Container>
 
-      {/* Enhanced Lightbox Modal */}
       <AnimatePresence>
         {lightboxOpen && (
           <Lightbox
@@ -276,9 +247,6 @@ export default function Gallery() {
   );
 }
 
-/**
- * Gallery Card Component
- */
 interface GalleryCardProps {
   image: GalleryImage;
   isLargeCard: boolean;
@@ -303,7 +271,6 @@ function GalleryCard({
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
     >
-      {/* Image */}
       <div className="absolute inset-0">
         {!imageError ? (
           <Image
@@ -319,7 +286,6 @@ function GalleryCard({
             onError={() => setImageError(true)}
           />
         ) : (
-          // Placeholder for missing images
           <div className="absolute inset-0 flex flex-col items-center justify-center bg-linear-to-br from-secondary-dark via-primary-dark to-secondary-dark/50 p-6">
             <svg
               className="w-12 h-12 md:w-16 md:h-16 text-accent/20 mb-3"
@@ -341,7 +307,6 @@ function GalleryCard({
         )}
       </div>
 
-      {/* Hover Overlay */}
       <div className="absolute inset-0 bg-linear-to-t from-primary-dark via-primary-dark/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center">
         <div className="w-12 h-12 rounded-full bg-accent/90 flex items-center justify-center transform scale-90 group-hover:scale-100 transition-transform duration-300">
           <svg
@@ -372,14 +337,12 @@ function GalleryCard({
         )}
       </div>
 
-      {/* Category Badge */}
       <div className="absolute top-3 left-3 px-3 py-1.5 rounded-full bg-primary-dark/80 backdrop-blur-sm">
         <span className="text-text-light text-xs font-medium">
           {image.category}
         </span>
       </div>
 
-      {/* Animation Indicator for "All" mode */}
       {isAnimating && totalImages > 1 && (
         <div className="absolute bottom-3 right-3 flex gap-1">
           {Array.from({ length: Math.min(totalImages, 4) }).map((_, i) => (
@@ -391,9 +354,6 @@ function GalleryCard({
   );
 }
 
-/**
- * Lightbox Modal Component
- */
 interface LightboxProps {
   category: string;
   currentIndex: number;
@@ -427,7 +387,6 @@ function Lightbox({
         className="relative w-full max-w-6xl max-h-[90vh] flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header */}
         <div className="flex items-center justify-between mb-6 px-2">
           <div>
             <h3 className="text-text-light text-xl md:text-2xl font-semibold">
@@ -458,7 +417,6 @@ function Lightbox({
           </button>
         </div>
 
-        {/* Main Image */}
         <div className="relative flex-1 flex items-center justify-center mb-6">
           <AnimatePresence mode="wait">
             <motion.div
@@ -500,7 +458,6 @@ function Lightbox({
                 </div>
               )}
 
-              {/* Navigation Arrows */}
               {categoryImages.length > 1 && (
                 <>
                   <button
@@ -547,7 +504,6 @@ function Lightbox({
           </AnimatePresence>
         </div>
 
-        {/* Caption */}
         <div className="mt-4 text-center px-2">
           <p className="text-text-light text-sm md:text-base">
             {currentImage.alt}

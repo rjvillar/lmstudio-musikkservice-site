@@ -2,13 +2,6 @@
 
 import { forwardRef, ButtonHTMLAttributes, ReactNode } from "react";
 
-/**
- * Button Component
- *
- * A versatile button component following Scandinavian design principles.
- * Supports multiple variants and sizes with full accessibility.
- */
-
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "secondary" | "outline" | "ghost";
   size?: "sm" | "md" | "lg";
@@ -31,7 +24,6 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref
   ) => {
-    // Base styles shared across all variants
     const baseStyles = `
       inline-flex items-center justify-center
       font-medium transition-all duration-200
@@ -40,7 +32,6 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       rounded-lg
     `;
 
-    // Variant-specific styles
     const variantStyles = {
       primary: `
         bg-accent text-primary-dark

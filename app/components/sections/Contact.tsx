@@ -4,24 +4,6 @@ import { useState, type FormEvent } from "react";
 import { Container, SectionHeading, Button, Card } from "@/app/components/ui";
 import { contactInfo, additionalContacts, openingHours } from "@/app/lib/data";
 
-/**
- * Contact Section Component - Redesigned
- *
- * Professional contact section with improved UX and real LM Studio data:
- * - Left: Clean contact form with enhanced validation
- * - Right: Direct contact cards (phone, email, address) + embedded Google Maps + opening hours
- * - Balanced spacing and visual hierarchy
- * - Dark theme with gold accents
- * - Mobile-responsive layout
- *
- * Real contact information:
- * - Geir-Harry: 901 69 390
- * - Eva: 472 93 768
- * - Email: ghh42@live.no
- * - Address: Rennbergsvegen 24, 2384 Brumunddal
- * - Opening: By appointment (Etter avtale)
- */
-
 interface FormData {
   name: string;
   phone: string;
@@ -50,7 +32,6 @@ export default function Contact() {
     "idle" | "success" | "error"
   >("idle");
 
-  // Validate form fields
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
 
@@ -72,7 +53,6 @@ export default function Contact() {
     return Object.keys(newErrors).length === 0;
   };
 
-  // Handle form submission
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
@@ -82,20 +62,17 @@ export default function Contact() {
     setSubmitStatus("idle");
 
     try {
-      // Simulate API call - replace with actual form submission
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
       setSubmitStatus("success");
       setFormData({ name: "", phone: "", email: "", message: "" });
 
-      // Auto-hide success message after 5 seconds
       setTimeout(() => {
         setSubmitStatus("idle");
       }, 5000);
     } catch {
       setSubmitStatus("error");
 
-      // Auto-hide error message after 5 seconds
       setTimeout(() => {
         setSubmitStatus("idle");
       }, 5000);
@@ -104,14 +81,12 @@ export default function Contact() {
     }
   };
 
-  // Handle input changes
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
 
-    // Clear error when user starts typing
     if (errors[name as keyof FormErrors]) {
       setErrors((prev) => ({ ...prev, [name]: undefined }));
     }
@@ -133,7 +108,6 @@ export default function Contact() {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
-          {/* Left Column: Contact Form */}
           <div className="order-2 lg:order-1">
             <Card padding="lg" className="h-full flex flex-col">
               <h3 className="text-xl font-semibold text-text-light mb-2">
@@ -148,9 +122,7 @@ export default function Contact() {
                 noValidate
                 className="space-y-5 flex-1 flex flex-col"
               >
-                {/* Name and Phone Row */}
                 <div className="grid sm:grid-cols-2 gap-6">
-                  {/* Name Field */}
                   <div>
                     <label
                       htmlFor="name"
@@ -182,7 +154,6 @@ export default function Contact() {
                     />
                   </div>
 
-                  {/* Phone Field */}
                   <div>
                     <label
                       htmlFor="phone"
@@ -215,7 +186,6 @@ export default function Contact() {
                   </div>
                 </div>
 
-                {/* Email Field */}
                 <div>
                   <label
                     htmlFor="email"
@@ -247,7 +217,6 @@ export default function Contact() {
                   />
                 </div>
 
-                {/* Message Field */}
                 <div className="flex-1 flex flex-col">
                   <label
                     htmlFor="message"
@@ -279,7 +248,6 @@ export default function Contact() {
                   />
                 </div>
 
-                {/* Privacy Agreement Checkbox */}
                 <div className="flex items-start gap-3">
                   <input
                     type="checkbox"
@@ -298,7 +266,6 @@ export default function Contact() {
                   </label>
                 </div>
 
-                {/* Submit Button & Status */}
                 <div>
                   <Button
                     type="submit"
@@ -314,17 +281,12 @@ export default function Contact() {
             </Card>
           </div>
 
-          {/* Right Column: Contact Info, Map, Hours */}
           <div className="order-1 lg:order-2 flex flex-col justify-between">
-            {/* Direct Contact Cards */}
             <div>
               <h3 className="text-lg font-semibold text-text-light mb-4">
                 Direkte kontakt
               </h3>
-
-              {/* Phone Cards - Side by Side */}
               <div className="grid sm:grid-cols-2 gap-3 mb-3">
-                {/* Geir-Harry Phone */}
                 <a
                   href={`tel:${contactInfo.phone.replace(/\s/g, "")}`}
                   className="
@@ -358,7 +320,6 @@ export default function Contact() {
                   </div>
                 </a>
 
-                {/* Eva Phone */}
                 <a
                   href={`tel:${additionalContacts.evaPhone.replace(/\s/g, "")}`}
                   className="
@@ -393,7 +354,6 @@ export default function Contact() {
                 </a>
               </div>
 
-              {/* Email Card */}
               <a
                 href={`mailto:${contactInfo.email}`}
                 className="
@@ -427,7 +387,6 @@ export default function Contact() {
                 </div>
               </a>
 
-              {/* Address Card */}
               <div className="flex items-start gap-4 p-4 rounded-xl mb-4 bg-secondary-dark border border-border-subtle">
                 <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center shrink-0">
                   <svg
@@ -461,7 +420,6 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Decorative Divider with Message */}
             <div className="relative">
               <div
                 className="absolute inset-0 flex items-center"
@@ -476,7 +434,6 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Opening Hours */}
             <Card>
               <div className="flex items-start gap-4 p-4 rounded-xl bg-secondary-dark border border-border-subtle">
                 <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center shrink-0">
@@ -510,7 +467,6 @@ export default function Contact() {
         </div>
       </Container>
 
-      {/* Toast Notifications - Fixed Position */}
       {submitStatus === "success" && (
         <div className="fixed top-24 left-1/2 -translate-x-1/2 z-50 animate-in fade-in slide-in-from-top-4 duration-300">
           <div

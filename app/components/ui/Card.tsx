@@ -1,12 +1,5 @@
 import { ReactNode } from "react";
 
-/**
- * Card Component
- *
- * A versatile card component with subtle hover effects.
- * Follows the dark aesthetic of a music studio with warm accents.
- */
-
 interface CardProps {
   children: ReactNode;
   className?: string;

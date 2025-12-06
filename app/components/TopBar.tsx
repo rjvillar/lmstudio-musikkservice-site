@@ -3,18 +3,9 @@
 import { useState, useEffect } from "react";
 import { contactInfo, additionalContacts } from "@/app/lib/data";
 
-/**
- * TopBar Component
- *
- * Top contact bar that appears above the main navigation.
- * Contains phone numbers and email on the left, location on the right.
- * Transparent when at top, solid accent background when scrolled.
- */
-
 export default function TopBar() {
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Handle scroll effect for background
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -35,7 +26,6 @@ export default function TopBar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-10 flex items-center">
         <div className="flex-1 flex flex-wrap justify-between items-center gap-2 text-sm">
-          {/* Left - Contact Info */}
           <div
             className={`
               flex flex-wrap items-center gap-4 transition-colors duration-300
@@ -122,7 +112,6 @@ export default function TopBar() {
             </a>
           </div>
 
-          {/* Right - Location */}
           <div
             className={`
               hidden lg:flex items-center gap-2 transition-colors duration-300

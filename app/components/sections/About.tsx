@@ -5,20 +5,6 @@ import Image from "next/image";
 import { Container, SectionHeading } from "@/app/components/ui";
 import { businessInfo } from "@/app/lib/data";
 
-/**
- * About Section Component - Complete Redesign
- *
- * Structure:
- * 1. About Us Introduction (Company overview)
- * 2. Three Value Pillars (Cards with icons)
- * 3. Studio Story (Historical narrative with dual slideshows)
- * 4. Team Section (Geir & Eva with shared image)
- *
- * Design: Scandinavian minimalism with clean spacing and modern typography
- * Features: Independent randomized slideshows with fade transitions
- */
-
-// Story images for slideshows
 const storyImages = [
   "/images/story/bjorn.png",
   "/images/story/geir-harry.png",
@@ -31,7 +17,6 @@ const storyImages = [
   "/images/story/toril-tone.png",
 ];
 
-// Shuffle array helper
 function shuffleArray<T>(array: T[]): T[] {
   const shuffled = [...array];
   for (let i = shuffled.length - 1; i > 0; i--) {
@@ -41,30 +26,23 @@ function shuffleArray<T>(array: T[]): T[] {
   return shuffled;
 }
 
-/**
- * Slideshow Component
- * Independent image rotator with fade transitions
- * Uses client-side only initialization to avoid hydration mismatch
- */
 function Slideshow({ delay = 0 }: { delay?: number }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [images, setImages] = useState(storyImages);
   const [isClient, setIsClient] = useState(false);
 
-  // Shuffle images only on client-side after hydration
   useEffect(() => {
     setImages(shuffleArray(storyImages));
     setIsClient(true);
   }, []);
 
-  // Auto-advance slideshow
   useEffect(() => {
     if (!isClient || images.length === 0) return;
 
     const timer = setTimeout(() => {
       const interval = setInterval(() => {
         setCurrentIndex((prev) => (prev + 1) % images.length);
-      }, 4000); // Change image every 4 seconds
+      }, 4000);
 
       return () => clearInterval(interval);
     }, delay);
@@ -93,7 +71,6 @@ function Slideshow({ delay = 0 }: { delay?: number }) {
             sizes="(max-width: 768px) 100vw, 50vw"
             priority={index === 0}
           />
-          {/* Subtle overlay for better visual hierarchy */}
           <div className="absolute inset-0 bg-linear-to-br from-primary-dark/10 to-primary-dark/30" />
         </div>
       ))}
@@ -109,7 +86,6 @@ export default function About() {
       aria-labelledby="about-heading"
     >
       <Container>
-        {/* Visual Divider */}
         <div className="flex justify-center mb-12" aria-hidden="true">
           <div className="w-16 h-1 bg-accent rounded-full" />
         </div>
@@ -120,10 +96,6 @@ export default function About() {
           alignment="center"
         />
 
-        {/* 
-          SECTION 1: About Us Introduction 
-          Concise and scannable
-        */}
         <div className="max-w-3xl mx-auto mt-16 text-center">
           <p className="text-lg text-primary-dark/90 leading-relaxed">
             <strong className="text-primary-dark">
@@ -135,10 +107,6 @@ export default function About() {
           </p>
         </div>
 
-        {/* 
-          SECTION 2: Three Value Pillars 
-          Visual breaks with icons
-        */}
         <div className="mt-12 max-w-5xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {businessInfo.valueProps.map((prop, index) => (
@@ -146,12 +114,10 @@ export default function About() {
                 key={index}
                 className="bg-white rounded-xl p-6 text-center space-y-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
               >
-                {/* Icon */}
                 <div className="w-14 h-14 mx-auto rounded-xl bg-accent/10 flex items-center justify-center">
                   <ValuePropIcon index={index} />
                 </div>
 
-                {/* Content */}
                 <h3 className="text-lg font-bold text-primary-dark">
                   {prop.title}
                 </h3>
@@ -163,18 +129,12 @@ export default function About() {
           </div>
         </div>
 
-        {/* 
-          SECTION 2.5: Industry Recognition Badge
-          Highlighting listing on musikkhandel.no
-        */}
         <div className="mt-20 mb-16">
           <div className="max-w-4xl mx-auto">
             <div className="bg-white rounded-2xl p-8 md:p-10 shadow-lg border-2 border-accent/20 relative overflow-hidden">
-              {/* Decorative accent */}
               <div className="absolute top-0 left-0 w-full h-1.5 bg-linear-to-r from-accent via-accent/70 to-accent" />
 
               <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
-                {/* Icon/Badge */}
                 <div className="shrink-0">
                   <div className="w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-accent/10 flex items-center justify-center border-2 border-accent/30">
                     <svg
@@ -193,7 +153,6 @@ export default function About() {
                   </div>
                 </div>
 
-                {/* Content */}
                 <div className="flex-1 text-center md:text-left">
                   <div className="inline-flex items-center gap-2 mb-3">
                     <span className="text-xs font-bold uppercase tracking-wider text-accent">
@@ -237,7 +196,6 @@ export default function About() {
                   </a>
                 </div>
 
-                {/* Verified Badge */}
                 <div className="hidden lg:block shrink-0">
                   <div className="text-center">
                     <div className="inline-flex flex-col items-center gap-1 px-4 py-3 rounded-xl bg-accent/5 border border-accent/20">
@@ -263,12 +221,7 @@ export default function About() {
           </div>
         </div>
 
-        {/* 
-          SECTION 3: Studio Story 
-          Compact narrative with visual elements
-        */}
         <div className="mt-24 max-w-5xl mx-auto">
-          {/* Story Header */}
           <div className="text-center mb-10">
             <h2 className="text-2xl md:text-3xl font-bold text-primary-dark mb-3">
               Historien bak studioet
@@ -279,9 +232,7 @@ export default function About() {
             />
           </div>
 
-          {/* Story Content - Alternating layout with slideshows */}
           <div className="space-y-12">
-            {/* Paragraph 1: The Beginning */}
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div className="space-y-3">
                 <h3 className="text-xl font-bold text-primary-dark">
@@ -293,15 +244,12 @@ export default function About() {
                   kunnskap innen lydteknikk.
                 </p>
               </div>
-              {/* First Slideshow */}
               <div className="relative h-56 md:h-72 rounded-2xl overflow-hidden shadow-lg order-first md:order-last">
                 <Slideshow delay={0} />
               </div>
             </div>
 
-            {/* Paragraph 2: Growth & Evolution */}
             <div className="grid md:grid-cols-2 gap-8 items-center">
-              {/* Second Slideshow - Independent from first */}
               <div className="relative h-56 md:h-72 rounded-2xl overflow-hidden shadow-lg">
                 <Slideshow delay={2000} />
               </div>
@@ -318,7 +266,6 @@ export default function About() {
               </div>
             </div>
 
-            {/* Paragraph 3: Philosophy & Commitment */}
             <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
               <div className="max-w-2xl mx-auto text-center space-y-4">
                 <h3 className="text-xl font-bold text-primary-dark">
@@ -334,12 +281,7 @@ export default function About() {
           </div>
         </div>
 
-        {/* 
-          SECTION 4: Team Section 
-          Geir & Eva with shared image in balanced layout
-        */}
         <div className="mt-32 max-w-5xl mx-auto">
-          {/* Team Header */}
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-primary-dark mb-4">
               Møt teamet
@@ -350,10 +292,8 @@ export default function About() {
             />
           </div>
 
-          {/* Team Members - Balanced dual-profile layout */}
           <div className="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
             <div className="grid md:grid-cols-2 gap-0">
-              {/* Shared Image Column */}
               <div className="relative h-96 md:h-auto">
                 <Image
                   src="/images/employees/geir-eva.png"
@@ -364,9 +304,7 @@ export default function About() {
                 />
               </div>
 
-              {/* Team Info Column */}
               <div className="p-8 md:p-12 flex flex-col justify-center space-y-8">
-                {/* Geir Profile */}
                 <div className="space-y-3">
                   <div className="flex items-center gap-3">
                     <div className="w-12 h-12 rounded-full bg-accent flex items-center justify-center">
@@ -406,10 +344,8 @@ export default function About() {
                   </div>
                 </div>
 
-                {/* Divider */}
                 <div className="h-px bg-gray-200" aria-hidden="true" />
 
-                {/* Eva Profile */}
                 <div className="space-y-3">
                   <div className="flex items-center gap-3">
                     <div className="w-12 h-12 rounded-full bg-accent flex items-center justify-center">
@@ -456,15 +392,11 @@ export default function About() {
   );
 }
 
-/**
- * Value Prop Icons Component
- * Returns appropriate icon SVG based on index
- */
 function ValuePropIcon({ index }: { index: number }) {
   const iconClasses = "w-6 h-6 text-accent";
 
   switch (index) {
-    case 0: // Riktig pris – riktig kvalitet
+    case 0:
       return (
         <svg
           className={iconClasses}
@@ -481,7 +413,7 @@ function ValuePropIcon({ index }: { index: number }) {
           />
         </svg>
       );
-    case 1: // Alt på ett sted
+    case 1:
       return (
         <svg
           className={iconClasses}
@@ -498,7 +430,7 @@ function ValuePropIcon({ index }: { index: number }) {
           />
         </svg>
       );
-    case 2: // Personlig oppfølging
+    case 2:
       return (
         <svg
           className={iconClasses}

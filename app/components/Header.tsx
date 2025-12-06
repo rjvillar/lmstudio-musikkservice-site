@@ -7,22 +7,11 @@ import Image from "next/image";
 import { Container } from "@/app/components/ui";
 import { navigationLinks, businessInfo } from "@/app/lib/data";
 
-/**
- * Header Component
- *
- * Sticky navigation header with:
- * - Responsive mobile menu
- * - Scroll-aware background opacity
- * - Accessible navigation with ARIA labels
- * - Smooth scroll to sections
- */
-
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
 
-  // Handle scroll effect for header background
   useEffect(() => {
     setMounted(true);
     const handleScroll = () => {
@@ -33,12 +22,10 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close menu when clicking a link
   const handleLinkClick = () => {
     setIsMenuOpen(false);
   };
 
-  // Prevent body scroll when mobile menu is open
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -69,7 +56,6 @@ export default function Header() {
           role="navigation"
           aria-label="Hovednavigasjon"
         >
-          {/* Logo */}
           <Link
             href="/"
             className="flex items-center gap-3 group"
@@ -85,7 +71,6 @@ export default function Header() {
             />
           </Link>
 
-          {/* Desktop Navigation */}
           <ul className="hidden md:flex items-center gap-8">
             {navigationLinks.map((link) => (
               <li key={link.href}>
@@ -109,7 +94,6 @@ export default function Header() {
             ))}
           </ul>
 
-          {/* CTA Button - Desktop */}
           <Link
             href="#kontakt"
             className="
@@ -125,7 +109,6 @@ export default function Header() {
             Kontakt oss
           </Link>
 
-          {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="
@@ -164,7 +147,6 @@ export default function Header() {
         </nav>
       </Container>
 
-      {/* Mobile Menu Drawer */}
       {mounted &&
         createPortal(
           <div

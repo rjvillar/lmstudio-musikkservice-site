@@ -2,15 +2,6 @@ import type { Metadata } from "next";
 import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
 
-/**
- * Typography Configuration
- *
- * Inter: Clean, modern sans-serif perfect for body text and UI elements.
- * Excellent readability and widely used in Scandinavian design.
- *
- * Manrope: Geometric sans-serif with subtle warmth, ideal for headings.
- * Provides a professional yet approachable feel for a music studio brand.
- */
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],

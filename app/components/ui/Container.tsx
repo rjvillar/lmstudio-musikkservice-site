@@ -1,13 +1,5 @@
 import { ReactNode } from "react";
 
-/**
- * Container Component
- *
- * A responsive container that provides consistent horizontal padding
- * and maximum width across the site. Based on Scandinavian design
- * principles with generous whitespace.
- */
-
 interface ContainerProps {
   children: ReactNode;
   className?: string;

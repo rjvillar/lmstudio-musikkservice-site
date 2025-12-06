@@ -3,26 +3,13 @@ import Image from "next/image";
 import { Button } from "@/app/components/ui";
 import { businessInfo } from "@/app/lib/data";
 
-/**
- * Hero Section Component (Redesigned)
- *
- * Fullscreen hero matching boss's reference design patterns:
- * - Full viewport height with background image
- * - Center-aligned content with logo/company name
- * - Tagline and dual CTA buttons
- * - Top bar with contact info
- * - Responsive across all devices
- */
-
 export default function Hero() {
   return (
     <section
       className="relative min-h-screen flex flex-col overflow-hidden"
       aria-labelledby="hero-heading"
     >
-      {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
-        {/* Background Image using Next.js Image for optimization */}
         <Image
           src="/images/hero-background.webp"
           alt=""
@@ -32,13 +19,10 @@ export default function Hero() {
           sizes="100vw"
         />
 
-        {/* Fallback gradient (shown behind image if loading) */}
         <div className="absolute inset-0 -z-10 bg-linear-to-br from-primary-dark via-secondary-dark to-primary-dark" />
 
-        {/* Dark overlay for text readability */}
         <div className="absolute inset-0 bg-primary-dark/60" />
 
-        {/* Subtle texture */}
         <div
           className="absolute inset-0 opacity-5"
           style={{
@@ -52,10 +36,8 @@ export default function Hero() {
         />
       </div>
 
-      {/* Main Hero Content - Centered */}
       <div className="relative z-10 flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 sm:pb-6 lg:pb-8 pt-24 md:pt-32">
         <div className="text-center max-w-4xl mx-auto">
-          {/* Logo Image */}
           <div className="mb-6">
             <Image
               src="/images/logos/lm-studio-logo.png"
@@ -67,7 +49,6 @@ export default function Hero() {
             />
           </div>
 
-          {/* Company Name */}
           <h1
             id="hero-heading"
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-text-light tracking-tight"
@@ -83,12 +64,10 @@ export default function Hero() {
             {businessInfo.tagline}
           </p>
 
-          {/* Short Description */}
           <p className="mt-1 text-base md:text-lg text-text-muted max-w-xl mx-auto">
             {businessInfo.shortDescription}
           </p>
 
-          {/* CTA Buttons */}
           <div className="mt-10 md:mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="#tjenester">
               <Button size="lg" className="w-full sm:w-auto min-w-[200px]">
@@ -122,7 +101,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Bottom Scroll Indicator */}
       <div
         className="relative z-10 pb-8 flex justify-center sm:hidden"
         aria-hidden="true"
@@ -138,7 +116,6 @@ export default function Hero() {
         </Link>
       </div>
 
-      {/* Decorative Corner Elements */}
       <div
         className="absolute bottom-0 left-0 w-32 h-32 border-l-2 border-b-2 border-accent/20 hidden lg:block"
         aria-hidden="true"
