@@ -467,9 +467,9 @@ export default function Contact() {
                 className="absolute inset-0 flex items-center"
                 aria-hidden="true"
               >
-                <div className="w-full border-t border-border-subtle"></div>
+                <div className="w-full border-t border-border-subtle mb-4 md:mb-2"></div>
               </div>
-              <div className="relative flex justify-center">
+              <div className="relative flex justify-center mb-4 md:mb-2">
                 <span className="bg-primary-dark px-4 text-sm text-text-muted">
                   Vi er alltid klare til å hjelpe
                 </span>

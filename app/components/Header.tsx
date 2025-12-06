@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import Image from "next/image";
 import { Container } from "@/app/components/ui";
@@ -19,9 +20,11 @@ import { navigationLinks, businessInfo } from "@/app/lib/data";
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   // Handle scroll effect for header background
   useEffect(() => {
+    setMounted(true);
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
@@ -162,81 +165,86 @@ export default function Header() {
       </Container>
 
       {/* Mobile Menu Drawer */}
-      <div
-        id="mobile-menu"
-        className={`
-          md:hidden fixed inset-0 z-40
-          transition-all duration-300
-          ${
-            isMenuOpen
-              ? "opacity-100 visible"
-              : "opacity-0 invisible pointer-events-none"
-          }
-        `}
-        aria-hidden={!isMenuOpen}
-      >
-        <button
-          type="button"
-          aria-label="Lukk meny"
-          onClick={() => setIsMenuOpen(false)}
-          className="absolute inset-0 bg-black/40 backdrop-blur-md"
-        />
+      {mounted &&
+        createPortal(
+          <div
+            id="mobile-menu"
+            className={`
+            md:hidden fixed inset-0 z-100
+            transition-all duration-300
+            ${
+              isMenuOpen
+                ? "opacity-100 visible"
+                : "opacity-0 invisible pointer-events-none"
+            }
+          `}
+            aria-hidden={!isMenuOpen}
+          >
+            <button
+              type="button"
+              aria-label="Lukk meny"
+              onClick={() => setIsMenuOpen(false)}
+              className="absolute inset-0 bg-black/40 backdrop-blur-md"
+            />
 
-        <aside
-          className={`
+            <aside
+              className={`
             absolute top-0 bottom-0 right-0
-            w-[calc(100%-80px)] max-w-xs bg-primary-dark
+            w-[calc(100%-80px)] max-w-xs
             border-l border-border-subtle shadow-2xl
             transform transition-transform duration-300 ease-out
             ${isMenuOpen ? "translate-x-0" : "translate-x-full"}
           `}
-          role="dialog"
-          aria-modal="true"
-        >
-          <div className="flex h-full flex-col px-6 py-8">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <Image
-                  src="/images/logos/lm-studio-logo.png"
-                  alt="LM Studio & Musikkservice"
-                  width={64}
-                  height={35}
-                  className="h-8 w-auto object-contain"
-                />
-                <span className="text-sm font-semibold tracking-wide text-text-light/80">
-                  {businessInfo.name}
-                </span>
-              </div>
-              <button
-                type="button"
-                onClick={() => setIsMenuOpen(false)}
-                aria-label="Lukk meny"
-                className="rounded-full p-2 text-text-light/70 hover:text-accent transition-colors"
-              >
-                <svg
-                  className="h-5 w-5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M18 6L6 18" />
-                  <path d="M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
+              role="dialog"
+              aria-modal="true"
+              style={{ backgroundColor: "#1a1a1a" }}
+            >
+              <div className="flex h-full flex-col px-6 py-8">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <Image
+                      src="/images/logos/lm-studio-logo.png"
+                      alt="LM Studio & Musikkservice"
+                      width={64}
+                      height={35}
+                      className="h-8 w-auto object-contain"
+                    />
+                    <span className="text-sm font-semibold tracking-wide text-text-light/80">
+                      {businessInfo.name}
+                    </span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setIsMenuOpen(false)}
+                    aria-label="Lukk meny"
+                    className="rounded-full p-2 text-text-light/70 hover:text-accent transition-colors"
+                  >
+                    <svg
+                      className="h-5 w-5"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M18 6L6 18" />
+                      <path d="M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
 
-            <nav className="mt-10 flex-1">
-              <ul className="flex flex-col gap-3">
-                {navigationLinks.map((link, index) => (
-                  <li
-                    key={link.href}
-                    style={{
-                      transitionDelay: isMenuOpen ? `${index * 40}ms` : "0ms",
-                    }}
-                    className={`
+                <nav className="mt-10 flex-1">
+                  <ul className="flex flex-col gap-3">
+                    {navigationLinks.map((link, index) => (
+                      <li
+                        key={link.href}
+                        style={{
+                          transitionDelay: isMenuOpen
+                            ? `${index * 40}ms`
+                            : "0ms",
+                        }}
+                        className={`
                       transform transition-all duration-300
                       ${
                         isMenuOpen
@@ -244,27 +252,27 @@ export default function Header() {
                           : "translate-x-4 opacity-0"
                       }
                     `}
-                  >
-                    <Link
-                      href={link.href}
-                      onClick={handleLinkClick}
-                      className="
+                      >
+                        <Link
+                          href={link.href}
+                          onClick={handleLinkClick}
+                          className="
                         block rounded-xl px-4 py-4
                         text-lg font-medium text-text-light
                         hover:bg-secondary-dark/60 hover:text-accent
                         transition-colors duration-200
                         border border-border-subtle/40
                       "
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
+                        >
+                          {link.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
 
-            <div
-              className={`
+                <div
+                  className={`
                 mt-8 transform transition-all duration-300 delay-200
                 ${
                   isMenuOpen
@@ -272,22 +280,24 @@ export default function Header() {
                     : "translate-y-4 opacity-0"
                 }
               `}
-            >
-              <Link
-                href="#kontakt"
-                onClick={handleLinkClick}
-                className="
+                >
+                  <Link
+                    href="#kontakt"
+                    onClick={handleLinkClick}
+                    className="
                   block w-full rounded-xl py-4
                   bg-accent text-center text-lg font-semibold text-primary-dark
                   hover:bg-accent-hover transition-colors duration-200
                 "
-              >
-                Kontakt oss
-              </Link>
-            </div>
-          </div>
-        </aside>
-      </div>
+                  >
+                    Kontakt oss
+                  </Link>
+                </div>
+              </div>
+            </aside>
+          </div>,
+          document.body
+        )}
     </header>
   );
 }

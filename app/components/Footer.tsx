@@ -32,10 +32,10 @@ export default function Footer() {
         <div className="py-12 md:py-16">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
             {/* Brand & Info Column */}
-            <div className="space-y-6">
+            <div>
               {/* Logo */}
-              <Link href="/" className="inline-flex items-center gap-4 group">
-                <div className="relative w-12 h-12 shrink-0">
+              <Link href="/" className="flex items-center gap-4 group mb-0">
+                <div className="relative w-21 h-21 shrink-0">
                   <Image
                     src="/images/logos/lm-studio-logo.png"
                     alt="LM Studio & Musikkservice"
@@ -55,8 +55,8 @@ export default function Footer() {
               </Link>
 
               {/* Company Info */}
-              <div className="space-y-2 text-sm">
-                <p className="text-text-muted">
+              <div className="space-y-2 text-sm mb-4">
+                <p className="text-text-muted mb-0">
                   <span className="text-text-light font-semibold">Org.nr:</span>{" "}
                   {contactInfo.orgNumber}
                 </p>
@@ -69,26 +69,9 @@ export default function Footer() {
               </div>
 
               {/* Description */}
-              <p className="text-text-muted text-sm leading-relaxed max-w-xs">
+              <p className="text-text-muted text-sm leading-relaxed max-w-xs mb-6">
                 {businessInfo.tagline}
               </p>
-
-              {/* Social Links */}
-              <div className="flex gap-3">
-                <a
-                  href="#"
-                  className="w-9 h-9 rounded-lg bg-primary-dark/50 border border-border-subtle flex items-center justify-center text-text-muted hover:text-accent hover:border-accent/50 transition-all duration-200"
-                  aria-label="Facebook"
-                >
-                  <svg
-                    className="w-4 h-4"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />
-                  </svg>
-                </a>
-              </div>
             </div>
 
             {/* Navigate Column */}
@@ -96,7 +79,7 @@ export default function Footer() {
               <h3 className="text-sm font-bold text-text-light uppercase tracking-wider mb-5">
                 Navigasjon
               </h3>
-              <ul className="space-y-2.5">
+              <ul className="space-y-2">
                 {navigationLinks.map((link) => (
                   <li key={link.href}>
                     <Link

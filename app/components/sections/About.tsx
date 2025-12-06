@@ -122,51 +122,40 @@ export default function About() {
 
         {/* 
           SECTION 1: About Us Introduction 
-          Optimized for readability and Scandinavian minimalism
+          Concise and scannable
         */}
-        <div className="max-w-4xl mx-auto mt-16 space-y-6 text-primary-dark/80 leading-relaxed text-center">
-          <p className="text-lg">
+        <div className="max-w-3xl mx-auto mt-16 text-center">
+          <p className="text-lg text-primary-dark/90 leading-relaxed">
             <strong className="text-primary-dark">
               LM Studio & Musikkservice
             </strong>{" "}
-            ligger mellom Brumunddal og Moelv, og leverer alt innen trekkspill,
-            toradere og musikk-tekniske tjenester. Siden 2001 har vi hjulpet
-            både entusiaster og profesjonelle med alt fra kjøp og service til
-            innspilling og lydteknikk.
-          </p>
-
-          <p>
-            Vi tilbyr et komplett spekter av tjenester – fra salg av nye og
-            brukte instrumenter til verksted, kurs, studio, PA-utleie og
-            digitalisering. Gjennom direkte import kan vi tilby
-            konkurransedyktige priser uten å gå på kompromiss med kvalitet.
-          </p>
-
-          <p>
-            Personlig oppfølging, pålitelig service og riktig pris for riktig
-            kvalitet. Vi tar imot besøkende etter avtale hele året og tilpasser
-            våre tjenester til dine behov.
+            er din spesialist på trekkspill, toradere og musikk-tekniske
+            tjenester siden 2001. Vi tilbyr alt fra salg og service til
+            innspilling, PA-utleie og digitalisering.
           </p>
         </div>
 
         {/* 
           SECTION 2: Three Value Pillars 
-          Minimal inline design
+          Visual breaks with icons
         */}
-        <div className="mt-16 max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="mt-12 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {businessInfo.valueProps.map((prop, index) => (
-              <div key={index} className="text-center space-y-3">
+              <div
+                key={index}
+                className="bg-white rounded-xl p-6 text-center space-y-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+              >
                 {/* Icon */}
-                <div className="w-12 h-12 mx-auto rounded-xl bg-accent/10 flex items-center justify-center">
+                <div className="w-14 h-14 mx-auto rounded-xl bg-accent/10 flex items-center justify-center">
                   <ValuePropIcon index={index} />
                 </div>
 
                 {/* Content */}
-                <h3 className="text-base font-bold text-primary-dark">
+                <h3 className="text-lg font-bold text-primary-dark">
                   {prop.title}
                 </h3>
-                <p className="text-sm text-primary-dark/60 leading-relaxed">
+                <p className="text-sm text-primary-dark/70 leading-relaxed">
                   {prop.description}
                 </p>
               </div>
@@ -175,13 +164,113 @@ export default function About() {
         </div>
 
         {/* 
-          SECTION 3: Studio Story 
-          Historical narrative with warmth and credibility
+          SECTION 2.5: Industry Recognition Badge
+          Highlighting listing on musikkhandel.no
         */}
-        <div className="mt-32 max-w-5xl mx-auto">
+        <div className="mt-20 mb-16">
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-white rounded-2xl p-8 md:p-10 shadow-lg border-2 border-accent/20 relative overflow-hidden">
+              {/* Decorative accent */}
+              <div className="absolute top-0 left-0 w-full h-1.5 bg-linear-to-r from-accent via-accent/70 to-accent" />
+
+              <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+                {/* Icon/Badge */}
+                <div className="shrink-0">
+                  <div className="w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-accent/10 flex items-center justify-center border-2 border-accent/30">
+                    <svg
+                      className="w-10 h-10 md:w-12 md:h-12 text-accent"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="flex-1 text-center md:text-left">
+                  <div className="inline-flex items-center gap-2 mb-3">
+                    <span className="text-xs font-bold uppercase tracking-wider text-accent">
+                      Anerkjent av bransjen
+                    </span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+                  </div>
+                  <h3 className="text-xl md:text-2xl font-bold text-primary-dark mb-2">
+                    Offisielt Verksted for Trekkspill & Toradere
+                  </h3>
+                  <p className="text-primary-dark/70 leading-relaxed mb-3">
+                    LM Studio & Musikkservice er oppført på{" "}
+                    <strong className="text-primary-dark">
+                      musikkhandel.no
+                    </strong>{" "}
+                    som anerkjent serviceverksted for trekkspill og toradere.
+                    Dette bekrefter vår ekspertise og pålitelighet som
+                    leverandør av profesjonelle reparasjons- og
+                    vedlikeholdstjenester.
+                  </p>
+                  <a
+                    href="https://www.musikkhandel.no/serviceverksted"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-accent hover:text-accent/80 transition-colors group"
+                  >
+                    <span>Se oppføring på musikkhandel.no</span>
+                    <svg
+                      className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M14 5l7 7m0 0l-7 7m7-7H3"
+                      />
+                    </svg>
+                  </a>
+                </div>
+
+                {/* Verified Badge */}
+                <div className="hidden lg:block shrink-0">
+                  <div className="text-center">
+                    <div className="inline-flex flex-col items-center gap-1 px-4 py-3 rounded-xl bg-accent/5 border border-accent/20">
+                      <svg
+                        className="w-8 h-8 text-accent"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                      <span className="text-xs font-bold text-accent">
+                        Verifisert
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* 
+          SECTION 3: Studio Story 
+          Compact narrative with visual elements
+        */}
+        <div className="mt-24 max-w-5xl mx-auto">
           {/* Story Header */}
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary-dark mb-4">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl md:text-3xl font-bold text-primary-dark mb-3">
               Historien bak studioet
             </h2>
             <div
@@ -191,23 +280,21 @@ export default function About() {
           </div>
 
           {/* Story Content - Alternating layout with slideshows */}
-          <div className="space-y-16">
+          <div className="space-y-12">
             {/* Paragraph 1: The Beginning */}
             <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div className="space-y-4">
-                <h3 className="text-2xl font-bold text-primary-dark">
+              <div className="space-y-3">
+                <h3 className="text-xl font-bold text-primary-dark">
                   Fra lidenskap til virksomhet
                 </h3>
                 <p className="text-primary-dark/80 leading-relaxed">
-                  I 2001 tok Geir-Harry Haugland steget fra hobbymusiker til
-                  profesjonell entreprenør og etablerte LM Studio &
-                  Musikkservice. Med erfaring som trekkspiller og teknisk
-                  kunnskap innen lydteknikk, la han grunnlaget for et komplett
-                  musikkompetansesenter.
+                  I 2001 etablerte Geir-Harry Haugland LM Studio &
+                  Musikkservice, med erfaring som trekkspiller og teknisk
+                  kunnskap innen lydteknikk.
                 </p>
               </div>
               {/* First Slideshow */}
-              <div className="relative h-64 md:h-80 rounded-2xl overflow-hidden shadow-lg order-first md:order-last">
+              <div className="relative h-56 md:h-72 rounded-2xl overflow-hidden shadow-lg order-first md:order-last">
                 <Slideshow delay={0} />
               </div>
             </div>
@@ -215,37 +302,32 @@ export default function About() {
             {/* Paragraph 2: Growth & Evolution */}
             <div className="grid md:grid-cols-2 gap-8 items-center">
               {/* Second Slideshow - Independent from first */}
-              <div className="relative h-64 md:h-80 rounded-2xl overflow-hidden shadow-lg">
+              <div className="relative h-56 md:h-72 rounded-2xl overflow-hidden shadow-lg">
                 <Slideshow delay={2000} />
               </div>
-              <div className="space-y-4">
-                <h3 className="text-2xl font-bold text-primary-dark">
+              <div className="space-y-3">
+                <h3 className="text-xl font-bold text-primary-dark">
                   Vekst gjennom kvalitet
                 </h3>
                 <p className="text-primary-dark/80 leading-relaxed">
-                  Fra de første innspillingene med Gamle Aker Spelemannslag i
-                  2002 har LM Studio produsert musikk for artister fra hele
-                  landet. Verkstedet har vokst til et kompetansesenter for
-                  reparasjon, stemming og vedlikehold av alle typer trekkspill.
+                  Fra de første innspillingene i 2002 har vi produsert musikk
+                  for artister fra hele landet og utviklet verkstedet til et
+                  kompetansesenter for reparasjon og vedlikehold av alle typer
+                  trekkspill.
                 </p>
               </div>
             </div>
 
             {/* Paragraph 3: Philosophy & Commitment */}
-            <div className="bg-white rounded-2xl p-8 md:p-12 shadow-sm border border-gray-100">
-              <div className="max-w-3xl mx-auto text-center space-y-6">
-                <h3 className="text-2xl font-bold text-primary-dark">
+            <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
+              <div className="max-w-2xl mx-auto text-center space-y-4">
+                <h3 className="text-xl font-bold text-primary-dark">
                   Vår forpliktelse til musikere
                 </h3>
                 <p className="text-primary-dark/80 leading-relaxed">
-                  Det som gjør LM Studio unikt er kombinasjonen av teknisk
-                  ekspertise og musikalsk forståelse. Vi er selv musikere som
-                  forstår hva instrumentet betyr for deg. Enten du er nybegynner
-                  eller profesjonell, møter du samme personlige oppfølging.
-                </p>
-                <p className="text-primary-dark/80 leading-relaxed">
-                  Med over 20 års erfaring fortsetter vi å være din partner i
-                  musikkens verden. Kontakt oss for å avtale tidspunkt.
+                  Vi kombinerer teknisk ekspertise med musikalsk forståelse. Som
+                  musikere selv forstår vi hva instrumentet betyr for deg, og
+                  gir samme personlige oppfølging til alle.
                 </p>
               </div>
             </div>
