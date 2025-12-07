@@ -130,11 +130,11 @@ export default function Contact() {
           className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-stretch"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ once: true, margin: "-80px" }}
           variants={{
             visible: {
               transition: {
-                staggerChildren: 0.15,
+                staggerChildren: 0.2,
               },
             },
           }}
@@ -142,10 +142,10 @@ export default function Contact() {
           <motion.div
             className="order-2 lg:order-1"
             variants={{
-              hidden: { opacity: 0, x: -30 },
+              hidden: { opacity: 0, x: -50 },
               visible: { opacity: 1, x: 0 },
             }}
-            transition={{ duration: 0.6 }}
+            transition={{ type: "spring", stiffness: 80, damping: 15 }}
           >
             <Card padding="lg" className="h-full flex flex-col">
               <h3 className="text-xl font-semibold text-text-light mb-2">
@@ -386,10 +386,10 @@ export default function Contact() {
           <motion.div
             className="order-1 lg:order-2 flex flex-col justify-between"
             variants={{
-              hidden: { opacity: 0, x: 30 },
+              hidden: { opacity: 0, x: 50 },
               visible: { opacity: 1, x: 0 },
             }}
-            transition={{ duration: 0.6 }}
+            transition={{ type: "spring", stiffness: 80, damping: 15 }}
           >
             <div>
               <h3 className="text-lg font-semibold text-text-light mb-4">

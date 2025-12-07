@@ -116,11 +116,11 @@ export default function About() {
           className="mt-12 max-w-5xl mx-auto"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ once: true, margin: "-80px" }}
           variants={{
             visible: {
               transition: {
-                staggerChildren: 0.15,
+                staggerChildren: 0.2,
               },
             },
           }}
@@ -130,11 +130,16 @@ export default function About() {
               <motion.div
                 key={index}
                 variants={{
-                  hidden: { opacity: 0, y: 30 },
-                  visible: { opacity: 1, y: 0 },
+                  hidden: { opacity: 0, y: 50, scale: 0.9 },
+                  visible: { opacity: 1, y: 0, scale: 1 },
                 }}
-                transition={{ duration: 0.5 }}
-                className="bg-white rounded-xl p-6 text-center space-y-3 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 hover:-translate-y-1"
+                transition={{ type: "spring", stiffness: 100, damping: 15 }}
+                whileHover={{
+                  y: -8,
+                  scale: 1.03,
+                  transition: { duration: 0.3 },
+                }}
+                className="bg-white rounded-xl p-6 text-center space-y-3 shadow-sm border border-gray-100 hover:shadow-lg transition-shadow duration-300"
               >
                 <div className="w-14 h-14 mx-auto rounded-xl bg-accent/10 flex items-center justify-center">
                   <ValuePropIcon index={index} />

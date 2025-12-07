@@ -227,7 +227,7 @@ export default function Services() {
           variants={{
             visible: {
               transition: {
-                staggerChildren: 0.2,
+                staggerChildren: 0.25,
               },
             },
           }}
@@ -238,10 +238,10 @@ export default function Services() {
               <motion.div
                 key={service.id}
                 variants={{
-                  hidden: { opacity: 0, y: 40 },
-                  visible: { opacity: 1, y: 0 },
+                  hidden: { opacity: 0, y: 60, scale: 0.95 },
+                  visible: { opacity: 1, y: 0, scale: 1 },
                 }}
-                transition={{ duration: 0.6 }}
+                transition={{ type: "spring", stiffness: 80, damping: 15 }}
               >
                 <ServiceRow service={service} imageOnLeft={imageOnLeft} />
               </motion.div>

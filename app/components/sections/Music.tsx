@@ -11,92 +11,94 @@ function AlbumCard({ album }: { album: Album }) {
   const [imageError, setImageError] = useState(false);
 
   return (
-    <Link
-      href={album.discogsUrl || "#"}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group relative block"
-    >
-      <article>
-        <div className="relative aspect-square rounded-xl overflow-hidden bg-secondary-dark shadow-lg">
-          {!imageError ? (
-            <Image
-              src={album.coverImage}
-              alt={`${album.title} av ${album.artist}`}
-              fill
-              className="object-cover transition-transform duration-300 group-hover:scale-105"
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              onError={() => setImageError(true)}
-            />
-          ) : (
-            <div className="absolute inset-0 flex flex-col items-center justify-center bg-linear-to-br from-accent/20 via-secondary-dark to-primary-dark p-6">
-              <svg
-                className="w-16 h-16 text-accent/40 mb-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1}
-                  d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z"
-                />
-              </svg>
-              <p className="text-accent/60 text-sm text-center font-medium">
-                {album.title}
-              </p>
-              <p className="text-accent/40 text-xs text-center mt-1">
-                {album.artist}
-              </p>
-            </div>
-          )}
+    <motion.div whileHover={{ y: -8 }} transition={{ duration: 0.3 }}>
+      <Link
+        href={album.discogsUrl || "#"}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group relative block"
+      >
+        <article>
+          <div className="relative aspect-square rounded-xl overflow-hidden bg-secondary-dark shadow-lg">
+            {!imageError ? (
+              <Image
+                src={album.coverImage}
+                alt={`${album.title} av ${album.artist}`}
+                fill
+                className="object-cover transition-transform duration-300 group-hover:scale-105"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                onError={() => setImageError(true)}
+              />
+            ) : (
+              <div className="absolute inset-0 flex flex-col items-center justify-center bg-linear-to-br from-accent/20 via-secondary-dark to-primary-dark p-6">
+                <svg
+                  className="w-16 h-16 text-accent/40 mb-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1}
+                    d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z"
+                  />
+                </svg>
+                <p className="text-accent/60 text-sm text-center font-medium">
+                  {album.title}
+                </p>
+                <p className="text-accent/40 text-xs text-center mt-1">
+                  {album.artist}
+                </p>
+              </div>
+            )}
 
-          <div
-            className="
+            <div
+              className="
             absolute inset-0 bg-primary-dark/60
             opacity-0 group-hover:opacity-100
             transition-all duration-300
             flex items-center justify-center
           "
-          >
-            <div className="w-14 h-14 rounded-full bg-accent flex items-center justify-center transform scale-90 group-hover:scale-100 transition-transform duration-300">
-              <svg
-                className="w-6 h-6 text-primary-dark"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                />
-              </svg>
+            >
+              <div className="w-14 h-14 rounded-full bg-accent flex items-center justify-center transform scale-90 group-hover:scale-100 transition-transform duration-300">
+                <svg
+                  className="w-6 h-6 text-primary-dark"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  />
+                </svg>
+              </div>
+            </div>
+
+            <div className="absolute top-3 right-3 bg-primary-dark/80 backdrop-blur-sm text-text-light text-xs font-medium px-2 py-1 rounded">
+              {album.year}
             </div>
           </div>
 
-          <div className="absolute top-3 right-3 bg-primary-dark/80 backdrop-blur-sm text-text-light text-xs font-medium px-2 py-1 rounded">
-            {album.year}
+          <div className="mt-4">
+            <h3 className="font-semibold text-text-light text-lg group-hover:text-accent transition-colors">
+              {album.title}
+            </h3>
+            <p className="text-text-muted text-sm mt-1">{album.artist}</p>
+            {album.description && (
+              <p className="text-text-muted/70 text-xs mt-2 line-clamp-2">
+                {album.description}
+              </p>
+            )}
           </div>
-        </div>
-
-        <div className="mt-4">
-          <h3 className="font-semibold text-text-light text-lg group-hover:text-accent transition-colors">
-            {album.title}
-          </h3>
-          <p className="text-text-muted text-sm mt-1">{album.artist}</p>
-          {album.description && (
-            <p className="text-text-muted/70 text-xs mt-2 line-clamp-2">
-              {album.description}
-            </p>
-          )}
-        </div>
-      </article>
-    </Link>
+        </article>
+      </Link>
+    </motion.div>
   );
 }
 
@@ -128,7 +130,7 @@ export default function Music() {
           variants={{
             visible: {
               transition: {
-                staggerChildren: 0.1,
+                staggerChildren: 0.15,
               },
             },
           }}
@@ -137,10 +139,10 @@ export default function Music() {
             <motion.div
               key={album.id}
               variants={{
-                hidden: { opacity: 0, y: 30 },
-                visible: { opacity: 1, y: 0 },
+                hidden: { opacity: 0, y: 50, scale: 0.9 },
+                visible: { opacity: 1, y: 0, scale: 1 },
               }}
-              transition={{ duration: 0.5 }}
+              transition={{ type: "spring", stiffness: 100, damping: 15 }}
             >
               <AlbumCard album={album} />
             </motion.div>

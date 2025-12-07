@@ -60,9 +60,9 @@ export default function Hero() {
         <div className="text-center max-w-4xl mx-auto">
           <motion.div
             className="mb-4 sm:mb-6"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            initial={{ opacity: 0, y: -40, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             <Image
               src="/images/logos/lm-studio-logo.png"
@@ -77,9 +77,14 @@ export default function Hero() {
           <motion.h1
             id="hero-heading"
             className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-text-light tracking-tight"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            transition={{
+              type: "spring",
+              stiffness: 100,
+              damping: 15,
+              delay: 0.2,
+            }}
           >
             <span className="block">
               {businessInfo.name.split("&")[0].trim()}
@@ -89,18 +94,28 @@ export default function Hero() {
 
           <motion.p
             className="mt-4 sm:mt-6 md:mt-8 text-base sm:text-lg md:text-2xl text-text-light/90 max-w-1xl mx-auto leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+            transition={{
+              type: "spring",
+              stiffness: 100,
+              damping: 15,
+              delay: 0.4,
+            }}
           >
             {businessInfo.tagline}
           </motion.p>
 
           <motion.div
             className="mt-6 sm:mt-8 md:mt-12 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+            initial={{ opacity: 0, y: 30, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{
+              type: "spring",
+              stiffness: 80,
+              damping: 12,
+              delay: 0.6,
+            }}
           >
             <Link href="#tjenester">
               <Button size="lg" className="w-full sm:w-auto min-w-[200px]">

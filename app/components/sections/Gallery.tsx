@@ -161,8 +161,8 @@ export default function Gallery() {
                     : "text-text-muted hover:text-text-light bg-secondary-dark/50 border border-border-subtle hover:border-accent/30"
                 }
               `}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.95 }}
             >
               {selectedCategory === category && (
                 <motion.div
@@ -268,7 +268,7 @@ function GalleryCard({
     <motion.button
       onClick={onClick}
       className="group relative w-full h-full aspect-square overflow-hidden rounded-xl bg-secondary-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary-dark cursor-pointer"
-      whileHover={{ scale: 1.02 }}
+      whileHover={{ scale: 1.03, y: -4 }}
       whileTap={{ scale: 0.98 }}
     >
       <div className="absolute inset-0">
@@ -387,10 +387,10 @@ function Lightbox({
         className="relative w-full max-w-6xl h-full max-h-[95vh] sm:max-h-[90vh] flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center justify-between mb-3 sm:mb-4 md:mb-6 px-1 sm:px-2 flex-shrink-0">
+        <div className="flex items-center justify-between mb-3 sm:mb-4 md:mb-6 px-1 sm:px-2 shrink-0">
           <div className="min-w-0 flex-1 mr-3">
             <h3 className="text-text-light text-base sm:text-xl md:text-2xl font-semibold truncate">
-              {category}
+              {category}W
             </h3>
             <p className="text-text-muted text-xs sm:text-sm mt-0.5 sm:mt-1">
               {currentIndex + 1} / {categoryImages.length}
@@ -398,7 +398,7 @@ function Lightbox({
           </div>
           <button
             onClick={onClose}
-            className="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 rounded-full bg-secondary-dark border border-border-subtle flex items-center justify-center text-text-light hover:text-accent hover:border-accent/50 transition-all duration-200 cursor-pointer"
+            className="w-10 h-10 sm:w-12 sm:h-12 shrink-0 rounded-full bg-secondary-dark border border-border-subtle flex items-center justify-center text-text-light hover:text-accent hover:border-accent/50 transition-all duration-200 cursor-pointer"
             aria-label="Lukk bildevisning"
           >
             <svg
@@ -504,7 +504,7 @@ function Lightbox({
           </AnimatePresence>
         </div>
 
-        <div className="mt-2 sm:mt-3 md:mt-4 text-center px-1 sm:px-2 flex-shrink-0 h-[12vh] sm:h-[10vh] overflow-y-auto">
+        <div className="mt-2 sm:mt-3 md:mt-4 text-center px-1 sm:px-2 shrink-0 h-[12vh] sm:h-[10vh] overflow-y-auto">
           <p className="text-text-light text-xs sm:text-sm md:text-base leading-snug sm:leading-normal">
             {currentImage.alt}
           </p>
