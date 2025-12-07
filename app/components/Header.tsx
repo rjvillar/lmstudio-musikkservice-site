@@ -189,8 +189,8 @@ export default function Header() {
               aria-modal="true"
               style={{ backgroundColor: "#1a1a1a" }}
             >
-              <div className="flex h-full flex-col px-6 py-8">
-                <div className="flex items-center justify-between">
+              <div className="flex h-full flex-col px-6 py-8 overflow-y-auto">
+                <div className="flex items-center justify-between flex-shrink-0">
                   <div className="flex items-center gap-3">
                     <Image
                       src="/images/logos/lm-studio-logo.png"
@@ -224,8 +224,8 @@ export default function Header() {
                   </button>
                 </div>
 
-                <nav className="mt-10 flex-1">
-                  <ul className="flex flex-col gap-3">
+                <nav className="mt-8 flex-1 min-h-0">
+                  <ul className="flex flex-col gap-2">
                     {navigationLinks.map((link, index) => (
                       <li
                         key={link.href}
@@ -247,8 +247,8 @@ export default function Header() {
                           href={link.href}
                           onClick={handleLinkClick}
                           className="
-                        block rounded-xl px-4 py-4
-                        text-lg font-medium text-text-light
+                        block rounded-xl px-4 py-3
+                        text-base font-medium text-text-light
                         hover:bg-secondary-dark/60 hover:text-accent
                         transition-colors duration-200
                         border border-border-subtle/40
@@ -263,7 +263,7 @@ export default function Header() {
 
                 <div
                   className={`
-                mt-6 pt-6 border-t border-border-subtle/40
+                mt-6 pt-4 border-t border-border-subtle/40 flex-shrink-0
                 transform transition-all duration-300 delay-300
                 ${
                   isMenuOpen
@@ -272,13 +272,13 @@ export default function Header() {
                 }
               `}
                 >
-                  <div className="space-y-3 text-sm">
+                  <div className="space-y-2.5 text-xs">
                     <a
                       href={`tel:${contactInfo.phone.replace(/\s/g, "")}`}
-                      className="flex items-center gap-3 text-text-light/80 hover:text-accent transition-colors duration-200"
+                      className="flex items-center gap-2.5 text-text-light/80 hover:text-accent transition-colors duration-200"
                     >
                       <svg
-                        className="w-4 h-4 shrink-0"
+                        className="w-3.5 h-3.5 shrink-0"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -290,7 +290,7 @@ export default function Header() {
                           d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                         />
                       </svg>
-                      <span>{contactInfo.phone} (Geir-Harry)</span>
+                      <span className="truncate">{contactInfo.phone} (Geir-Harry)</span>
                     </a>
 
                     <a
@@ -298,10 +298,10 @@ export default function Header() {
                         /\s/g,
                         ""
                       )}`}
-                      className="flex items-center gap-3 text-text-light/80 hover:text-accent transition-colors duration-200"
+                      className="flex items-center gap-2.5 text-text-light/80 hover:text-accent transition-colors duration-200"
                     >
                       <svg
-                        className="w-4 h-4 shrink-0"
+                        className="w-3.5 h-3.5 shrink-0"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -313,15 +313,15 @@ export default function Header() {
                           d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                         />
                       </svg>
-                      <span>{additionalContacts.evaPhone} (Eva)</span>
+                      <span className="truncate">{additionalContacts.evaPhone} (Eva)</span>
                     </a>
 
                     <a
                       href={`mailto:${contactInfo.email}`}
-                      className="flex items-center gap-3 text-text-light/80 hover:text-accent transition-colors duration-200"
+                      className="flex items-center gap-2.5 text-text-light/80 hover:text-accent transition-colors duration-200"
                     >
                       <svg
-                        className="w-4 h-4 shrink-0"
+                        className="w-3.5 h-3.5 shrink-0"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -333,12 +333,12 @@ export default function Header() {
                           d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                         />
                       </svg>
-                      <span className="break-all">{contactInfo.email}</span>
+                      <span className="truncate">{contactInfo.email}</span>
                     </a>
 
-                    <div className="flex items-start gap-3 text-text-light/70 pt-2">
+                    <div className="flex items-start gap-2.5 text-text-light/70 pt-1">
                       <svg
-                        className="w-4 h-4 shrink-0 mt-0.5"
+                        className="w-3.5 h-3.5 shrink-0 mt-0.5"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -356,7 +356,7 @@ export default function Header() {
                           d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                         />
                       </svg>
-                      <span className="leading-relaxed">
+                      <span className="leading-snug text-[11px]">
                         {contactInfo.address}, {contactInfo.postalCode}{" "}
                         {contactInfo.city}
                       </span>
