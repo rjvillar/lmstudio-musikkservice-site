@@ -161,7 +161,7 @@ function ServiceRow({
   );
 
   return (
-    <article className="group">
+    <article className="group" id={`service-${service.id}`}>
       <div
         className={`
         grid md:grid-cols-2 gap-8 md:gap-12 items-center

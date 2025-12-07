@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
 import Image from "next/image";
@@ -11,12 +11,26 @@ import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function Header() {
   const t = useTranslations("nav");
+  const tServices = useTranslations("services");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const serviceItems = [
+    { id: "salg", href: "#service-salg" },
+    { id: "verksted", href: "#service-verksted" },
+    { id: "kurs", href: "#service-kurs" },
+    { id: "studio", href: "#service-studio" },
+    { id: "pa", href: "#service-pa" },
+    { id: "digitalisering", href: "#service-digitalisering" },
+    { id: "midi", href: "#service-midi" },
+    { id: "noter", href: "#service-noter" },
+  ];
 
   const navigationLinks = [
-    { href: "#tjenester", label: t("services") },
+    { href: "#tjenester", label: t("services"), hasDropdown: true },
     { href: "#om-oss", label: t("about") },
     { href: "#musikk", label: t("music") },
     { href: "#galleri", label: t("gallery") },
@@ -33,11 +47,30 @@ export default function Header() {
     return () => {
       clearTimeout(timer);
       window.removeEventListener("scroll", handleScroll);
+      if (closeTimeoutRef.current) {
+        clearTimeout(closeTimeoutRef.current);
+      }
     };
   }, []);
 
   const handleLinkClick = () => {
     setIsMenuOpen(false);
+    setIsServicesOpen(false);
+  };
+
+  const handleServicesMouseEnter = () => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+    }
+    setIsServicesOpen(true);
+  };
+
+  const handleServicesMouseLeave = () => {
+    const timeout = setTimeout(() => {
+      setIsServicesOpen(false);
+    }, 200); // 200ms delay before closing
+
+    closeTimeoutRef.current = timeout;
   };
 
   useEffect(() => {
@@ -87,23 +120,97 @@ export default function Header() {
 
           <ul className="hidden md:flex items-center gap-8">
             {navigationLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className="
-                    text-text-light/80 hover:text-accent
-                    text-sm font-medium tracking-wide
-                    transition-colors duration-200
-                    relative py-2
-                    after:absolute after:bottom-0 after:left-0 after:right-0
-                    after:h-0.5 after:bg-accent
-                    after:scale-x-0 hover:after:scale-x-100
-                    after:transition-transform after:duration-200
-                    after:origin-left
-                  "
-                >
-                  {link.label}
-                </Link>
+              <li key={link.href} className="relative group">
+                {link.hasDropdown ? (
+                  <div
+                    onMouseEnter={handleServicesMouseEnter}
+                    onMouseLeave={handleServicesMouseLeave}
+                  >
+                    <Link
+                      href={link.href}
+                      className="
+                        text-text-light/80 hover:text-accent
+                        text-sm font-medium tracking-wide
+                        transition-colors duration-200
+                        relative py-2 flex items-center gap-1
+                        after:absolute after:bottom-0 after:left-0 after:right-0
+                        after:h-0.5 after:bg-accent
+                        after:scale-x-0 hover:after:scale-x-100
+                        after:transition-transform after:duration-200
+                        after:origin-left
+                      "
+                    >
+                      {link.label}
+                      <svg
+                        className={`w-4 h-4 transition-transform duration-200 ${
+                          isServicesOpen ? "rotate-180" : ""
+                        }`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </Link>
+
+                    {/* Desktop Dropdown */}
+                    <div
+                      className={`
+                        absolute top-full left-0 mt-2 w-72
+                        bg-primary-dark/95 backdrop-blur-md
+                        border border-border-subtle rounded-xl
+                        shadow-xl shadow-black/20
+                        transition-all duration-150 origin-top
+                        ${
+                          isServicesOpen
+                            ? "opacity-100 visible scale-100"
+                            : "opacity-0 invisible scale-95 pointer-events-none"
+                        }
+                      `}
+                    >
+                      <div className="py-2">
+                        {serviceItems.map((service) => (
+                          <Link
+                            key={service.id}
+                            href={service.href}
+                            onClick={handleLinkClick}
+                            className="
+                              block px-4 py-2.5
+                              text-sm text-text-light/80
+                              hover:bg-secondary-dark/60 hover:text-accent
+                              transition-all duration-150 ease-out
+                              border-l-2 border-transparent hover:border-accent
+                            "
+                          >
+                            {tServices(`${service.id}.title` as "salg.title")}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <Link
+                    href={link.href}
+                    className="
+                      text-text-light/80 hover:text-accent
+                      text-sm font-medium tracking-wide
+                      transition-colors duration-200
+                      relative py-2
+                      after:absolute after:bottom-0 after:left-0 after:right-0
+                      after:h-0.5 after:bg-accent
+                      after:scale-x-0 hover:after:scale-x-100
+                      after:transition-transform after:duration-200
+                      after:origin-left
+                    "
+                  >
+                    {link.label}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>
@@ -186,7 +293,7 @@ export default function Header() {
             <aside
               className={`
             absolute top-0 bottom-0 right-0
-            w-[calc(100%-80px)] max-w-xs
+            w-[calc(100%-60px)] max-w-xs
             border-l border-border-subtle shadow-2xl
             transform transition-transform duration-300 ease-out
             ${isMenuOpen ? "translate-x-0" : "translate-x-full"}
@@ -195,17 +302,17 @@ export default function Header() {
               aria-modal="true"
               style={{ backgroundColor: "#1a1a1a" }}
             >
-              <div className="flex h-full flex-col px-6 py-8 overflow-y-auto">
-                <div className="flex items-center justify-between shrink-0">
-                  <div className="flex items-center gap-3">
+              <div className="flex h-full flex-col px-4 py-6 overflow-y-auto">
+                <div className="flex items-center justify-between shrink-0 mb-6">
+                  <div className="flex items-center gap-2">
                     <Image
                       src="/images/logos/lm-studio-logo.png"
                       alt="LM Studio & Musikkservice"
-                      width={64}
-                      height={35}
-                      className="h-8 w-auto object-contain"
+                      width={56}
+                      height={30}
+                      className="h-7 w-auto object-contain"
                     />
-                    <span className="text-sm font-semibold tracking-wide text-text-light/80">
+                    <span className="text-xs font-semibold tracking-wide text-text-light/80 truncate">
                       {businessInfo.name}
                     </span>
                   </div>
@@ -213,7 +320,7 @@ export default function Header() {
                     type="button"
                     onClick={() => setIsMenuOpen(false)}
                     aria-label="Lukk meny"
-                    className="rounded-full p-2 text-text-light/70 hover:text-accent transition-colors"
+                    className="rounded-full p-1.5 text-text-light/70 hover:text-accent transition-colors shrink-0"
                   >
                     <svg
                       className="h-5 w-5"
@@ -230,8 +337,8 @@ export default function Header() {
                   </button>
                 </div>
 
-                <nav className="mt-8 flex-1 min-h-0">
-                  <ul className="flex flex-col gap-2">
+                <nav className="flex-1 min-h-0 overflow-y-auto -mx-4 px-4">
+                  <ul className="flex flex-col gap-1.5">
                     {navigationLinks.map((link, index) => (
                       <li
                         key={link.href}
@@ -249,19 +356,85 @@ export default function Header() {
                       }
                     `}
                       >
-                        <Link
-                          href={link.href}
-                          onClick={handleLinkClick}
-                          className="
-                        block rounded-xl px-4 py-3
-                        text-base font-medium text-text-light
-                        hover:bg-secondary-dark/60 hover:text-accent
-                        transition-colors duration-200
-                        border border-border-subtle/40
-                      "
-                        >
-                          {link.label}
-                        </Link>
+                        {link.hasDropdown ? (
+                          <div>
+                            <button
+                              onClick={() => setIsServicesOpen(!isServicesOpen)}
+                              className="
+                                w-full flex items-center justify-between
+                                rounded-lg px-3 py-2.5
+                                text-sm font-medium text-text-light
+                                hover:bg-secondary-dark/60 hover:text-accent
+                                transition-colors duration-200
+                                border border-border-subtle/40
+                              "
+                            >
+                              {link.label}
+                              <svg
+                                className={`w-4 h-4 transition-transform duration-200 shrink-0 ${
+                                  isServicesOpen ? "rotate-180" : ""
+                                }`}
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M19 9l-7 7-7-7"
+                                />
+                              </svg>
+                            </button>
+
+                            {/* Mobile Dropdown */}
+                            <div
+                              className={`
+                                overflow-hidden transition-all duration-300
+                                ${
+                                  isServicesOpen
+                                    ? "max-h-[400px] opacity-100 mt-1.5"
+                                    : "max-h-0 opacity-0"
+                                }
+                              `}
+                            >
+                              <div className="space-y-0.5 pl-1">
+                                {serviceItems.map((service) => (
+                                  <Link
+                                    key={service.id}
+                                    href={service.href}
+                                    onClick={handleLinkClick}
+                                    className="
+                                      block rounded-md px-3 py-2
+                                      text-xs text-text-light/80
+                                      hover:bg-secondary-dark/40 hover:text-accent
+                                      transition-colors duration-150
+                                      border-l-2 border-border-subtle/40 hover:border-accent
+                                    "
+                                  >
+                                    {tServices(
+                                      `${service.id}.title` as "salg.title"
+                                    )}
+                                  </Link>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        ) : (
+                          <Link
+                            href={link.href}
+                            onClick={handleLinkClick}
+                            className="
+                              block rounded-lg px-3 py-2.5
+                              text-sm font-medium text-text-light
+                              hover:bg-secondary-dark/60 hover:text-accent
+                              transition-colors duration-200
+                              border border-border-subtle/40
+                            "
+                          >
+                            {link.label}
+                          </Link>
+                        )}
                       </li>
                     ))}
                   </ul>
@@ -269,7 +442,7 @@ export default function Header() {
 
                 <div
                   className={`
-                mt-6 pt-4 border-t border-border-subtle/40 shrink-0
+                mt-4 pt-3 border-t border-border-subtle/40 shrink-0
                 transform transition-all duration-300 delay-300
                 ${
                   isMenuOpen
@@ -278,13 +451,13 @@ export default function Header() {
                 }
               `}
                 >
-                  <div className="space-y-2.5 text-xs">
+                  <div className="space-y-2 text-[11px]">
                     <a
                       href={`tel:${contactInfo.phone.replace(/\s/g, "")}`}
-                      className="flex items-center gap-2.5 text-text-light/80 hover:text-accent transition-colors duration-200"
+                      className="flex items-center gap-2 text-text-light/80 hover:text-accent transition-colors duration-200"
                     >
                       <svg
-                        className="w-3.5 h-3.5 shrink-0"
+                        className="w-3 h-3 shrink-0"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -306,10 +479,10 @@ export default function Header() {
                         /\s/g,
                         ""
                       )}`}
-                      className="flex items-center gap-2.5 text-text-light/80 hover:text-accent transition-colors duration-200"
+                      className="flex items-center gap-2 text-text-light/80 hover:text-accent transition-colors duration-200"
                     >
                       <svg
-                        className="w-3.5 h-3.5 shrink-0"
+                        className="w-3 h-3 shrink-0"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -328,10 +501,10 @@ export default function Header() {
 
                     <a
                       href={`mailto:${contactInfo.email}`}
-                      className="flex items-center gap-2.5 text-text-light/80 hover:text-accent transition-colors duration-200"
+                      className="flex items-center gap-2 text-text-light/80 hover:text-accent transition-colors duration-200"
                     >
                       <svg
-                        className="w-3.5 h-3.5 shrink-0"
+                        className="w-3 h-3 shrink-0"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -346,9 +519,9 @@ export default function Header() {
                       <span className="truncate">{contactInfo.email}</span>
                     </a>
 
-                    <div className="flex items-start gap-2.5 text-text-light/70 pt-1">
+                    <div className="flex items-start gap-2 text-text-light/70 pt-0.5">
                       <svg
-                        className="w-3.5 h-3.5 shrink-0 mt-0.5"
+                        className="w-3 h-3 shrink-0 mt-0.5"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -366,14 +539,14 @@ export default function Header() {
                           d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                         />
                       </svg>
-                      <span className="leading-snug text-[11px]">
+                      <span className="leading-tight text-[10px]">
                         {contactInfo.address}, {contactInfo.postalCode}{" "}
                         {contactInfo.city}
                       </span>
                     </div>
                   </div>
 
-                  <div className="mt-4 pt-4 border-t border-border-subtle/40">
+                  <div className="mt-3 pt-3 border-t border-border-subtle/40">
                     <LanguageSwitcher variant="mobile" />
                   </div>
                 </div>
