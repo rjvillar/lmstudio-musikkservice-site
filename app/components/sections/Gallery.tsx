@@ -24,6 +24,13 @@ export default function Gallery() {
     [key: string]: number;
   }>({});
 
+  // Helper function to translate category names
+  const translateCategory = (category: string): string => {
+    if (category === allLabel) return allLabel;
+    const categories = t.raw("categories") as Record<string, string>;
+    return categories[category] || category;
+  };
+
   const categories = useMemo(
     () => [allLabel, ...new Set(galleryImages.map((img) => img.category))],
     [allLabel]
@@ -170,7 +177,9 @@ export default function Gallery() {
                   transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                 />
               )}
-              <span className="relative z-10">{category}</span>
+              <span className="relative z-10">
+                {translateCategory(category)}
+              </span>
             </motion.button>
           ))}
         </div>

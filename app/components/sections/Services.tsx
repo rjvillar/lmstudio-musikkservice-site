@@ -152,6 +152,11 @@ function ServiceRow({
   service: Service;
   imageOnLeft: boolean;
 }) {
+  const t = useTranslations("services");
+
+  // Map service IDs to translation keys
+  const serviceKey = service.id as keyof typeof t;
+
   return (
     <article className="group">
       <div
@@ -169,7 +174,9 @@ function ServiceRow({
         >
           <Image
             src={service.image}
-            alt={`${service.title} - LM Studio & Musikkservice`}
+            alt={`${t(
+              `${serviceKey}.title` as any
+            )} - LM Studio & Musikkservice`}
             fill
             className="object-cover transition-transform duration-700 group-hover:scale-105"
             sizes="(max-width: 768px) 100vw, 50vw"
@@ -190,11 +197,11 @@ function ServiceRow({
         `}
         >
           <h3 className="text-2xl md:text-3xl font-bold text-text-light group-hover:text-accent transition-colors">
-            {service.title}
+            {t(`${serviceKey}.title` as any)}
           </h3>
 
           <p className="text-text-muted text-base md:text-lg leading-relaxed">
-            {service.shortDescription}
+            {t(`${serviceKey}.shortDescription` as any)}
           </p>
         </div>
       </div>

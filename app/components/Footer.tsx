@@ -14,6 +14,8 @@ import {
 
 export default function Footer() {
   const t = useTranslations("footer");
+  const tNav = useTranslations("nav");
+  const tBusiness = useTranslations("businessInfo");
   const currentYear = new Date().getFullYear();
 
   return (
@@ -54,22 +56,18 @@ export default function Footer() {
               {/* Company Info */}
               <div className="space-y-2 text-sm mb-4">
                 <p className="text-text-muted mb-0">
-                  <span className="text-text-light font-semibold">
-                    {t("orgNumber")}:
-                  </span>{" "}
+                  <span className="font-semibold">{t("orgNumber")}:</span>{" "}
                   {contactInfo.orgNumber}
                 </p>
                 <p className="text-text-muted">
-                  <span className="text-text-light font-semibold">
-                    {t("established")}:
-                  </span>{" "}
+                  <span className="font-semibold">{t("established")}:</span>{" "}
                   2001
                 </p>
               </div>
 
               {/* Description */}
               <p className="text-text-muted text-sm leading-relaxed max-w-xs mb-6">
-                {businessInfo.tagline}
+                {tBusiness("tagline")}
               </p>
             </div>
 
@@ -79,17 +77,51 @@ export default function Footer() {
                 {t("navigation")}
               </h3>
               <ul className="space-y-2">
-                {navigationLinks.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-text-muted text-sm hover:text-accent transition-colors duration-200 inline-flex items-center gap-2.5 group"
-                    >
-                      <span className="w-1.5 h-1.5 rounded-full bg-accent/50 group-hover:bg-accent transition-colors" />
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
+                <li>
+                  <Link
+                    href="#tjenester"
+                    className="text-text-muted text-sm hover:text-accent transition-colors duration-200 inline-flex items-center gap-2.5 group"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-accent/50 group-hover:bg-accent transition-colors" />
+                    {tNav("services")}
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="#om-oss"
+                    className="text-text-muted text-sm hover:text-accent transition-colors duration-200 inline-flex items-center gap-2.5 group"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-accent/50 group-hover:bg-accent transition-colors" />
+                    {tNav("about")}
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="#musikk"
+                    className="text-text-muted text-sm hover:text-accent transition-colors duration-200 inline-flex items-center gap-2.5 group"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-accent/50 group-hover:bg-accent transition-colors" />
+                    {tNav("music")}
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="#galleri"
+                    className="text-text-muted text-sm hover:text-accent transition-colors duration-200 inline-flex items-center gap-2.5 group"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-accent/50 group-hover:bg-accent transition-colors" />
+                    {tNav("gallery")}
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="#kontakt"
+                    className="text-text-muted text-sm hover:text-accent transition-colors duration-200 inline-flex items-center gap-2.5 group"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-accent/50 group-hover:bg-accent transition-colors" />
+                    {tNav("contact")}
+                  </Link>
+                </li>
                 <li>
                   <a
                     href="https://www.google.com/maps/place/Rennbergsvegen+24,+2384+Brumunddal"

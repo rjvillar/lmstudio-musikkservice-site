@@ -16,7 +16,39 @@
   },
   "services": {
     "heading": "Våre tjenester",
-    "subtitle": "Alt du trenger – under ett tak"
+    "subtitle": "Alt du trenger – under ett tak",
+    "salg": {
+      "title": "Salg av trekkspill og toradere",
+      "shortDescription": "Nye og brukte instrumenter med 3 måneders garanti. Direkte import gir riktig pris – riktig kvalitet."
+    },
+    "verksted": {
+      "title": "Verksted og service",
+      "shortDescription": "Reparasjon, stemming og vedlikehold av alle typer trekkspill. Over 20 års erfaring."
+    },
+    "kurs": {
+      "title": "Kurs og undervisning",
+      "shortDescription": "Skreddersydd undervisning i trekkspill og toradere for alle nivåer."
+    },
+    "studio": {
+      "title": "Musikkstudio",
+      "shortDescription": "Profesjonell innspilling, miksing og mastering. Fra demo til ferdig album siden 2001."
+    },
+    "pa": {
+      "title": "Lyd og PA-tjenester",
+      "shortDescription": "Profesjonell lydløsning til konserter og arrangementer – tilpasset ditt budsjett."
+    },
+    "digitalisering": {
+      "title": "Digitalisering og overføring",
+      "shortDescription": "Bevar dine musikkminner. Vi overfører kassetter, spolebånd og LP til digitalt."
+    },
+    "midi": {
+      "title": "Fabrikk montert MIDI",
+      "shortDescription": "MIDI-løsning montert direkte under instrumentets konstruksjon."
+    },
+    "noter": {
+      "title": "Noter og tilbehør",
+      "shortDescription": "Noter og tilbehør på bestilling – vi hjelper deg med å finne det du trenger."
+    }
   },
   "about": {
     "heading": "Om oss",
@@ -27,18 +59,50 @@
     "valueProp2Title": "Alt på ett sted",
     "valueProp2Desc": "Alt fra salg og service til kurs, studio og lydteknikk – hos oss får du alt under ett tak.",
     "valueProp3Title": "Personlig oppfølging",
-    "valueProp3Desc": "Vi tilpasser våre tjenester til dine ønsker og behov."
+    "valueProp3Desc": "Vi tilpasser våre tjenester til dine ønsker og behov.",
+    "industryTitle": "Anerkjent av bransjen",
+    "industryDescription": "LM Studio & Musikkservice er oppført på musikkhandel.no som anerkjent serviceverksted for trekkspill og toradere. Dette bekrefter vår ekspertise og pålitelighet som leverandør av profesjonelle reparasjons- og vedlikeholdstjenester.",
+    "industryLinkText": "Se oppføring på musikkhandel.no",
+    "industryBadge": "Offisielt Verksted for Trekkspill & Toradere",
+    "storyHeading": "Historien bak studioet",
+    "storySection1Title": "Fra lidenskap til virksomhet",
+    "storySection1Text": "I 2001 etablerte Geir-Harry Haugland LM Studio & Musikkservice, med erfaring som trekkspiller og teknisk kunnskap innen lydteknikk.",
+    "storySection2Title": "Vekst gjennom kvalitet",
+    "storySection2Text": "Fra de første innspillingene i 2002 har vi produsert musikk for artister fra hele landet og utviklet verkstedet til et kompetansesenter for reparasjon og vedlikehold av alle typer trekkspill.",
+    "storySection3Title": "Vår forpliktelse til musikere",
+    "storySection3Text": "Vi kombinerer teknisk ekspertise med musikalsk forståelse. Som musikere selv forstår vi hva instrumentet betyr for deg, og gir samme personlige oppfølging til alle.",
+    "teamHeading": "Møt teamet",
+    "teamGeir": "Geir-Harry Haugland",
+    "teamGeirRole": "Daglig leder",
+    "teamGeirBio": "Trekkspiller, lydtekniker og kursinstruktør. Spesialist på trekkspill og toradere, studio, service og PA.",
+    "teamEva": "Eva T. Haugland",
+    "teamEvaRole": "Trekkspiller",
+    "teamEvaBio": "Bidrar i studio, CD-design og kopiering."
   },
   "gallery": {
     "heading": "Galleri",
     "subtitle": "Et innblikk i vårt arbeid, studio og instrumenter",
     "all": "Alle",
-    "images": "bilder"
+    "images": "bilder",
+    "categories": {
+      "Verksted": "Verksted",
+      "Studio": "Studio",
+      "Arrangementer": "Arrangementer",
+      "Salg": "Salg",
+      "Samling": "Samling"
+    }
   },
   "music": {
-    "heading": "Musikk",
-    "subtitle": "Plateinnspillinger fra LM Studio",
-    "description": "Opplev musikken som er spilt inn i vårt studio. Vi har jobbet med mange dyktige artister og produsert innspillinger av høy kvalitet."
+    "heading": "Musikk & Innspillinger",
+    "subtitle": "Hør resultatet av arbeidet vårt",
+    "description": "LM Studio har siden oppstarten produsert og spilt inn musikk for artister fra hele landet. Utforsk noen av våre utgivelser, eller besøk Discogs for å se hele katalogen.",
+    "videoLabel": "Video",
+    "videoTitle": "Produksjon fra LM Studio",
+    "videoDescription": "Astrid og Harald – Fine gamle melodier, innspilt hos LM Studio & Musikkservice",
+    "wantToHearMore": "Vil du høre mer?",
+    "exploreOurCatalog": "Utforsk hele katalogen vår på Discogs",
+    "ctaLabel": "Se hele katalogen på Discogs",
+    "ctaUrl": "https://www.discogs.com/label/1637943-LM-Studio-Musikkservice"
   },
   "contact": {
     "heading": "Kontakt oss",
@@ -76,6 +140,9 @@
     "phone": "Telefon",
     "email": "E-post",
     "address": "Adresse"
+  },
+  "businessInfo": {
+    "tagline": "Din spesialist på trekkspill, toradere og musikk"
   },
   "footer": {
     "about": "Om oss",

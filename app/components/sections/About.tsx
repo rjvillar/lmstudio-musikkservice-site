@@ -232,22 +232,15 @@ export default function About() {
                 <div className="flex-1 text-center md:text-left">
                   <div className="inline-flex items-center gap-2 mb-3">
                     <span className="text-xs font-bold uppercase tracking-wider text-accent">
-                      Anerkjent av bransjen
+                      {t("industryTitle")}
                     </span>
                     <span className="w-1.5 h-1.5 rounded-full bg-accent" />
                   </div>
                   <h3 className="text-xl md:text-2xl font-bold text-primary-dark mb-2">
-                    Offisielt Verksted for Trekkspill & Toradere
+                    {t("industryTitle")}
                   </h3>
                   <p className="text-primary-dark/70 leading-relaxed mb-3">
-                    LM Studio & Musikkservice er oppført på{" "}
-                    <strong className="text-primary-dark">
-                      musikkhandel.no
-                    </strong>{" "}
-                    som anerkjent serviceverksted for trekkspill og toradere.
-                    Dette bekrefter vår ekspertise og pålitelighet som
-                    leverandør av profesjonelle reparasjons- og
-                    vedlikeholdstjenester.
+                    {t("industryDescription")}
                   </p>
                   <a
                     href="https://www.musikkhandel.no/serviceverksted"
@@ -255,7 +248,7 @@ export default function About() {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 text-sm font-semibold text-accent hover:text-accent/80 transition-colors group"
                   >
-                    <span>Se oppføring på musikkhandel.no</span>
+                    <span>{t("industryLinkText")}</span>
                     <svg
                       className="w-4 h-4 group-hover:translate-x-1 transition-transform"
                       fill="none"
@@ -287,7 +280,7 @@ export default function About() {
                         />
                       </svg>
                       <span className="text-xs font-bold text-accent">
-                        Verifisert
+                        {t("industryBadge")}
                       </span>
                     </div>
                   </div>
@@ -312,7 +305,7 @@ export default function About() {
         >
           <div className="text-center mb-10">
             <h2 className="text-2xl md:text-3xl font-bold text-primary-dark mb-3">
-              Historien bak studioet
+              {t("storyHeading")}
             </h2>
             <div
               className="w-16 h-1 bg-accent rounded-full mx-auto"
@@ -331,12 +324,10 @@ export default function About() {
             >
               <div className="space-y-3">
                 <h3 className="text-xl font-bold text-primary-dark">
-                  Fra lidenskap til virksomhet
+                  {t("storySection1Title")}
                 </h3>
                 <p className="text-primary-dark/80 leading-relaxed">
-                  I 2001 etablerte Geir-Harry Haugland LM Studio &
-                  Musikkservice, med erfaring som trekkspiller og teknisk
-                  kunnskap innen lydteknikk.
+                  {t("storySection1Text")}
                 </p>
               </div>
               <div className="relative h-56 md:h-72 rounded-2xl overflow-hidden shadow-lg order-first md:order-last">
@@ -357,13 +348,10 @@ export default function About() {
               </div>
               <div className="space-y-3">
                 <h3 className="text-xl font-bold text-primary-dark">
-                  Vekst gjennom kvalitet
+                  {t("storySection2Title")}
                 </h3>
                 <p className="text-primary-dark/80 leading-relaxed">
-                  Fra de første innspillingene i 2002 har vi produsert musikk
-                  for artister fra hele landet og utviklet verkstedet til et
-                  kompetansesenter for reparasjon og vedlikehold av alle typer
-                  trekkspill.
+                  {t("storySection2Text")}
                 </p>
               </div>
             </motion.div>
@@ -378,12 +366,10 @@ export default function About() {
             >
               <div className="max-w-2xl mx-auto text-center space-y-4">
                 <h3 className="text-xl font-bold text-primary-dark">
-                  Vår forpliktelse til musikere
+                  {t("storySection3Title")}
                 </h3>
                 <p className="text-primary-dark/80 leading-relaxed">
-                  Vi kombinerer teknisk ekspertise med musikalsk forståelse. Som
-                  musikere selv forstår vi hva instrumentet betyr for deg, og
-                  gir samme personlige oppfølging til alle.
+                  {t("storySection3Text")}
                 </p>
               </div>
             </motion.div>
@@ -411,7 +397,7 @@ export default function About() {
             }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-primary-dark mb-4">
-              Møt teamet
+              {t("teamHeading")}
             </h2>
             <div
               className="w-16 h-1 bg-accent rounded-full mx-auto"
@@ -431,7 +417,9 @@ export default function About() {
               <div className="relative h-96 md:h-auto">
                 <Image
                   src="/images/employees/geir-eva.png"
-                  alt="Geir-Harry Haugland og Eva Haugland - LM Studio & Musikkservice"
+                  alt={`${t("teamGeir")} og ${t(
+                    "teamEva"
+                  )} - LM Studio & Musikkservice`}
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 50vw"
@@ -448,16 +436,15 @@ export default function About() {
                     </div>
                     <div>
                       <h3 className="text-xl font-bold text-primary-dark">
-                        Geir-Harry Haugland
+                        {t("teamGeir")}
                       </h3>
                       <p className="text-sm text-primary-dark/60">
-                        Daglig leder
+                        {t("teamGeirRole")}
                       </p>
                     </div>
                   </div>
                   <p className="text-primary-dark/80 leading-relaxed">
-                    Trekkspiller, lydtekniker og kursinstruktør. Spesialist på
-                    trekkspill og toradere, studio, service og PA.
+                    {t("teamGeirBio")}
                   </p>
                   <div className="flex items-center gap-2 text-sm text-primary-dark/60">
                     <svg
@@ -489,15 +476,15 @@ export default function About() {
                     </div>
                     <div>
                       <h3 className="text-xl font-bold text-primary-dark">
-                        Eva T. Haugland
+                        {t("teamEva")}
                       </h3>
                       <p className="text-sm text-primary-dark/60">
-                        Trekkspiller
+                        {t("teamEvaRole")}
                       </p>
                     </div>
                   </div>
                   <p className="text-primary-dark/80 leading-relaxed">
-                    Bidrar i studio, CD-design og kopiering.
+                    {t("teamEvaBio")}
                   </p>
                   <div className="flex items-center gap-2 text-sm text-primary-dark/60">
                     <svg

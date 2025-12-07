@@ -16,7 +16,39 @@
   },
   "services": {
     "heading": "Our services",
-    "subtitle": "Everything you need – under one roof"
+    "subtitle": "Everything you need – under one roof",
+    "salg": {
+      "title": "Sale of accordions and button accordions",
+      "shortDescription": "New and used instruments with 3 months warranty. Direct import gives right price – right quality."
+    },
+    "verksted": {
+      "title": "Workshop and service",
+      "shortDescription": "Repair, tuning and maintenance of all types of accordions. Over 20 years of experience."
+    },
+    "kurs": {
+      "title": "Courses and teaching",
+      "shortDescription": "Tailor-made teaching in accordion and button accordion for all levels."
+    },
+    "studio": {
+      "title": "Music studio",
+      "shortDescription": "Professional recording, mixing and mastering. From demo to finished album since 2001."
+    },
+    "pa": {
+      "title": "Sound and PA services",
+      "shortDescription": "Professional sound solution for concerts and events – tailored to your budget."
+    },
+    "digitalisering": {
+      "title": "Digitization and transfer",
+      "shortDescription": "Preserve your music memories. We transfer cassettes, reel tapes and LPs to digital."
+    },
+    "midi": {
+      "title": "Factory mounted MIDI",
+      "shortDescription": "MIDI solution installed directly during instrument construction."
+    },
+    "noter": {
+      "title": "Sheet music and accessories",
+      "shortDescription": "Sheet music and accessories on order – we help you find what you need."
+    }
   },
   "about": {
     "heading": "About us",
@@ -27,18 +59,50 @@
     "valueProp2Title": "Everything in one place",
     "valueProp2Desc": "Everything from sales and service to courses, studio and sound engineering – we offer it all under one roof.",
     "valueProp3Title": "Personal follow-up",
-    "valueProp3Desc": "We adapt our services to your wishes and needs."
+    "valueProp3Desc": "We adapt our services to your wishes and needs.",
+    "industryTitle": "Recognized by the industry",
+    "industryDescription": "LM Studio & Music Service is registered as an official Norwegian workshop for accordion and diatonic accordion repair and maintenance services.",
+    "industryLinkText": "See listing on musikkhandel.no",
+    "industryBadge": "Verified",
+    "storyHeading": "The story behind the studio",
+    "storySection1Title": "From passion to business",
+    "storySection1Text": "In 2001, Geir-Harry Haugland established LM Studio & Music Service, with experience as an accordion player and technical knowledge in sound engineering.",
+    "storySection2Title": "Growth through quality",
+    "storySection2Text": "From the first recordings in 2002, we have produced music for artists from all over the country and developed the workshop into a competence center for repair and maintenance of all types of accordions.",
+    "storySection3Title": "Our commitment to musicians",
+    "storySection3Text": "We combine technical expertise with musical understanding. As musicians ourselves, we understand what the instrument means to you, and give the same personal follow-up to everyone.",
+    "teamHeading": "Meet the team",
+    "teamGeir": "Geir-Harry Haugland",
+    "teamGeirRole": "Managing Director",
+    "teamGeirBio": "Accordion player, sound engineer and course instructor. Specialist in accordions and button accordions, studio, service and PA.",
+    "teamEva": "Eva T. Haugland",
+    "teamEvaRole": "Accordion player",
+    "teamEvaBio": "Contributes in studio, CD design and copying."
   },
   "gallery": {
     "heading": "Gallery",
     "subtitle": "A glimpse into our work, studio and instruments",
     "all": "All",
-    "images": "images"
+    "images": "images",
+    "categories": {
+      "Verksted": "Workshop",
+      "Studio": "Studio",
+      "Arrangementer": "Events",
+      "Salg": "Sales",
+      "Samling": "Collection"
+    }
   },
   "music": {
     "heading": "Music",
     "subtitle": "Album recordings from LM Studio",
-    "description": "Experience the music recorded in our studio. We have worked with many talented artists and produced high-quality recordings."
+    "description": "Experience the music recorded in our studio. We have worked with many talented artists and produced high-quality recordings.",
+    "videoLabel": "Video",
+    "videoTitle": "Production from LM Studio",
+    "videoDescription": "Astrid and Harald – Fine old melodies, recorded at LM Studio & Music Service",
+    "wantToHearMore": "Want to hear more?",
+    "exploreOurCatalog": "Explore our entire catalog on Discogs",
+    "ctaLabel": "See full catalog on Discogs",
+    "ctaUrl": "https://www.discogs.com/label/1637943-LM-Studio-Musikkservice"
   },
   "contact": {
     "heading": "Contact us",
@@ -76,6 +140,9 @@
     "phone": "Phone",
     "email": "Email",
     "address": "Address"
+  },
+  "businessInfo": {
+    "tagline": "Your specialist in accordion, button accordion and music"
   },
   "footer": {
     "about": "About us",

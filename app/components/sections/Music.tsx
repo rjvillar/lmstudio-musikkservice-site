@@ -162,14 +162,15 @@ export default function Music() {
                   <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
                 </svg>
               </div>
-              <span className="text-accent text-sm font-medium">Video</span>
+              <span className="text-accent text-sm font-medium">
+                {t("videoLabel")}
+              </span>
             </div>
             <h3 className="text-xl md:text-2xl font-semibold text-text-light mb-2">
-              Produksjon fra LM Studio
+              {t("videoTitle")}
             </h3>
             <p className="text-text-muted text-sm md:text-base">
-              Astrid og Harald – Fine gamle melodier, innspilt hos LM Studio &
-              Musikkservice
+              {t("videoDescription")}
             </p>
           </div>
 
@@ -214,19 +215,17 @@ export default function Music() {
                 </svg>
               </div>
               <div className="text-left">
-                <p className="text-text-light font-medium">Vil du høre mer?</p>
+                <p className="text-text-light font-medium">
+                  {t("wantToHearMore")}
+                </p>
                 <p className="text-text-muted text-sm">
-                  Utforsk hele katalogen vår på Discogs
+                  {t("exploreOurCatalog")}
                 </p>
               </div>
             </div>
-            <Link
-              href={musicSectionInfo.ctaUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <Link href={t("ctaUrl")} target="_blank" rel="noopener noreferrer">
               <Button variant="primary" size="md">
-                <span>{musicSectionInfo.ctaLabel}</span>
+                <span>{t("ctaLabel")}</span>
                 <svg
                   className="w-4 h-4 ml-2"
                   fill="none"
