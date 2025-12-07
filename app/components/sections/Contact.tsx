@@ -10,6 +10,7 @@ interface FormData {
   phone: string;
   email: string;
   message: string;
+  privacyConsent: boolean;
 }
 
 interface FormErrors {
@@ -17,6 +18,7 @@ interface FormErrors {
   phone?: string;
   email?: string;
   message?: string;
+  privacyConsent?: string;
 }
 
 export default function Contact() {
@@ -25,6 +27,7 @@ export default function Contact() {
     phone: "",
     email: "",
     message: "",
+    privacyConsent: false,
   });
 
   const [errors, setErrors] = useState<FormErrors>({});
@@ -50,6 +53,10 @@ export default function Contact() {
       newErrors.message = "Vennligst skriv en melding";
     }
 
+    if (!formData.privacyConsent) {
+      newErrors.privacyConsent = "Du må godta vilkårene for å sende skjemaet";
+    }
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -66,7 +73,13 @@ export default function Contact() {
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
       setSubmitStatus("success");
-      setFormData({ name: "", phone: "", email: "", message: "" });
+      setFormData({
+        name: "",
+        phone: "",
+        email: "",
+        message: "",
+        privacyConsent: false,
+      });
 
       setTimeout(() => {
         setSubmitStatus("idle");
@@ -85,8 +98,13 @@ export default function Contact() {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    const { name, value, type } = e.target;
+    const checked = (e.target as HTMLInputElement).checked;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
 
     if (errors[name as keyof FormErrors]) {
       setErrors((prev) => ({ ...prev, [name]: undefined }));
@@ -174,15 +192,13 @@ export default function Contact() {
                       />
                       {errors.name && (
                         <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2">
-                          <div className="relative group">
-                            <div className="w-6 h-6 rounded bg-yellow-500/20 border border-yellow-500/40 flex items-center justify-center">
-                              <span className="text-yellow-500 text-sm font-bold">
-                                !
-                              </span>
-                            </div>
-                            <div className="absolute right-0 top-full mt-2 w-48 p-2 bg-yellow-900/95 border border-yellow-500/40 rounded-lg text-xs text-yellow-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10 shadow-lg">
-                              {errors.name}
-                            </div>
+                          <div
+                            className="w-6 h-6 rounded bg-yellow-500/20 border border-yellow-500/40 flex items-center justify-center group cursor-help"
+                            title={errors.name}
+                          >
+                            <span className="text-yellow-500 text-sm font-bold">
+                              !
+                            </span>
                           </div>
                         </div>
                       )}
@@ -220,15 +236,13 @@ export default function Contact() {
                       />
                       {errors.phone && (
                         <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2">
-                          <div className="relative group">
-                            <div className="w-6 h-6 rounded bg-yellow-500/20 border border-yellow-500/40 flex items-center justify-center">
-                              <span className="text-yellow-500 text-sm font-bold">
-                                !
-                              </span>
-                            </div>
-                            <div className="absolute right-0 top-full mt-2 w-48 p-2 bg-yellow-900/95 border border-yellow-500/40 rounded-lg text-xs text-yellow-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10 shadow-lg">
-                              {errors.phone}
-                            </div>
+                          <div
+                            className="w-6 h-6 rounded bg-yellow-500/20 border border-yellow-500/40 flex items-center justify-center group cursor-help"
+                            title={errors.phone}
+                          >
+                            <span className="text-yellow-500 text-sm font-bold">
+                              !
+                            </span>
                           </div>
                         </div>
                       )}
@@ -267,15 +281,13 @@ export default function Contact() {
                     />
                     {errors.email && (
                       <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2">
-                        <div className="relative group">
-                          <div className="w-6 h-6 rounded bg-yellow-500/20 border border-yellow-500/40 flex items-center justify-center">
-                            <span className="text-yellow-500 text-sm font-bold">
-                              !
-                            </span>
-                          </div>
-                          <div className="absolute right-0 top-full mt-2 w-64 p-2 bg-yellow-900/95 border border-yellow-500/40 rounded-lg text-xs text-yellow-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10 shadow-lg">
-                            {errors.email}
-                          </div>
+                        <div
+                          className="w-6 h-6 rounded bg-yellow-500/20 border border-yellow-500/40 flex items-center justify-center group cursor-help"
+                          title={errors.email}
+                        >
+                          <span className="text-yellow-500 text-sm font-bold">
+                            !
+                          </span>
                         </div>
                       </div>
                     )}
@@ -313,15 +325,13 @@ export default function Contact() {
                     />
                     {errors.message && (
                       <div className="absolute right-3 top-3 flex items-center gap-2">
-                        <div className="relative group">
-                          <div className="w-6 h-6 rounded bg-yellow-500/20 border border-yellow-500/40 flex items-center justify-center">
-                            <span className="text-yellow-500 text-sm font-bold">
-                              !
-                            </span>
-                          </div>
-                          <div className="absolute right-0 top-full mt-2 w-48 p-2 bg-yellow-900/95 border border-yellow-500/40 rounded-lg text-xs text-yellow-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10 shadow-lg">
-                            {errors.message}
-                          </div>
+                        <div
+                          className="w-6 h-6 rounded bg-yellow-500/20 border border-yellow-500/40 flex items-center justify-center group cursor-help"
+                          title={errors.message}
+                        >
+                          <span className="text-yellow-500 text-sm font-bold">
+                            !
+                          </span>
                         </div>
                       </div>
                     )}
@@ -332,18 +342,30 @@ export default function Contact() {
                   <input
                     type="checkbox"
                     id="privacy"
-                    name="privacy"
-                    required
-                    className="mt-1 w-4 h-4 rounded border-border-subtle bg-primary-dark text-accent focus:ring-2 focus:ring-accent/50 focus:ring-offset-0 cursor-pointer"
+                    name="privacyConsent"
+                    checked={formData.privacyConsent}
+                    onChange={handleChange}
+                    className={`mt-1 w-4 h-4 rounded border bg-primary-dark text-accent focus:ring-2 focus:ring-accent/50 focus:ring-offset-0 cursor-pointer ${
+                      errors.privacyConsent
+                        ? "border-yellow-500/60 ring-2 ring-yellow-500/20"
+                        : "border-border-subtle"
+                    }`}
                   />
-                  <label
-                    htmlFor="privacy"
-                    className="text-sm text-text-muted leading-relaxed cursor-pointer"
-                  >
-                    Jeg godtar at LM Studio & Musikkservice kan lagre og
-                    behandle mine opplysninger for å svare på denne
-                    henvendelsen.
-                  </label>
+                  <div className="flex-1">
+                    <label
+                      htmlFor="privacy"
+                      className="text-sm text-text-muted leading-relaxed cursor-pointer"
+                    >
+                      Jeg godtar at LM Studio & Musikkservice kan lagre og
+                      behandle mine opplysninger for å svare på denne
+                      henvendelsen.
+                    </label>
+                    {errors.privacyConsent && (
+                      <p className="text-yellow-500 text-xs mt-1">
+                        {errors.privacyConsent}
+                      </p>
+                    )}
+                  </div>
                 </div>
 
                 <div>
@@ -555,7 +577,10 @@ export default function Contact() {
       </Container>
 
       {submitStatus === "success" && (
-        <div className="fixed top-24 left-1/2 -translate-x-1/2 z-50 animate-in fade-in slide-in-from-top-4 duration-300">
+        <div
+          key="success-toast"
+          className="fixed top-24 left-1/2 -translate-x-1/2 z-50 animate-in fade-in slide-in-from-top-4 duration-300"
+        >
           <div
             className="p-4 rounded-xl bg-green-900/95 backdrop-blur-sm border border-green-700/50 text-green-300 shadow-2xl shadow-green-900/50 min-w-[320px]"
             role="alert"
@@ -581,6 +606,7 @@ export default function Contact() {
                 </p>
               </div>
               <button
+                type="button"
                 onClick={() => setSubmitStatus("idle")}
                 className="text-green-400 hover:text-green-300 transition-colors cursor-pointer"
                 aria-label="Lukk melding"
@@ -603,7 +629,10 @@ export default function Contact() {
       )}
 
       {submitStatus === "error" && (
-        <div className="fixed top-24 left-1/2 -translate-x-1/2 z-50 animate-in fade-in slide-in-from-top-4 duration-300">
+        <div
+          key="error-toast"
+          className="fixed top-24 left-1/2 -translate-x-1/2 z-50 animate-in fade-in slide-in-from-top-4 duration-300"
+        >
           <div
             className="p-4 rounded-xl bg-red-900/95 backdrop-blur-sm border border-red-700/50 text-red-300 shadow-2xl shadow-red-900/50 min-w-[320px]"
             role="alert"
@@ -630,6 +659,7 @@ export default function Contact() {
                 </p>
               </div>
               <button
+                type="button"
                 onClick={() => setSubmitStatus("idle")}
                 className="text-red-400 hover:text-red-300 transition-colors cursor-pointer"
                 aria-label="Lukk melding"
