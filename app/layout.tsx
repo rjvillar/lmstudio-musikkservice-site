@@ -27,14 +27,60 @@ export const metadata: Metadata = {
     "kurs",
     "PA-utleie",
     "MIDI",
+    "trekkspill reparasjon",
+    "musikkutstyr",
+    "lydteknikk",
+    "digitalisering musikk",
+    "trekkspill Norge",
+    "musikkservice Hedmark",
+    "toradere salg",
+    "Moelv",
+    "Ringsaker",
   ],
   authors: [{ name: "LM Studio & Musikkservice" }],
+  creator: "LM Studio & Musikkservice",
+  publisher: "LM Studio & Musikkservice",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
-    title: "LM Studio & Musikkservice",
-    description: "Din spesialist på trekkspill, toradere og musikk",
+    title:
+      "LM Studio & Musikkservice | Din spesialist på trekkspill og toradere",
+    description:
+      "Salg, service, kurs og studioinnspilling for trekkspill og toradere i Brumunddal. Profesjonell musikkservice siden 2001.",
+    url: "https://lmstudio-musikkservice-site.vercel.app",
+    siteName: "LM Studio & Musikkservice",
     locale: "nb_NO",
     type: "website",
+    images: [
+      {
+        url: "/images/preview.png",
+        width: 1200,
+        height: 630,
+        alt: "LM Studio & Musikkservice - Din spesialist på trekkspill og toradere",
+      },
+    ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title:
+      "LM Studio & Musikkservice | Din spesialist på trekkspill og toradere",
+    description:
+      "Salg, service, kurs og studioinnspilling for trekkspill og toradere i Brumunddal. Profesjonell musikkservice siden 2001.",
+    images: ["/images/preview.png"],
+  },
+  alternates: {
+    canonical: "https://lmstudio-musikkservice-site.vercel.app",
+  },
+  category: "Music",
 };
 
 export default function RootLayout({
