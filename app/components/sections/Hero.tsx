@@ -54,12 +54,12 @@ export default function Hero() {
       </motion.div>
 
       <motion.div
-        className="relative z-10 flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 sm:pb-6 lg:pb-8 pt-24 md:pt-32"
+        className="relative z-10 flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 sm:pb-6 lg:pb-8 pt-20 sm:pt-24 md:pt-32"
         style={{ opacity: mounted ? opacity : 1 }}
       >
         <div className="text-center max-w-4xl mx-auto">
           <motion.div
-            className="mb-6"
+            className="mb-4 sm:mb-6"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
@@ -69,14 +69,14 @@ export default function Hero() {
               alt="LM Studio & Musikkservice"
               width={400}
               height={120}
-              className="h-24 sm:h-28 md:h-32 lg:h-40 w-auto mx-auto object-contain"
+              className="h-20 sm:h-24 md:h-32 lg:h-40 w-auto mx-auto object-contain"
               priority
             />
           </motion.div>
 
           <motion.h1
             id="hero-heading"
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-text-light tracking-tight"
+            className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-text-light tracking-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
@@ -88,7 +88,7 @@ export default function Hero() {
           </motion.h1>
 
           <motion.p
-            className="mt-6 md:mt-8 text-lg sm:text-xl md:text-2xl text-text-light/90 max-w-1xl mx-auto leading-relaxed"
+            className="mt-4 sm:mt-6 md:mt-8 text-base sm:text-lg md:text-2xl text-text-light/90 max-w-1xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
@@ -97,7 +97,7 @@ export default function Hero() {
           </motion.p>
 
           <motion.div
-            className="mt-8 md:mt-12 flex flex-col sm:flex-row gap-4 justify-center items-center"
+            className="mt-6 sm:mt-8 md:mt-12 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
