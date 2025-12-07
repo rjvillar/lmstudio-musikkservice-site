@@ -25,11 +25,14 @@ export default function Gallery() {
   }>({});
 
   // Helper function to translate category names
-  const translateCategory = useCallback((category: string): string => {
-    if (category === allLabel) return allLabel;
-    const categories = t.raw("categories") as Record<string, string>;
-    return categories[category] || category;
-  }, [allLabel, t]);
+  const translateCategory = useCallback(
+    (category: string): string => {
+      if (category === allLabel) return allLabel;
+      const categories = t.raw("categories") as Record<string, string>;
+      return categories[category] || category;
+    },
+    [allLabel, t]
+  );
 
   const categories = useMemo(
     () => [allLabel, ...new Set(galleryImages.map((img) => img.category))],
