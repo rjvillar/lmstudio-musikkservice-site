@@ -150,28 +150,43 @@ export default function Contact() {
                     >
                       Navn <span className="text-accent">*</span>
                     </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      className={`
-                        w-full px-4 py-3 rounded-lg
-                        bg-primary-dark border
-                        text-text-light placeholder-text-muted/50
-                        transition-all duration-200
-                        focus:outline-none focus:ring-2 focus:ring-accent/50
-                        ${
-                          errors.name
-                            ? "border-red-500 focus:border-red-500 ring-2 ring-red-500/20"
-                            : "border-border-subtle hover:border-accent/30 focus:border-accent"
-                        }
-                      `}
-                      placeholder="Ditt fulle navn"
-                      title={errors.name || ""}
-                      aria-invalid={!!errors.name}
-                    />
+                    <div className="relative">
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        className={`
+                          w-full px-4 py-3 rounded-lg
+                          bg-primary-dark border
+                          text-text-light placeholder-text-muted/50
+                          transition-all duration-200
+                          focus:outline-none focus:ring-2 focus:ring-accent/50
+                          ${
+                            errors.name
+                              ? "border-yellow-500/60 focus:border-yellow-500 ring-2 ring-yellow-500/20 pr-12"
+                              : "border-border-subtle hover:border-accent/30 focus:border-accent"
+                          }
+                        `}
+                        placeholder="Ditt fulle navn"
+                        aria-invalid={!!errors.name}
+                      />
+                      {errors.name && (
+                        <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2">
+                          <div className="relative group">
+                            <div className="w-6 h-6 rounded bg-yellow-500/20 border border-yellow-500/40 flex items-center justify-center">
+                              <span className="text-yellow-500 text-sm font-bold">
+                                !
+                              </span>
+                            </div>
+                            <div className="absolute right-0 top-full mt-2 w-48 p-2 bg-yellow-900/95 border border-yellow-500/40 rounded-lg text-xs text-yellow-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10 shadow-lg">
+                              {errors.name}
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
                   </div>
 
                   <div>
@@ -181,28 +196,43 @@ export default function Contact() {
                     >
                       Telefon
                     </label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      className={`
-                        w-full px-4 py-3 rounded-lg
-                        bg-primary-dark border
-                        text-text-light placeholder-text-muted/50
-                        transition-all duration-200
-                        focus:outline-none focus:ring-2 focus:ring-accent/50
-                        ${
-                          errors.phone
-                            ? "border-red-500 focus:border-red-500 ring-2 ring-red-500/20"
-                            : "border-border-subtle hover:border-accent/30 focus:border-accent"
-                        }
-                      `}
-                      placeholder="Ditt telefonnummer"
-                      title={errors.phone || ""}
-                      aria-invalid={!!errors.phone}
-                    />
+                    <div className="relative">
+                      <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        className={`
+                          w-full px-4 py-3 rounded-lg
+                          bg-primary-dark border
+                          text-text-light placeholder-text-muted/50
+                          transition-all duration-200
+                          focus:outline-none focus:ring-2 focus:ring-accent/50
+                          ${
+                            errors.phone
+                              ? "border-yellow-500/60 focus:border-yellow-500 ring-2 ring-yellow-500/20 pr-12"
+                              : "border-border-subtle hover:border-accent/30 focus:border-accent"
+                          }
+                        `}
+                        placeholder="Ditt telefonnummer"
+                        aria-invalid={!!errors.phone}
+                      />
+                      {errors.phone && (
+                        <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2">
+                          <div className="relative group">
+                            <div className="w-6 h-6 rounded bg-yellow-500/20 border border-yellow-500/40 flex items-center justify-center">
+                              <span className="text-yellow-500 text-sm font-bold">
+                                !
+                              </span>
+                            </div>
+                            <div className="absolute right-0 top-full mt-2 w-48 p-2 bg-yellow-900/95 border border-yellow-500/40 rounded-lg text-xs text-yellow-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10 shadow-lg">
+                              {errors.phone}
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
 
@@ -213,28 +243,43 @@ export default function Contact() {
                   >
                     E-post <span className="text-accent">*</span>
                   </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className={`
-                      w-full px-4 py-3 rounded-lg
-                      bg-primary-dark border
-                      text-text-light placeholder-text-muted/50
-                      transition-all duration-200
-                      focus:outline-none focus:ring-2 focus:ring-accent/50
-                      ${
-                        errors.email
-                          ? "border-red-500 focus:border-red-500 ring-2 ring-red-500/20"
-                          : "border-border-subtle hover:border-accent/30 focus:border-accent"
-                      }
-                    `}
-                    placeholder="din@epost.no"
-                    title={errors.email || ""}
-                    aria-invalid={!!errors.email}
-                  />
+                  <div className="relative">
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      className={`
+                        w-full px-4 py-3 rounded-lg
+                        bg-primary-dark border
+                        text-text-light placeholder-text-muted/50
+                        transition-all duration-200
+                        focus:outline-none focus:ring-2 focus:ring-accent/50
+                        ${
+                          errors.email
+                            ? "border-yellow-500/60 focus:border-yellow-500 ring-2 ring-yellow-500/20 pr-12"
+                            : "border-border-subtle hover:border-accent/30 focus:border-accent"
+                        }
+                      `}
+                      placeholder="din@epost.no"
+                      aria-invalid={!!errors.email}
+                    />
+                    {errors.email && (
+                      <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2">
+                        <div className="relative group">
+                          <div className="w-6 h-6 rounded bg-yellow-500/20 border border-yellow-500/40 flex items-center justify-center">
+                            <span className="text-yellow-500 text-sm font-bold">
+                              !
+                            </span>
+                          </div>
+                          <div className="absolute right-0 top-full mt-2 w-64 p-2 bg-yellow-900/95 border border-yellow-500/40 rounded-lg text-xs text-yellow-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10 shadow-lg">
+                            {errors.email}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
 
                 <div className="flex-1 flex flex-col">
@@ -244,28 +289,43 @@ export default function Contact() {
                   >
                     Melding <span className="text-accent">*</span>
                   </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    className={`
-                      w-full h-full min-h-[100px] px-4 py-3 rounded-lg
-                      bg-primary-dark border
-                      text-text-light placeholder-text-muted/50
-                      transition-all duration-200
-                      resize-none
-                      focus:outline-none focus:ring-2 focus:ring-accent/50
-                      ${
-                        errors.message
-                          ? "border-red-500 focus:border-red-500 ring-2 ring-red-500/20"
-                          : "border-border-subtle hover:border-accent/30 focus:border-accent"
-                      }
-                    `}
-                    placeholder="Fortell oss hva du lurer på..."
-                    title={errors.message || ""}
-                    aria-invalid={!!errors.message}
-                  />
+                  <div className="relative flex-1">
+                    <textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      className={`
+                        w-full h-full min-h-[100px] px-4 py-3 rounded-lg
+                        bg-primary-dark border
+                        text-text-light placeholder-text-muted/50
+                        transition-all duration-200
+                        resize-none
+                        focus:outline-none focus:ring-2 focus:ring-accent/50
+                        ${
+                          errors.message
+                            ? "border-yellow-500/60 focus:border-yellow-500 ring-2 ring-yellow-500/20 pr-12"
+                            : "border-border-subtle hover:border-accent/30 focus:border-accent"
+                        }
+                      `}
+                      placeholder="Fortell oss hva du lurer på..."
+                      aria-invalid={!!errors.message}
+                    />
+                    {errors.message && (
+                      <div className="absolute right-3 top-3 flex items-center gap-2">
+                        <div className="relative group">
+                          <div className="w-6 h-6 rounded bg-yellow-500/20 border border-yellow-500/40 flex items-center justify-center">
+                            <span className="text-yellow-500 text-sm font-bold">
+                              !
+                            </span>
+                          </div>
+                          <div className="absolute right-0 top-full mt-2 w-48 p-2 bg-yellow-900/95 border border-yellow-500/40 rounded-lg text-xs text-yellow-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10 shadow-lg">
+                            {errors.message}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
 
                 <div className="flex items-start gap-3">
