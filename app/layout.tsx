@@ -15,7 +15,7 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "LM Studio & Musikkservice | Din spesialist på trekkspill og toradere",
+  title: "Trekkspill og musikkstudio | LM Studio & Musikkservice",
   description:
     "LM Studio & Musikkservice tilbyr salg, service, kurs og studioinnspilling for trekkspill og toradere i Brumunddal. Profesjonell musikkservice med personlig touch.",
   keywords: [
@@ -52,8 +52,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title:
-      "LM Studio & Musikkservice | Din spesialist på trekkspill og toradere",
+    title: "Trekkspill og musikkstudio | LM Studio & Musikkservice",
     description:
       "Salg, service, kurs og studioinnspilling for trekkspill og toradere i Brumunddal. Profesjonell musikkservice siden 2001.",
     url: "https://lmstudio-musikkservice-site.vercel.app",
@@ -71,8 +70,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title:
-      "LM Studio & Musikkservice | Din spesialist på trekkspill og toradere",
+    title: "Trekkspill og musikkstudio | LM Studio & Musikkservice",
     description:
       "Salg, service, kurs og studioinnspilling for trekkspill og toradere i Brumunddal. Profesjonell musikkservice siden 2001.",
     images: ["/images/preview.png"],
