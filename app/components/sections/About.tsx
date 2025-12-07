@@ -3,8 +3,8 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { Container, SectionHeading } from "@/app/components/ui";
-import { businessInfo } from "@/app/lib/data";
 
 const storyImages = [
   "/images/story/bjorn.png",
@@ -84,6 +84,8 @@ function Slideshow({ delay = 0 }: { delay?: number }) {
 }
 
 export default function About() {
+  const t = useTranslations("about");
+
   return (
     <section
       id="om-oss"
@@ -96,19 +98,16 @@ export default function About() {
         </div>
 
         <SectionHeading
-          title="Om oss"
-          subtitle="Din spesialist på trekkspill, toradere og musikk siden 2001"
+          title={t("heading")}
+          subtitle={t("subtitle")}
           alignment="center"
         />
 
         <div className="max-w-3xl mx-auto mt-16 text-center">
           <p className="text-lg text-primary-dark/90 leading-relaxed">
-            <strong className="text-primary-dark">
-              LM Studio & Musikkservice
-            </strong>{" "}
-            er din spesialist på trekkspill, toradere og musikk-tekniske
-            tjenester siden 2001. Vi tilbyr alt fra salg og service til
-            innspilling, PA-utleie og digitalisering.
+            {t.rich("description", {
+              strong: (chunks) => <strong>{chunks}</strong>,
+            })}
           </p>
         </div>
 
@@ -126,33 +125,77 @@ export default function About() {
           }}
         >
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-            {businessInfo.valueProps.map((prop, index) => (
-              <motion.div
-                key={index}
-                variants={{
-                  hidden: { opacity: 0, y: 50, scale: 0.9 },
-                  visible: { opacity: 1, y: 0, scale: 1 },
-                }}
-                transition={{ type: "spring", stiffness: 100, damping: 15 }}
-                whileHover={{
-                  y: -8,
-                  scale: 1.03,
-                  transition: { duration: 0.3 },
-                }}
-                className="bg-white rounded-xl p-6 text-center space-y-3 shadow-sm border border-gray-100 hover:shadow-lg transition-shadow duration-300"
-              >
-                <div className="w-14 h-14 mx-auto rounded-xl bg-accent/10 flex items-center justify-center">
-                  <ValuePropIcon index={index} />
-                </div>
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 50, scale: 0.9 },
+                visible: { opacity: 1, y: 0, scale: 1 },
+              }}
+              transition={{ type: "spring", stiffness: 100, damping: 15 }}
+              whileHover={{
+                y: -8,
+                scale: 1.03,
+                transition: { duration: 0.3 },
+              }}
+              className="bg-white rounded-xl p-6 text-center space-y-3 shadow-sm border border-gray-100 hover:shadow-lg transition-shadow duration-300"
+            >
+              <div className="w-14 h-14 mx-auto rounded-xl bg-accent/10 flex items-center justify-center">
+                <ValuePropIcon index={0} />
+              </div>
+              <h3 className="text-lg font-bold text-primary-dark">
+                {t("valueProp1Title")}
+              </h3>
+              <p className="text-sm text-primary-dark/70 leading-relaxed">
+                {t("valueProp1Desc")}
+              </p>
+            </motion.div>
 
-                <h3 className="text-lg font-bold text-primary-dark">
-                  {prop.title}
-                </h3>
-                <p className="text-sm text-primary-dark/70 leading-relaxed">
-                  {prop.description}
-                </p>
-              </motion.div>
-            ))}
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 50, scale: 0.9 },
+                visible: { opacity: 1, y: 0, scale: 1 },
+              }}
+              transition={{ type: "spring", stiffness: 100, damping: 15 }}
+              whileHover={{
+                y: -8,
+                scale: 1.03,
+                transition: { duration: 0.3 },
+              }}
+              className="bg-white rounded-xl p-6 text-center space-y-3 shadow-sm border border-gray-100 hover:shadow-lg transition-shadow duration-300"
+            >
+              <div className="w-14 h-14 mx-auto rounded-xl bg-accent/10 flex items-center justify-center">
+                <ValuePropIcon index={1} />
+              </div>
+              <h3 className="text-lg font-bold text-primary-dark">
+                {t("valueProp2Title")}
+              </h3>
+              <p className="text-sm text-primary-dark/70 leading-relaxed">
+                {t("valueProp2Desc")}
+              </p>
+            </motion.div>
+
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 50, scale: 0.9 },
+                visible: { opacity: 1, y: 0, scale: 1 },
+              }}
+              transition={{ type: "spring", stiffness: 100, damping: 15 }}
+              whileHover={{
+                y: -8,
+                scale: 1.03,
+                transition: { duration: 0.3 },
+              }}
+              className="bg-white rounded-xl p-6 text-center space-y-3 shadow-sm border border-gray-100 hover:shadow-lg transition-shadow duration-300"
+            >
+              <div className="w-14 h-14 mx-auto rounded-xl bg-accent/10 flex items-center justify-center">
+                <ValuePropIcon index={2} />
+              </div>
+              <h3 className="text-lg font-bold text-primary-dark">
+                {t("valueProp3Title")}
+              </h3>
+              <p className="text-sm text-primary-dark/70 leading-relaxed">
+                {t("valueProp3Desc")}
+              </p>
+            </motion.div>
           </div>
         </motion.div>
 

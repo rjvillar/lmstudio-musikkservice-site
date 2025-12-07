@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { contactInfo, additionalContacts } from "@/app/lib/data";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function TopBar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -24,7 +25,7 @@ export default function TopBar() {
         ${isScrolled ? "bg-accent" : "bg-transparent"}
       `}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-10 flex items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-9 flex items-center">
         <div className="flex-1 flex flex-wrap justify-between items-center gap-2 text-sm">
           <div
             className={`
@@ -114,7 +115,7 @@ export default function TopBar() {
 
           <div
             className={`
-              hidden lg:flex items-center gap-2 transition-colors duration-300
+              hidden lg:flex items-center gap-4 transition-colors duration-300
               ${
                 isScrolled
                   ? "text-primary-dark/80"
@@ -122,29 +123,42 @@ export default function TopBar() {
               }
             `}
           >
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
+            <div className="flex items-center gap-2">
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+              </svg>
+              <span>
+                {contactInfo.address}, {contactInfo.postalCode}{" "}
+                {contactInfo.city}
+              </span>
+            </div>
+
+            <span
+              className={
+                isScrolled ? "text-primary-dark/40" : "text-text-light/40"
+              }
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={1.5}
-                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-              />
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={1.5}
-                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-              />
-            </svg>
-            <span>
-              {contactInfo.address}, {contactInfo.postalCode} {contactInfo.city}
+              |
             </span>
+
+            <LanguageSwitcher isScrolled={isScrolled} />
           </div>
         </div>
       </div>

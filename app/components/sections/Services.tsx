@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { Container, SectionHeading } from "@/app/components/ui";
 import { services, type Service } from "@/app/lib/data";
 
@@ -202,6 +203,8 @@ function ServiceRow({
 }
 
 export default function Services() {
+  const t = useTranslations("services");
+
   return (
     <section
       id="tjenester"
@@ -213,11 +216,7 @@ export default function Services() {
           <div className="w-16 h-1 bg-accent rounded-full" />
         </div>
 
-        <SectionHeading
-          title="Våre tjenester"
-          subtitle="Alt du trenger – under ett tak"
-          light
-        />
+        <SectionHeading title={t("heading")} subtitle={t("subtitle")} light />
 
         <motion.div
           className="space-y-20 md:space-y-32 mt-16"

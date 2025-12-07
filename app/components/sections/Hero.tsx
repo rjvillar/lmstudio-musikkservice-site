@@ -4,10 +4,11 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { Button } from "@/app/components/ui";
-import { businessInfo } from "@/app/lib/data";
 
 export default function Hero() {
+  const t = useTranslations("hero");
   const [mounted, setMounted] = useState(false);
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 500], [0, 150]);
@@ -86,10 +87,8 @@ export default function Hero() {
               delay: 0.2,
             }}
           >
-            <span className="block">
-              {businessInfo.name.split("&")[0].trim()}
-            </span>
-            <span className="block text-accent">&amp; Musikkservice</span>
+            <span className="block">{t("name")}</span>
+            <span className="block text-accent">&amp; {t("subtitle")}</span>
           </motion.h1>
 
           <motion.p
@@ -103,7 +102,7 @@ export default function Hero() {
               delay: 0.4,
             }}
           >
-            {businessInfo.tagline}
+            {t("tagline")}
           </motion.p>
 
           <motion.div
@@ -119,7 +118,7 @@ export default function Hero() {
           >
             <Link href="#tjenester">
               <Button size="lg" className="w-full sm:w-auto min-w-[200px]">
-                <span>Utforsk tjenester</span>
+                <span>{t("exploreServices")}</span>
                 <svg
                   className="w-4 h-4 ml-2"
                   fill="none"
@@ -142,7 +141,7 @@ export default function Hero() {
                 size="lg"
                 className="w-full sm:w-auto min-w-[200px]"
               >
-                Ta kontakt
+                {t("getInTouch")}
               </Button>
             </Link>
           </motion.div>

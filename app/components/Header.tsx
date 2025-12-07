@@ -4,18 +4,24 @@ import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { Container } from "@/app/components/ui";
-import {
-  navigationLinks,
-  businessInfo,
-  contactInfo,
-  additionalContacts,
-} from "@/app/lib/data";
+import { businessInfo, contactInfo, additionalContacts } from "@/app/lib/data";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function Header() {
+  const t = useTranslations("nav");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
+
+  const navigationLinks = [
+    { href: "#tjenester", label: t("services") },
+    { href: "#om-oss", label: t("about") },
+    { href: "#musikk", label: t("music") },
+    { href: "#galleri", label: t("gallery") },
+    { href: "#kontakt", label: t("contact") },
+  ];
 
   useEffect(() => {
     const timer = setTimeout(() => setMounted(true), 0);
@@ -48,12 +54,12 @@ export default function Header() {
   return (
     <header
       className={`
-        fixed top-0 md:top-10 left-0 right-0 z-40
-        transition-all duration-500 ease-out
+        fixed top-0 md:top-9 left-0 right-0 z-40
+        transition-all duration-300 ease-out
         ${
           isScrolled
             ? "bg-primary-dark/95 backdrop-blur-md shadow-lg shadow-primary-dark/20 border-b border-border-subtle"
-            : "bg-transparent"
+            : "bg-transparent border-b border-transparent"
         }
       `}
       role="banner"
@@ -365,6 +371,10 @@ export default function Header() {
                         {contactInfo.city}
                       </span>
                     </div>
+                  </div>
+
+                  <div className="mt-4 pt-4 border-t border-border-subtle/40">
+                    <LanguageSwitcher variant="mobile" />
                   </div>
                 </div>
               </div>

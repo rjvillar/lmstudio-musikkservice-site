@@ -2,8 +2,9 @@
 
 import { useState, type FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { Container, SectionHeading, Button, Card } from "@/app/components/ui";
-import { contactInfo, additionalContacts, openingHours } from "@/app/lib/data";
+import { contactInfo, additionalContacts } from "@/app/lib/data";
 
 interface FormData {
   name: string;
@@ -56,6 +57,7 @@ function ErrorPopover({ message }: { message: string }) {
 }
 
 export default function Contact() {
+  const t = useTranslations("contact");
   const [formData, setFormData] = useState<FormData>({
     name: "",
     phone: "",
@@ -74,21 +76,21 @@ export default function Contact() {
     const newErrors: FormErrors = {};
 
     if (!formData.name.trim()) {
-      newErrors.name = "Vennligst fyll inn navn";
+      newErrors.name = t("nameRequired");
     }
 
     if (!formData.email.trim()) {
-      newErrors.email = "Vennligst fyll inn e-postadresse";
+      newErrors.email = t("emailRequired");
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = "Vennligst fyll inn en gyldig e-postadresse";
+      newErrors.email = t("emailInvalid");
     }
 
     if (!formData.message.trim()) {
-      newErrors.message = "Vennligst skriv en melding";
+      newErrors.message = t("messageRequired");
     }
 
     if (!formData.privacyConsent) {
-      newErrors.privacyConsent = "Du må godta vilkårene for å sende skjemaet";
+      newErrors.privacyConsent = t("privacyRequired");
     }
 
     setErrors(newErrors);
@@ -153,11 +155,7 @@ export default function Contact() {
     >
       <Container>
         <div className="mb-16">
-          <SectionHeading
-            title="Kontakt oss"
-            subtitle="Vi hører gjerne fra deg – ta kontakt for spørsmål, service eller en uforpliktende prat"
-            light
-          />
+          <SectionHeading title={t("heading")} subtitle={t("subtitle")} light />
         </div>
 
         <motion.div
@@ -183,10 +181,10 @@ export default function Contact() {
           >
             <Card padding="lg" className="h-full flex flex-col">
               <h3 className="text-xl font-semibold text-text-light mb-2">
-                Send oss en melding
+                {t("formTitle")}
               </h3>
               <p className="text-text-muted text-sm mb-6">
-                Fyll ut skjemaet nedenfor, så tar vi kontakt så snart som mulig
+                {t("formSubtitle")}
               </p>
 
               <form
@@ -200,7 +198,7 @@ export default function Contact() {
                       htmlFor="name"
                       className="block text-sm font-medium text-text-light mb-2"
                     >
-                      Navn <span className="text-accent">*</span>
+                      {t("name")} <span className="text-accent">*</span>
                     </label>
                     <div className="relative">
                       <input
@@ -221,7 +219,7 @@ export default function Contact() {
                               : "border-border-subtle hover:border-accent/30 focus:border-accent"
                           }
                         `}
-                        placeholder="Ditt fulle navn"
+                        placeholder={t("namePlaceholder")}
                         aria-invalid={!!errors.name}
                       />
                       {errors.name && (
@@ -258,7 +256,7 @@ export default function Contact() {
                               : "border-border-subtle hover:border-accent/30 focus:border-accent"
                           }
                         `}
-                        placeholder="Ditt telefonnummer"
+                        placeholder={t("phonePlaceholder")}
                         aria-invalid={!!errors.phone}
                       />
                       {errors.phone && (
@@ -275,7 +273,7 @@ export default function Contact() {
                     htmlFor="email"
                     className="block text-sm font-medium text-text-light mb-2"
                   >
-                    E-post <span className="text-accent">*</span>
+                    {t("email")} <span className="text-accent">*</span>
                   </label>
                   <div className="relative">
                     <input
@@ -296,7 +294,7 @@ export default function Contact() {
                             : "border-border-subtle hover:border-accent/30 focus:border-accent"
                         }
                       `}
-                      placeholder="din@epost.no"
+                      placeholder={t("emailPlaceholder")}
                       aria-invalid={!!errors.email}
                     />
                     {errors.email && (
@@ -312,7 +310,7 @@ export default function Contact() {
                     htmlFor="message"
                     className="block text-sm font-medium text-text-light mb-2"
                   >
-                    Melding <span className="text-accent">*</span>
+                    {t("message")} <span className="text-accent">*</span>
                   </label>
                   <div className="relative flex-1">
                     <textarea
@@ -333,7 +331,7 @@ export default function Contact() {
                             : "border-border-subtle hover:border-accent/30 focus:border-accent"
                         }
                       `}
-                      placeholder="Fortell oss hva du lurer på..."
+                      placeholder={t("messagePlaceholder")}
                       aria-invalid={!!errors.message}
                     />
                     {errors.message && (
@@ -362,9 +360,7 @@ export default function Contact() {
                       htmlFor="privacy"
                       className="text-sm text-text-muted leading-relaxed cursor-pointer"
                     >
-                      Jeg godtar at LM Studio & Musikkservice kan lagre og
-                      behandle mine opplysninger for å svare på denne
-                      henvendelsen.
+                      {t("privacyConsent")}
                     </label>
                     {errors.privacyConsent && (
                       <p className="text-yellow-500 text-xs mt-1">
@@ -382,7 +378,7 @@ export default function Contact() {
                     loading={isSubmitting}
                     disabled={isSubmitting}
                   >
-                    Send melding
+                    {t("sendMessage")}
                   </Button>
                 </div>
               </form>
@@ -399,7 +395,7 @@ export default function Contact() {
           >
             <div>
               <h3 className="text-lg font-semibold text-text-light mb-4">
-                Direkte kontakt
+                {t("directContact")}
               </h3>
               <div className="grid sm:grid-cols-2 gap-3 mb-3">
                 <a
@@ -495,7 +491,7 @@ export default function Contact() {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-xs text-text-muted">E-post</p>
+                  <p className="text-xs text-text-muted">{t("email")}</p>
                   <p className="text-text-light font-medium group-hover:text-accent transition-colors break-all">
                     {contactInfo.email}
                   </p>
@@ -525,7 +521,7 @@ export default function Contact() {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-xs text-text-muted mb-1">Adresse</p>
+                  <p className="text-xs text-text-muted mb-1">{t("address")}</p>
                   <address className="not-italic text-text-light font-medium leading-relaxed">
                     {contactInfo.address}
                     <br />
@@ -544,7 +540,7 @@ export default function Contact() {
               </div>
               <div className="relative flex justify-center mb-4 md:mb-2">
                 <span className="bg-primary-dark px-4 text-sm text-text-muted">
-                  Vi er alltid klare til å hjelpe
+                  {t("alwaysReady")}
                 </span>
               </div>
             </div>
@@ -567,13 +563,14 @@ export default function Contact() {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-xs text-text-muted mb-1">Åpningstider</p>
+                  <p className="text-xs text-text-muted mb-1">
+                    {t("openingHours")}
+                  </p>
                   <p className="text-accent font-semibold text-lg">
-                    {openingHours.note}
+                    {t("byAppointment")}
                   </p>
                   <p className="text-text-muted text-sm mt-2">
-                    Vi har ingen faste åpningstider – alt ordnes etter behov.
-                    Ring eller send e-post for å avtale tid.
+                    {t("openingHoursDesc")}
                   </p>
                 </div>
               </div>
@@ -606,16 +603,16 @@ export default function Contact() {
                 </svg>
               </div>
               <div className="flex-1">
-                <p className="font-semibold text-white">Melding sendt!</p>
+                <p className="font-semibold text-white">{t("successTitle")}</p>
                 <p className="text-sm mt-1 text-green-300/90">
-                  Takk for din henvendelse. Vi tar kontakt så snart som mulig.
+                  {t("successMessage")}
                 </p>
               </div>
               <button
                 type="button"
                 onClick={() => setSubmitStatus("idle")}
                 className="text-green-400 hover:text-green-300 transition-colors cursor-pointer"
-                aria-label="Lukk melding"
+                aria-label={t("closeMessage")}
               >
                 <svg
                   className="w-5 h-5"
@@ -658,17 +655,16 @@ export default function Contact() {
                 </svg>
               </div>
               <div className="flex-1">
-                <p className="font-semibold text-white">Noe gikk galt</p>
+                <p className="font-semibold text-white">{t("errorTitle")}</p>
                 <p className="text-sm mt-1 text-red-300/90">
-                  Beklager, vi kunne ikke sende meldingen. Vennligst prøv igjen
-                  eller kontakt oss direkte.
+                  {t("errorMessage")}
                 </p>
               </div>
               <button
                 type="button"
                 onClick={() => setSubmitStatus("idle")}
                 className="text-red-400 hover:text-red-300 transition-colors cursor-pointer"
-                aria-label="Lukk melding"
+                aria-label={t("closeMessage")}
               >
                 <svg
                   className="w-5 h-5"

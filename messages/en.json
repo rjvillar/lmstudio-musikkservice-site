@@ -1,0 +1,95 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "about": "About",
+    "gallery": "Gallery",
+    "music": "Music",
+    "contact": "Contact"
+  },
+  "hero": {
+    "name": "LM Studio",
+    "subtitle": "Music Service",
+    "tagline": "Your specialist in accordion, button accordion and music",
+    "exploreServices": "Explore services",
+    "getInTouch": "Get in touch"
+  },
+  "services": {
+    "heading": "Our services",
+    "subtitle": "Everything you need – under one roof"
+  },
+  "about": {
+    "heading": "About us",
+    "subtitle": "Your specialist in accordion, button accordion and music since 2001",
+    "description": "<strong>LM Studio & Music Service</strong> is your specialist in accordion, button accordion and music technical services since 2001. We offer everything from sales and service to recording, PA rental and digitalization.",
+    "valueProp1Title": "Right price – right quality",
+    "valueProp1Desc": "Direct import, low costs and warranty on used instruments.",
+    "valueProp2Title": "Everything in one place",
+    "valueProp2Desc": "Everything from sales and service to courses, studio and sound engineering – we offer it all under one roof.",
+    "valueProp3Title": "Personal follow-up",
+    "valueProp3Desc": "We adapt our services to your wishes and needs."
+  },
+  "gallery": {
+    "heading": "Gallery",
+    "subtitle": "A glimpse into our work, studio and instruments",
+    "all": "All",
+    "images": "images"
+  },
+  "music": {
+    "heading": "Music",
+    "subtitle": "Album recordings from LM Studio",
+    "description": "Experience the music recorded in our studio. We have worked with many talented artists and produced high-quality recordings."
+  },
+  "contact": {
+    "heading": "Contact us",
+    "subtitle": "We'd love to hear from you – contact us for questions, service or a no-obligation chat",
+    "formTitle": "Send us a message",
+    "formSubtitle": "Fill out the form below and we'll get back to you as soon as possible",
+    "name": "Name",
+    "phone": "Phone",
+    "email": "Email",
+    "message": "Message",
+    "namePlaceholder": "Your full name",
+    "phonePlaceholder": "Your phone number",
+    "emailPlaceholder": "your@email.com",
+    "messagePlaceholder": "Tell us what you're wondering about...",
+    "privacyConsent": "I agree that LM Studio & Music Service may store and process my information to respond to this inquiry.",
+    "sendMessage": "Send message",
+    "directContact": "Direct contact",
+    "address": "Address",
+    "openingHours": "Opening hours",
+    "byAppointment": "By appointment",
+    "openingHoursDesc": "We have no fixed opening hours – everything is arranged as needed. Call or email to schedule an appointment.",
+    "alwaysReady": "We're always ready to help",
+    "successTitle": "Message sent!",
+    "successMessage": "Thank you for your inquiry. We'll contact you as soon as possible.",
+    "errorTitle": "Something went wrong",
+    "errorMessage": "Sorry, we couldn't send the message. Please try again or contact us directly.",
+    "closeMessage": "Close message",
+    "nameRequired": "Please enter your name",
+    "emailRequired": "Please enter your email address",
+    "emailInvalid": "Please enter a valid email address",
+    "messageRequired": "Please write a message",
+    "privacyRequired": "You must accept the terms to submit the form"
+  },
+  "topbar": {
+    "phone": "Phone",
+    "email": "Email",
+    "address": "Address"
+  },
+  "footer": {
+    "about": "About us",
+    "aboutText": "LM Studio & Music Service is your specialist in accordion, button accordion and music technical services. Since 2001, we have helped both enthusiasts and professionals.",
+    "quickLinks": "Quick links",
+    "contactInfo": "Contact information",
+    "followUs": "Follow us",
+    "allRightsReserved": "All rights reserved",
+    "orgNumber": "Org.no",
+    "established": "Established",
+    "navigation": "Navigation",
+    "findUs": "Find us",
+    "privacy": "Privacy",
+    "contact": "Contact",
+    "professionalService": "Professional service since 2001"
+  }
+}

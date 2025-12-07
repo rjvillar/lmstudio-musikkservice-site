@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { Container, SectionHeading, Button } from "@/app/components/ui";
 import { albums, musicSectionInfo, type Album } from "@/app/lib/data";
 
@@ -103,6 +104,8 @@ function AlbumCard({ album }: { album: Album }) {
 }
 
 export default function Music() {
+  const t = useTranslations("music");
+
   return (
     <section
       id="musikk"
@@ -111,13 +114,9 @@ export default function Music() {
     >
       <Container>
         <div className="text-center mb-16">
-          <SectionHeading
-            title={musicSectionInfo.title}
-            subtitle={musicSectionInfo.subtitle}
-            light
-          />
+          <SectionHeading title={t("heading")} subtitle={t("subtitle")} light />
           <p className="mt-4 text-text-muted max-w-2xl mx-auto">
-            {musicSectionInfo.description}
+            {t("description")}
           </p>
         </div>
 

@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { Container, SectionHeading } from "@/app/components/ui";
 import { galleryImages, type GalleryImage } from "@/app/lib/data";
 
@@ -13,7 +14,9 @@ interface CategoryGroup {
 }
 
 export default function Gallery() {
-  const [selectedCategory, setSelectedCategory] = useState<string>("Alle");
+  const t = useTranslations("gallery");
+  const allLabel = t("all");
+  const [selectedCategory, setSelectedCategory] = useState<string>(allLabel);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxCategory, setLightboxCategory] = useState<string>("");
   const [lightboxIndex, setLightboxIndex] = useState(0);
@@ -22,8 +25,8 @@ export default function Gallery() {
   }>({});
 
   const categories = useMemo(
-    () => ["Alle", ...new Set(galleryImages.map((img) => img.category))],
-    []
+    () => [allLabel, ...new Set(galleryImages.map((img) => img.category))],
+    [allLabel]
   );
 
   const categoryGroups: CategoryGroup[] = (() => {
@@ -44,13 +47,13 @@ export default function Gallery() {
   })();
 
   useEffect(() => {
-    if (selectedCategory !== "Alle") return;
+    if (selectedCategory !== allLabel) return;
 
     const interval = setInterval(() => {
       setCategoryIndices((prev) => {
         const newIndices: { [key: string]: number } = {};
         categories.forEach((cat) => {
-          if (cat === "Alle") return;
+          if (cat === allLabel) return;
           const categoryImages = galleryImages.filter(
             (img) => img.category === cat
           );
@@ -62,10 +65,10 @@ export default function Gallery() {
     }, 3500);
 
     return () => clearInterval(interval);
-  }, [selectedCategory, categories]);
+  }, [selectedCategory, categories, allLabel]);
 
   const getDisplayImages = (): GalleryImage[] => {
-    if (selectedCategory === "Alle") {
+    if (selectedCategory === allLabel) {
       return categoryGroups.map((group) => group.images[group.currentIndex]);
     }
     return galleryImages.filter((img) => img.category === selectedCategory);
@@ -130,7 +133,7 @@ export default function Gallery() {
   }, [lightboxOpen, closeLightbox, navigateLightbox]);
 
   const displayImages = getDisplayImages();
-  const isAllMode = selectedCategory === "Alle";
+  const isAllMode = selectedCategory === allLabel;
 
   return (
     <section
@@ -140,11 +143,7 @@ export default function Gallery() {
     >
       <Container>
         <div className="text-center mb-16">
-          <SectionHeading
-            title="Galleri"
-            subtitle="Et innblikk i vårt arbeid, studio og instrumenter"
-            light
-          />
+          <SectionHeading title={t("heading")} subtitle={t("subtitle")} light />
         </div>
 
         <div className="flex flex-wrap justify-center gap-3 mb-14">

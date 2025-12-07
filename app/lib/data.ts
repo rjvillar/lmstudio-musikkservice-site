@@ -556,7 +556,7 @@ export const albums: Album[] = [
     title: "Vorspiel",
     artist: "Anette",
     year: "2004",
-    coverImage: "/images/music/album-1.jpg",
+    coverImage: "/images/albums/album-1.jpg",
     discogsUrl: "https://www.discogs.com/release/13614433-Anette-Vorspiel",
     description: "Folkemusikk, verdensmusikk og country.",
   },

@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { Inter, Manrope } from "next/font/google";
-import "./globals.css";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
+import { notFound } from "next/navigation";
+import { locales } from "@/i18n/request";
+import "../globals.css";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -81,17 +85,33 @@ export const metadata: Metadata = {
   category: "Music",
 };
 
-export default function RootLayout({
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
+
+export default async function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }>) {
+  const { locale } = await params;
+
+  if (!locales.includes(locale as any)) {
+    notFound();
+  }
+
+  const messages = await getMessages({ locale });
+
   return (
-    <html lang="no" className="scroll-smooth overflow-x-hidden">
+    <html lang={locale} className="scroll-smooth overflow-x-hidden">
       <body
         className={`${inter.variable} ${manrope.variable} antialiased bg-primary-dark text-text-light overflow-x-hidden`}
       >
-        {children}
+        <NextIntlClientProvider messages={messages}>
+          {children}
+        </NextIntlClientProvider>
       </body>
     </html>
   );

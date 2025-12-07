@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Container } from "@/app/components/ui";
+import { useTranslations } from "next-intl";
 import {
   businessInfo,
   contactInfo,
@@ -12,6 +13,7 @@ import {
 } from "@/app/lib/data";
 
 export default function Footer() {
+  const t = useTranslations("footer");
   const currentYear = new Date().getFullYear();
 
   return (
@@ -52,12 +54,14 @@ export default function Footer() {
               {/* Company Info */}
               <div className="space-y-2 text-sm mb-4">
                 <p className="text-text-muted mb-0">
-                  <span className="text-text-light font-semibold">Org.nr:</span>{" "}
+                  <span className="text-text-light font-semibold">
+                    {t("orgNumber")}:
+                  </span>{" "}
                   {contactInfo.orgNumber}
                 </p>
                 <p className="text-text-muted">
                   <span className="text-text-light font-semibold">
-                    Etablert:
+                    {t("established")}:
                   </span>{" "}
                   2001
                 </p>
@@ -72,7 +76,7 @@ export default function Footer() {
             {/* Navigate Column */}
             <div>
               <h3 className="text-sm font-bold text-text-light uppercase tracking-wider mb-5">
-                Navigasjon
+                {t("navigation")}
               </h3>
               <ul className="space-y-2">
                 {navigationLinks.map((link) => (
@@ -94,7 +98,7 @@ export default function Footer() {
                     className="text-text-muted text-sm hover:text-accent transition-colors duration-200 inline-flex items-center gap-2.5 group"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-accent/50 group-hover:bg-accent transition-colors" />
-                    Finn oss
+                    {t("findUs")}
                   </a>
                 </li>
                 <li>
@@ -103,7 +107,7 @@ export default function Footer() {
                     className="text-text-muted text-sm hover:text-accent transition-colors duration-200 inline-flex items-center gap-2.5 group"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-accent/50 group-hover:bg-accent transition-colors" />
-                    Personvern
+                    {t("privacy")}
                   </Link>
                 </li>
               </ul>
@@ -112,7 +116,7 @@ export default function Footer() {
             {/* Contact Column */}
             <div>
               <h3 className="text-sm font-bold text-text-light uppercase tracking-wider mb-5">
-                Kontakt
+                {t("contact")}
               </h3>
               <address className="not-italic space-y-3">
                 {/* Phone - Geir-Harry */}
@@ -215,9 +219,9 @@ export default function Footer() {
         <Container>
           <div className="py-4 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-text-muted">
             <p>
-              © {currentYear} {businessInfo.name}. Alle rettigheter reservert.
+              © {currentYear} {businessInfo.name}. {t("allRightsReserved")}.
             </p>
-            <p>Profesjonell tjeneste siden 2001</p>
+            <p>{t("professionalService")}</p>
           </div>
         </Container>
       </div>
