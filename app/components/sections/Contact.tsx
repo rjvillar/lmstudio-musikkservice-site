@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Container, SectionHeading, Button, Card } from "@/app/components/ui";
 import { contactInfo, additionalContacts, openingHours } from "@/app/lib/data";
 
@@ -19,6 +19,40 @@ interface FormErrors {
   email?: string;
   message?: string;
   privacyConsent?: string;
+}
+
+function ErrorPopover({ message }: { message: string }) {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <div
+      className="relative"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className="w-6 h-6 rounded bg-yellow-500/20 border border-yellow-500/40 flex items-center justify-center cursor-help">
+        <span className="text-yellow-500 text-sm font-bold">!</span>
+      </div>
+      <AnimatePresence>
+        {isHovered && (
+          <motion.div
+            initial={{ opacity: 0, y: 5, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 5, scale: 0.95 }}
+            transition={{ duration: 0.15, ease: "easeOut" }}
+            className="absolute z-10 right-0 top-8 w-64"
+          >
+            <div className="bg-yellow-900/95 backdrop-blur-sm border border-yellow-700/50 rounded-lg p-3 shadow-xl">
+              <div className="absolute -top-1 right-2 w-2 h-2 bg-yellow-900 border-t border-l border-yellow-700/50 rotate-45"></div>
+              <p className="text-yellow-200 text-xs leading-relaxed">
+                {message}
+              </p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
 }
 
 export default function Contact() {
@@ -191,15 +225,8 @@ export default function Contact() {
                         aria-invalid={!!errors.name}
                       />
                       {errors.name && (
-                        <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2">
-                          <div
-                            className="w-6 h-6 rounded bg-yellow-500/20 border border-yellow-500/40 flex items-center justify-center group cursor-help"
-                            title={errors.name}
-                          >
-                            <span className="text-yellow-500 text-sm font-bold">
-                              !
-                            </span>
-                          </div>
+                        <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                          <ErrorPopover message={errors.name} />
                         </div>
                       )}
                     </div>
@@ -235,15 +262,8 @@ export default function Contact() {
                         aria-invalid={!!errors.phone}
                       />
                       {errors.phone && (
-                        <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2">
-                          <div
-                            className="w-6 h-6 rounded bg-yellow-500/20 border border-yellow-500/40 flex items-center justify-center group cursor-help"
-                            title={errors.phone}
-                          >
-                            <span className="text-yellow-500 text-sm font-bold">
-                              !
-                            </span>
-                          </div>
+                        <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                          <ErrorPopover message={errors.phone} />
                         </div>
                       )}
                     </div>
@@ -280,15 +300,8 @@ export default function Contact() {
                       aria-invalid={!!errors.email}
                     />
                     {errors.email && (
-                      <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2">
-                        <div
-                          className="w-6 h-6 rounded bg-yellow-500/20 border border-yellow-500/40 flex items-center justify-center group cursor-help"
-                          title={errors.email}
-                        >
-                          <span className="text-yellow-500 text-sm font-bold">
-                            !
-                          </span>
-                        </div>
+                      <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                        <ErrorPopover message={errors.email} />
                       </div>
                     )}
                   </div>
@@ -324,15 +337,8 @@ export default function Contact() {
                       aria-invalid={!!errors.message}
                     />
                     {errors.message && (
-                      <div className="absolute right-3 top-3 flex items-center gap-2">
-                        <div
-                          className="w-6 h-6 rounded bg-yellow-500/20 border border-yellow-500/40 flex items-center justify-center group cursor-help"
-                          title={errors.message}
-                        >
-                          <span className="text-yellow-500 text-sm font-bold">
-                            !
-                          </span>
-                        </div>
+                      <div className="absolute right-3 top-3">
+                        <ErrorPopover message={errors.message} />
                       </div>
                     )}
                   </div>
