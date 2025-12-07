@@ -25,11 +25,11 @@ export default function Gallery() {
   }>({});
 
   // Helper function to translate category names
-  const translateCategory = (category: string): string => {
+  const translateCategory = useCallback((category: string): string => {
     if (category === allLabel) return allLabel;
     const categories = t.raw("categories") as Record<string, string>;
     return categories[category] || category;
-  };
+  }, [allLabel, t]);
 
   const categories = useMemo(
     () => [allLabel, ...new Set(galleryImages.map((img) => img.category))],
@@ -233,6 +233,7 @@ export default function Gallery() {
                       openLightbox(image.category, imageIndexInCategory)
                     }
                     totalImages={categoryImages.length}
+                    translateCategory={translateCategory}
                   />
                 </motion.div>
               );
@@ -254,13 +255,13 @@ export default function Gallery() {
     </section>
   );
 }
-
 interface GalleryCardProps {
   image: GalleryImage;
   isLargeCard: boolean;
   isAnimating: boolean;
   onClick: () => void;
   totalImages: number;
+  translateCategory: (category: string) => string;
 }
 
 function GalleryCard({
@@ -269,6 +270,7 @@ function GalleryCard({
   isAnimating,
   onClick,
   totalImages,
+  translateCategory,
 }: GalleryCardProps) {
   const [imageError, setImageError] = useState(false);
 
@@ -309,7 +311,7 @@ function GalleryCard({
               />
             </svg>
             <p className="text-accent/40 text-xs md:text-sm text-center font-medium">
-              {image.category}
+              {translateCategory(image.category)}
             </p>
           </div>
         )}
@@ -334,7 +336,7 @@ function GalleryCard({
         {isAnimating && (
           <>
             <span className="text-text-light text-sm font-semibold mt-3">
-              {image.category}
+              {translateCategory(image.category)}
             </span>
             {totalImages > 1 && (
               <span className="text-text-muted text-xs mt-1">
@@ -347,7 +349,7 @@ function GalleryCard({
 
       <div className="absolute top-3 left-3 px-3 py-1.5 rounded-full bg-primary-dark/80 backdrop-blur-sm">
         <span className="text-text-light text-xs font-medium">
-          {image.category}
+          {translateCategory(image.category)}
         </span>
       </div>
 
