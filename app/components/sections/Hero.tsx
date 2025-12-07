@@ -135,21 +135,6 @@ export default function Hero() {
       </motion.div>
 
       <div
-        className="relative z-10 pb-8 flex justify-center sm:hidden"
-        aria-hidden="true"
-      >
-        <Link
-          href="#tjenester"
-          className="flex flex-col items-center gap-2 text-text-muted hover:text-accent transition-colors group"
-        >
-          <span className="text-xs tracking-widest uppercase">Scroll ned</span>
-          <div className="w-6 h-10 border-2 border-current rounded-full flex justify-center pt-2">
-            <div className="w-1 h-2 bg-current rounded-full animate-bounce" />
-          </div>
-        </Link>
-      </div>
-
-      <div
         className="absolute bottom-0 left-0 w-32 h-32 border-l-2 border-b-2 border-accent/20 hidden lg:block"
         aria-hidden="true"
       />
