@@ -1,21 +1,7 @@
 @import "tailwindcss";
 
-/* 
- * LM Studio & Musikkservice - Global Styles
- * Design System: Scandinavian Minimalism meets Music Studio Aesthetic
- * 
- * Color Palette:
- * - Primary Dark: #1a1a1a (Rich charcoal for backgrounds)
- * - Secondary Dark: #2d2d2d (Slate gray for cards/sections)
- * - Accent Warm: #c9a66b (Warm wood/brass inspired - accordion bellows)
- * - Accent Muted: #8b7355 (Darker wood tone)
- * - Off-white: #f8f7f5 (Warm white for light sections)
- * - Text Light: #e8e6e3 (Soft white for dark backgrounds)
- * - Text Muted: #9ca3af (Gray for secondary text)
- */
 
 @theme inline {
-  /* Custom color tokens */
   --color-primary-dark: #1a1a1a;
   --color-secondary-dark: #2d2d2d;
   --color-accent: #c9a66b;
@@ -26,7 +12,6 @@
   --color-text-muted: #9ca3af;
   --color-border-subtle: #3d3d3d;
 
-  /* Typography */
   --font-sans: var(--font-inter);
   --font-heading: var(--font-manrope);
 }
@@ -43,7 +28,6 @@
   }
 }
 
-/* Base styles */
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
@@ -58,7 +42,6 @@ body {
   position: relative;
 }
 
-/* Custom scrollbar styled with site palette */
 html {
   scrollbar-width: thin;
   scrollbar-color: var(--color-accent) var(--color-primary-dark);
@@ -86,25 +69,21 @@ html {
   background: transparent;
 }
 
-/* Focus styles for accessibility */
 *:focus-visible {
   outline: 2px solid #c9a66b;
   outline-offset: 2px;
 }
 
-/* Selection colors */
 ::selection {
   background: #c9a66b;
   color: #1a1a1a;
 }
 
-/* Smooth transitions for interactive elements */
 a,
 button {
   transition: all 0.2s ease-in-out;
 }
 
-/* Typography refinements */
 h1,
 h2,
 h3,
@@ -115,7 +94,6 @@ h6 {
   letter-spacing: -0.02em;
 }
 
-/* Form focus states */
 input:focus,
 textarea:focus,
 select:focus {
@@ -124,13 +102,11 @@ select:focus {
   box-shadow: 0 0 0 3px rgba(201, 166, 107, 0.15);
 }
 
-/* Image handling */
 img {
   max-width: 100%;
   height: auto;
 }
 
-/* Subtle texture overlay for dark sections */
 .texture-overlay {
   position: relative;
 }

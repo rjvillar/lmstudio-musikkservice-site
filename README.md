@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# LM Studio & Musikkservice
 
-## Getting Started
+Modern redesign of the official website for LM Studio & Musikkservice - Norway's premier accordion service and music studio based in Brumunddal.
 
-First, run the development server:
+> **Note**: This is a redesigned version of the LM Studio & Musikkservice website. Visit the current official website at [hauglands.no](https://hauglands.no)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🎵 About
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+LM Studio & Musikkservice specializes in:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Professional accordion service and repairs
+- Music instrument sales
+- Recording studio services
+- Music lessons and consultations
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Founded by Geir-Harry Larsen Mathisen, we've been serving musicians across Norway with expertise in accordion maintenance, music production, and personalized service.
 
-## Learn More
+## 🚀 Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+- **Framework**: [Next.js 16](https://nextjs.org) with App Router & Turbopack
+- **Styling**: Tailwind CSS v4
+- **Animations**: Framer Motion
+- **Language**: TypeScript
+- **Fonts**: Inter (body), Manrope (headings)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🎨 Design System
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Color Palette
 
-## Deploy on Vercel
+- **Primary Dark**: `#1a1a1a` - Rich charcoal backgrounds
+- **Secondary Dark**: `#2d2d2d` - Card and section backgrounds
+- **Accent**: `#c9a66b` - Warm gold (accordion bellows inspired)
+- **Text Light**: `#e8e6e3` - Soft white for dark backgrounds
+- **Text Muted**: `#9ca3af` - Secondary text
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Typography
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Headings**: Manrope - Modern, geometric sans-serif
+- **Body**: Inter - Clean, highly legible
+
+## ✨ Features
+
+- 🎯 Fully responsive design
+- ⚡ Optimized performance with Next.js 16 + Turbopack
+- 🎬 Smooth animations with Framer Motion
+- 📱 Progressive enhancement
+- ♿ WCAG accessibility compliance
+- 🗺️ Google Maps integration
+- 📧 Contact form with validation
+- 🖼️ Optimized image loading
+
+## 📞 Contact Information
+
+**LM Studio & Musikkservice**
+
+- Address: Furnesvegen 40, 2380 Brumunddal, Norway
+- Phone: +47 958 98 870 (Geir-Harry)
+- Email: ghh42@live.no
+- Opening Hours: By appointment
+
+## 📄 License
+
+© 2025 LM Studio & Musikkservice. All rights reserved.
+
+---
+
+Built with ❤️ for Norwegian musicians
