@@ -380,29 +380,29 @@ function Lightbox({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 bg-primary-dark/98 backdrop-blur-xl flex items-center justify-center p-4"
+      className="fixed inset-0 z-50 bg-primary-dark/98 backdrop-blur-xl flex items-center justify-center p-3 sm:p-4"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-6xl max-h-[90vh] flex flex-col"
+        className="relative w-full max-w-6xl h-full max-h-[95vh] sm:max-h-[90vh] flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center justify-between mb-6 px-2">
-          <div>
-            <h3 className="text-text-light text-xl md:text-2xl font-semibold">
+        <div className="flex items-center justify-between mb-3 sm:mb-4 md:mb-6 px-1 sm:px-2 flex-shrink-0">
+          <div className="min-w-0 flex-1 mr-3">
+            <h3 className="text-text-light text-base sm:text-xl md:text-2xl font-semibold truncate">
               {category}
             </h3>
-            <p className="text-text-muted text-sm mt-1">
+            <p className="text-text-muted text-xs sm:text-sm mt-0.5 sm:mt-1">
               {currentIndex + 1} / {categoryImages.length}
             </p>
           </div>
           <button
             onClick={onClose}
-            className="w-12 h-12 rounded-full bg-secondary-dark border border-border-subtle flex items-center justify-center text-text-light hover:text-accent hover:border-accent/50 transition-all duration-200 cursor-pointer"
+            className="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 rounded-full bg-secondary-dark border border-border-subtle flex items-center justify-center text-text-light hover:text-accent hover:border-accent/50 transition-all duration-200 cursor-pointer"
             aria-label="Lukk bildevisning"
           >
             <svg
-              className="w-6 h-6"
+              className="w-5 h-5 sm:w-6 sm:h-6"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -417,7 +417,7 @@ function Lightbox({
           </button>
         </div>
 
-        <div className="relative flex-1 flex items-center justify-center mb-6">
+        <div className="relative flex-1 flex items-center justify-center mb-3 sm:mb-4 md:mb-6 min-h-0">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentImage.id}
@@ -425,7 +425,7 @@ function Lightbox({
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.25 }}
-              className="relative w-full h-full min-h-[70vh] rounded-2xl overflow-hidden bg-secondary-dark shadow-2xl ring-1 ring-accent/10"
+              className="relative w-full h-full max-h-[60vh] sm:min-h-[65vh] sm:max-h-[70vh] rounded-xl sm:rounded-2xl overflow-hidden bg-secondary-dark shadow-2xl ring-1 ring-accent/10"
             >
               {!imageError ? (
                 <Image
@@ -462,11 +462,11 @@ function Lightbox({
                 <>
                   <button
                     onClick={() => onNavigate("prev")}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-secondary-dark/90 backdrop-blur-sm border border-border-subtle flex items-center justify-center text-text-light hover:text-accent hover:border-accent/50 transition-all duration-200 cursor-pointer"
+                    className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-secondary-dark/90 backdrop-blur-sm border border-border-subtle flex items-center justify-center text-text-light hover:text-accent hover:border-accent/50 transition-all duration-200 cursor-pointer"
                     aria-label="Forrige bilde"
                   >
                     <svg
-                      className="w-6 h-6"
+                      className="w-5 h-5 sm:w-6 sm:h-6"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -481,11 +481,11 @@ function Lightbox({
                   </button>
                   <button
                     onClick={() => onNavigate("next")}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-secondary-dark/90 backdrop-blur-sm border border-border-subtle flex items-center justify-center text-text-light hover:text-accent hover:border-accent/50 transition-all duration-200 cursor-pointer"
+                    className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-secondary-dark/90 backdrop-blur-sm border border-border-subtle flex items-center justify-center text-text-light hover:text-accent hover:border-accent/50 transition-all duration-200 cursor-pointer"
                     aria-label="Neste bilde"
                   >
                     <svg
-                      className="w-6 h-6"
+                      className="w-5 h-5 sm:w-6 sm:h-6"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -504,8 +504,8 @@ function Lightbox({
           </AnimatePresence>
         </div>
 
-        <div className="mt-4 text-center px-2">
-          <p className="text-text-light text-sm md:text-base">
+        <div className="mt-2 sm:mt-3 md:mt-4 text-center px-1 sm:px-2 flex-shrink-0 h-[12vh] sm:h-[10vh] overflow-y-auto">
+          <p className="text-text-light text-xs sm:text-sm md:text-base leading-snug sm:leading-normal">
             {currentImage.alt}
           </p>
         </div>
