@@ -6,7 +6,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { Container, SectionHeading, Button } from "@/app/components/ui";
-import { albums, musicSectionInfo, type Album } from "@/app/lib/data";
+import { albums, type Album } from "@/app/lib/data";
 
 function AlbumCard({ album }: { album: Album }) {
   const [imageError, setImageError] = useState(false);

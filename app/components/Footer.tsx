@@ -5,12 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Container } from "@/app/components/ui";
 import { useTranslations } from "next-intl";
-import {
-  businessInfo,
-  contactInfo,
-  navigationLinks,
-  additionalContacts,
-} from "@/app/lib/data";
+import { businessInfo, contactInfo, additionalContacts } from "@/app/lib/data";
 
 export default function Footer() {
   const t = useTranslations("footer");
@@ -53,7 +48,6 @@ export default function Footer() {
                 </div>
               </Link>
 
-              {/* Company Info */}
               <div className="space-y-2 text-sm mb-4">
                 <p className="text-text-muted mb-0">
                   <span className="font-semibold">{t("orgNumber")}:</span>{" "}
@@ -65,13 +59,11 @@ export default function Footer() {
                 </p>
               </div>
 
-              {/* Description */}
               <p className="text-text-muted text-sm leading-relaxed max-w-xs mb-6">
                 {tBusiness("tagline")}
               </p>
             </div>
 
-            {/* Navigate Column */}
             <div>
               <h3 className="text-sm font-bold text-text-light uppercase tracking-wider mb-5">
                 {t("navigation")}
@@ -145,13 +137,11 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Contact Column */}
             <div>
               <h3 className="text-sm font-bold text-text-light uppercase tracking-wider mb-5">
                 {t("contact")}
               </h3>
               <address className="not-italic space-y-3">
-                {/* Phone - Geir-Harry */}
                 <a
                   href={`tel:${contactInfo.phone.replace(/\s/g, "")}`}
                   className="flex items-center gap-3 text-text-muted hover:text-accent transition-colors duration-200 group"
@@ -172,7 +162,6 @@ export default function Footer() {
                   <span className="text-sm">{contactInfo.phone}</span>
                 </a>
 
-                {/* Phone - Eva */}
                 <a
                   href={`tel:${additionalContacts.evaPhone.replace(/\s/g, "")}`}
                   className="flex items-center gap-3 text-text-muted hover:text-accent transition-colors duration-200 group"
@@ -193,7 +182,6 @@ export default function Footer() {
                   <span className="text-sm">{additionalContacts.evaPhone}</span>
                 </a>
 
-                {/* Email */}
                 <a
                   href={`mailto:${contactInfo.email}`}
                   className="flex items-center gap-3 text-text-muted hover:text-accent transition-colors duration-200 group"
@@ -214,7 +202,6 @@ export default function Footer() {
                   <span className="text-sm">{contactInfo.email}</span>
                 </a>
 
-                {/* Address */}
                 <div className="flex items-start gap-3 text-text-muted">
                   <svg
                     className="w-4 h-4 text-accent mt-0.5 shrink-0"
