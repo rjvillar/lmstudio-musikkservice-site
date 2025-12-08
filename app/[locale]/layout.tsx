@@ -104,6 +104,7 @@ export default async function RootLayout({
 
   const messages = await getMessages({ locale });
 
+  // Force rebuild
   return (
     <html lang={locale} className="scroll-smooth overflow-x-hidden">
       <body

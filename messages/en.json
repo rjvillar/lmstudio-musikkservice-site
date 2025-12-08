@@ -158,5 +158,12 @@
     "privacy": "Privacy",
     "contact": "Contact",
     "professionalService": "Professional service since 2001"
+  },
+  "notFound": {
+    "title": "404",
+    "heading": "Page not found",
+    "message": "Oops! It seems this page has gone off-key. The page you're looking for doesn't exist or has been moved.",
+    "homeButton": "Back to home",
+    "helpText": "Lost your way? Let us help you find the right note."
   }
 }

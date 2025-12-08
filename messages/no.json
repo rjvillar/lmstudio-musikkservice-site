@@ -158,5 +158,12 @@
     "privacy": "Personvern",
     "contact": "Kontakt",
     "professionalService": "Profesjonell tjeneste siden 2001"
+  },
+  "notFound": {
+    "title": "404",
+    "heading": "Siden ble ikke funnet",
+    "message": "Oisann! Det ser ut som denne siden har forsvunnet. Siden du leter etter eksisterer ikke eller har blitt flyttet.",
+    "homeButton": "Tilbake til forsiden",
+    "helpText": "Gått deg bort? La oss hjelpe deg å finne riktig tone."
   }
 }
